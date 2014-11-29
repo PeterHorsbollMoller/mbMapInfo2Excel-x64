@@ -1,0 +1,1625 @@
+'*******************************************************************************
+'** 	Created By Peter Horsbøll Møller, Pitney Bowes Software
+'** 	Program:
+'** 	Modul:
+'**
+'*******************************************************************************
+
+'-------------------------------------
+Include "MapBasic.def"
+Include "Enums.def"
+Include "Icons.def"
+Include "Menu.def"
+Include "IMapInfoProfessional.def"
+'**default constants...
+Include "Defaults.def"
+
+'-------------------------------------
+Include "DEBUGLib.def"
+Include "ERRORLib.def"
+Include "RIBBONLib.def"
+
+Declare Sub RBNInitiate
+Declare Function RBNAddElement(	  ByVal sTabName As String
+							, ByVal sGroupName As String
+							, ByVal sControlName As String
+							, ByVal nControlType As Integer
+							) As Integer
+Declare Function RBNGetElementIndex( ByVal sTabName As String
+							, ByVal sGroupName As String
+							, ByVal sControlName As String
+							) As Integer
+Declare Function RBNGetElementIndexOffset(	  ByVal sTabName As String
+									, ByVal sGroupName As String
+									, ByVal sControlName As String
+									, ByVal nOffset As Integer
+									) As Integer
+
+Dim	theMapinfoApplication As This,
+	theRibbon As This,
+	theTabsColl As This,
+	mbHasBeenInitiated As Logical
+
+'**These variables keep track of which controls have been added where
+Dim	marrControls() As This,
+	marrTabNames(), marrGroupNames(), marrControlNames() As String,
+	marrControlTypes() As Integer,
+	mnNumElements As Integer
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNLoop
+
+OnError GoTo ErrorOccured
+
+Dim	nNumTabs, nNumGroups, nNumCntrls, i, j, k As Integer,
+	sName, sCaption As String,
+	nCntrlType As Integer,
+	rbnTabItem As This,
+	rbnGroupsColl As This,
+	rbnGroupItem As This,
+	rbnControlsColl As This,
+	rbnControlItem As This
+
+	'--------------------------------
+	Call RBNInitiate
+
+	'--------------------------------
+	'Get Tabs Collection
+	theTabsColl = GetTabsColl(theRibbon)
+
+	nNumTabs = GetRbnTabCollCount(theTabsColl)
+'	Call DEBUGPrint("Number of Tabs " & nNumTabs)
+
+	For i = 0 To (nNumTabs - 1)	'**Do note that the collection starts at 0 and not at 1 like normal MapBasic Arrays
+		rbnTabItem = GetRbnTabCollItemInt(theTabsColl, i)
+
+		sName	= GetRbnTabName(rbnTabItem)
+		sCaption	= GetRbnTabCaption(rbnTabItem)
+		Call DEBUGPrint("--------------------------------------------------------------")
+		Call DEBUGPrint("Tab " & i & " is named '" & sName & "' but shown as '" & sCaption & "'")
+
+		rbnGroupsColl = GetRbnTabGrps(rbnTabItem)
+		nNumGroups = GetRbnCtrlGrpCollCount(rbnGroupsColl)
+'		Call DEBUGPrint("   Number of Tab Groups " & nNumGroups)
+
+		For j = 0 To (nNumGroups - 1)
+			rbnGroupItem = GetRbnCtrlGrpCollItemInt(rbnGroupsColl, j)
+
+			sName	= GetRbnCtrlGrpName(rbnGroupItem)
+			sCaption	= GetRbnCtrlGrpCaption(rbnGroupItem)
+			Call DEBUGPrint("   Tab Group " & j & " is named '" & sName & "' but shown as '" & sCaption & "'")
+
+			rbnControlsColl = GetRbnCtrlGrpCtrls(rbnGroupItem)
+			nNumCntrls = GetMICtrlCollCount(rbnControlsColl)
+'			Call DEBUGPrint("      Number of Controls " & nNumCntrls)
+
+			For k = 0 To (nNumCntrls - 1)
+				rbnControlItem	= GetMICtrlCollItemInt(rbnControlsColl, k)
+
+				nCntrlType	= GetMICtrlCtrlType(rbnControlItem)
+				sName		= GetMICtrlName(rbnControlItem)
+				sCaption		= GetMICtrlCaption(rbnControlItem)
+				Call DEBUGPrint("      Control " & k & " is named '" & sName & "' but shown as '" & sCaption & "' and Control Type is " & nCntrlType)
+			Next
+		Next
+	Next
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNLoop")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNLoopContext
+
+Dim	nNumTabs, nNumGroups, nNumCntrls, i, j, k As Integer,
+	sName, sCaption As String,
+	nCntrlType As Integer,
+	rbnTabItem As This,
+	rbnTabsColl As This,
+	rbnGroupsColl As This,
+	rbnGroupItem As This,
+	rbnControlsColl As This,
+	rbnControlItem As This
+
+	'--------------------------------
+	Call RBNInitiate
+
+	rbnGroupsColl	= GetCntxtTabGrpsColl(theRibbon)
+	nNumGroups	= GetRbnCntxtTabGrpCollCount(rbnGroupsColl)
+	Call DEBUGPrint("   RBNGetContextGroup: Number of Tab Groups " & nNumGroups)
+	For i = 0 To (nNumGroups - 1)
+		rbnGroupItem = GetRbnCntxtTabGrpCollItemInt(rbnGroupsColl, i)
+
+		sName	= GetRbnCntxtTabGrpName(rbnGroupItem)
+		sCaption	= GetRbnCntxtTabGrpCaption(rbnGroupItem)
+		Call DEBUGPrint("   Tab Group " & j & " is named '" & sName & "' but shown as '" & sCaption & "'")
+
+		rbnTabsColl = GetRbnCntxtTabGrpTabs(rbnGroupItem)
+'		rbnGroupsColl = GetRbnTabGrps(rbnGroupItem)
+
+		nNumGroups = GetRbnCtrlGrpCollCount(rbnTabsColl)
+'		Call DEBUGPrint("   Number of Tab Groups " & nNumGroups)
+
+		For j = 0 To (nNumGroups - 1)
+			rbnGroupItem = GetRbnCtrlGrpCollItemInt(rbnGroupsColl, j)
+
+			sName	= GetRbnCtrlGrpName(rbnGroupItem)
+			sCaption	= GetRbnCtrlGrpCaption(rbnGroupItem)
+			Call DEBUGPrint("   Tab Group " & j & " is named '" & sName & "' but shown as '" & sCaption & "'")
+
+			rbnControlsColl = GetRbnCtrlGrpCtrls(rbnGroupItem)
+			nNumCntrls = GetMICtrlCollCount(rbnControlsColl)
+'			Call DEBUGPrint("      Number of Controls " & nNumCntrls)
+
+			For k = 0 To (nNumCntrls - 1)
+				rbnControlItem	= GetMICtrlCollItemInt(rbnControlsColl, k)
+
+				nCntrlType	= GetMICtrlCtrlType(rbnControlItem)
+				sName		= GetMICtrlName(rbnControlItem)
+				sCaption		= GetMICtrlCaption(rbnControlItem)
+				Call DEBUGPrint("      Control " & k & " is named '" & sName & "' but shown as '" & sCaption & "' and Control Type is " & nCntrlType)
+			Next
+		Next
+	Next
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNLoopContext")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNInitiate
+
+OnError GoTo ErrorOccured
+
+	If mbHasBeenInitiated Then
+		Exit Sub
+	End If
+
+	'--------------------------------
+	'Get MIPro interface
+	theMapinfoApplication = SystemInfo(SYS_INFO_IMAPINFOAPPLICATION)
+	'Get Ribbon
+	theRibbon = GetRibbon(theMapinfoApplication)
+
+	Call RegisterUriParser(New_GenericUriParser(1), "pack", -1)
+
+	mbHasBeenInitiated = TRUE
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNInitiate")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNAddTab(		  ByVal sName As String
+					, ByVal sCaption As String
+					, ByVal sKeytip As String
+					) As Integer
+
+Dim	rbnTab As This,
+	rbnTabToolTip As this,
+	nCtrl As Integer
+
+OnError GoTo ErrorOccured
+
+RBNAddTab = 0
+
+	Call RBNInitiate
+
+	nCtrl = RBNAddElement(sName, "", "", -1)
+
+	'Add a new Tab to theTabsColl collection
+	rbnTab = RbnTabCollAddStrStr (theTabsColl, sName, sCaption)
+
+	If sKeytip <> "" Then
+		'Set the KeyTip for the RibbonTab. KeyTip: The keyboard shortcut for
+		'the tab. A KeyTip must have from 1 to 3 uppercase characters.
+		Call SetRbnItemKeyTip(rbnTab, sKeytip)
+	End If
+
+	rbnTab		= NULL_PTR
+
+	RBNAddTab = nCtrl
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNAddTab: " & sName)
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNSetTabToolTipName(  ByVal sTabName As String
+					, ByVal sText As String
+					, ByVal sDescription As String
+					, ByVal sDisabledText As String)
+
+Dim	rbnTabFound As RefPtr,
+	rbnTab As This
+
+OnError GoTo ErrorOccured
+
+	rbnTab = sTabName
+
+	If RBNGetTab(sTabName, rbnTabFound) Then
+		rbnTab = rbnTabFound
+
+		Call RBNSetControlToolTip(rbnTab, sText, sDescription, sDisabledText)
+	End If
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNSetControlToolTipName")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNSetTabToolTipIdx(	  ByVal nTabIdx As Integer
+					, ByVal sText As String
+					, ByVal sDescription As String
+					, ByVal sDisabledText As String)
+
+OnError GoTo ErrorOccured
+
+	Call RBNSetTabToolTipName(marrTabNames(nTabIdx), sText, sDescription, sDisabledText)
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNSetTabToolTipIdx")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNAddGroup(	  ByVal sName As String
+					, ByVal sCaption As String
+					, ByVal sTabName As String
+					) As Integer
+
+Dim	rbnGroup As This,
+	rbnGroupsColl as This,
+	rbnTabFound As RefPtr,
+	rbnGroupFound As RefPtr,
+	rbnTab As This,
+	nCtrl As Integer
+
+OnError GoTo ErrorOccured
+
+RBNAddGroup = 0
+
+	Call RBNInitiate
+
+	If RBNGetTab(sTabName, rbnTabFound) Then
+		rbnTab = rbnTabFound
+
+		nCtrl = RBNAddElement(sTabName, sName, "", -1)
+
+		'Get the ribbon group collection.
+		rbnGroupsColl	= GetRbnTabGrps(rbnTab)
+		'Add a new group.
+		rbnGroup		= RbnCtrlGrpCollAddStrStr(rbnGroupsColl, sName, sCaption)
+
+		'Disable the RibbonDialogLauncher. (A RibbonDialogLauncher is displayed in the
+		'lower-right corner of a group by default.)
+		Call SetRbnCtrlGrpIsLauncherVisible(rbnGroup, FALSE)
+
+		RBNAddGroup = nCtrl
+	End If
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNAddGroup: " & sName & " on tab " & sTabName)
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNSetGroupToolTipName(	  ByVal sTabName As String
+						, ByVal sGroupName As String
+						, ByVal sText As String
+						, ByVal sDescription As String
+						, ByVal sDisabledText As String)
+
+Dim	rbnTabFound, rbnGroupFound As RefPtr,
+	rbnTab, rbnGroup As This
+
+OnError GoTo ErrorOccured
+
+	rbnTab = sTabName
+
+	If RBNGetTab(sTabName, rbnTabFound) Then
+		rbnTab = rbnTabFound
+
+		If RBNGetGroup(rbnTab, sGroupName, rbnGroupFound) Then
+			rbnGroup	= rbnGroupFound
+
+			Call RBNSetControlToolTip(rbnGroup, sText, sDescription, sDisabledText)
+		End If
+	End If
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNSetControlToolTipName")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNSetGroupToolTipIdx(	  ByVal nGroupIdx As Integer
+						, ByVal sText As String
+						, ByVal sDescription As String
+						, ByVal sDisabledText As String)
+
+OnError GoTo ErrorOccured
+
+	Call RBNSetGroupToolTipName(marrTabNames(nGroupIdx), marrGroupNames(nGroupIdx), sText, sDescription, sDisabledText)
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNSetGroupToolTipIdx")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNAddControl(	  ByVal sName As String
+					, ByVal sCaption As String
+					, ByVal sKeytip As String
+					, ByVal nControlType As Integer
+					, ByVal sTabName As String
+					, ByVal sGroupName As String
+					) As Integer
+
+Dim	rbnGroup As This,
+	rbnGroupsColl as This,
+	rbnTabFound As RefPtr,
+	rbnGroupFound As RefPtr,
+	rbnTab As This,
+	nCtrl As Integer
+
+OnError GoTo ErrorOccured
+
+RBNAddControl = 0
+
+	Call RBNInitiate
+
+	If RBNGetTab(sTabName, rbnTabFound) Then
+		rbnTab = rbnTabFound
+
+		If RBNGetGroup(rbnTab, sGroupName, rbnGroupFound) Then
+
+			rbnGroup = rbnGroupFound
+			'Get Group controls collection
+			rbnGroupsColl = GetRbnCtrlGrpCtrls(rbnGroup)
+
+			nCtrl 			= RBNAddElement(GetRbnTabName(rbnTab), GetRbnCtrlGrpName(rbnGroup), sName, nControlType)
+			marrControls(nCtrl) = MICtrlCollAddStrStrInt(rbnGroupsColl, sName, sCaption, nControlType)
+
+			If sKeytip <> "" Then
+				'Set the KeyTip for the Control. KeyTip: The keyboard shortcut for the Control.
+				'A KeyTip must have from 1 to 3 uppercase characters.
+				Call SetMICtrlKeyTip(marrControls(nCtrl), sKeytip)
+			End If
+
+			RBNAddControl = nCtrl
+		End If
+	End If
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNAddControl: " & sName & " to " & sGroupName & " on tab " & sTabName)
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNInsertControl(	  ByVal sName As String
+						, ByVal sCaption As String
+						, ByVal sKeytip As String
+						, ByVal nControlType As Integer
+						, ByVal sTabName As String
+						, ByVal sGroupName As String
+						, ByVal nPosition As Integer
+						) As Integer
+
+Dim	rbnGroup As This,
+	rbnGroupsColl as This,
+	rbnTabFound As RefPtr,
+	rbnGroupFound As RefPtr,
+	rbnTab As This,
+	nCtrl As Integer
+
+OnError GoTo ErrorOccured
+
+RBNInsertControl = 0
+
+	Call RBNInitiate
+
+	If RBNGetTab(sTabName, rbnTabFound) Then
+		rbnTab = rbnTabFound
+
+		If RBNGetGroup(rbnTab, sGroupName, rbnGroupFound) Then
+
+			rbnGroup = rbnGroupFound
+			'Get Group controls collection
+			rbnGroupsColl = GetRbnCtrlGrpCtrls(rbnGroup)
+
+			nCtrl 			= RBNAddElement(GetRbnTabName(rbnTab), GetRbnCtrlGrpName(rbnGroup), sName, nControlType)
+			marrControls(nCtrl) = MICtrlCollInsertIntStrStrInt(rbnGroupsColl, nPosition, sName, sCaption, nControlType)
+
+			If sKeytip <> "" Then
+				'Set the KeyTip for the Control. KeyTip: The keyboard shortcut for the Control.
+				'A KeyTip must have from 1 to 3 uppercase characters.
+				Call SetMICtrlKeyTip(marrControls(nCtrl), sKeytip)
+			End If
+
+
+			RBNInsertControl = nCtrl
+		End If
+	End If
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNInsertControl")
+	Call ERRCreate(Err(), Error$(), "RBNInsertControl: " & sName & " at position " & nPosition & " in " & sGroupName & " on tab " & sTabName)
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNInsertControlAfter(	  ByVal sName As String
+							, ByVal sCaption As String
+							, ByVal sKeytip As String
+							, ByVal nControlType As Integer
+							, ByVal sTabName As String
+							, ByVal sGroupName As String
+							, ByVal sNameAfter As String
+							) As Integer
+
+Dim	nPosition As Integer
+
+OnError GoTo ErrorOccured
+
+RBNInsertControlAfter = 0
+
+	nPosition = RBNGetControlIndex(sTabName, sGroupName, sNameAfter)
+	If nPosition = 0 Then
+		RBNInsertControlAfter 	= RBNAddControl(sName, sCaption, sKeytip, nControlType, sTabName, sGroupName)
+	Else
+		nPosition				= nPosition + 1
+		RBNInsertControlAfter 	= RBNInsertControl(sName, sCaption, sKeytip, nControlType, sTabName, sGroupName, nPosition)
+	End If
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNInsertControlAfter: " & sName & " after " & sNameAfter & " in " & sGroupName & " on tab " & sTabName)
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNInsertControlBefore(	  ByVal sName As String
+							, ByVal sCaption As String
+							, ByVal sKeytip As String
+							, ByVal nControlType As Integer
+							, ByVal sTabName As String
+							, ByVal sGroupName As String
+							, ByVal sNameBefore As String
+							) As Integer
+
+Dim	nPosition As Integer
+
+OnError GoTo ErrorOccured
+
+RBNInsertControlBefore = 0
+
+	nPosition = RBNGetControlIndex(sTabName, sGroupName, sNameBefore)
+	If nPosition = 0 Then
+		RBNInsertControlBefore 	= RBNAddControl(sName, sCaption, sKeytip, nControlType, sTabName, sGroupName)
+	Else
+		RBNInsertControlBefore 	= RBNInsertControl(sName, sCaption, sKeytip, nControlType, sTabName, sGroupName, nPosition)
+	End If
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNInsertControlBefore: " & sName & " before " & sNameBefore & " in " & sGroupName & " on tab " & sTabName)
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNAddButton(	  ByVal sName As String
+					, ByVal sCaption As String
+					, ByVal sKeytip As String
+					, ByVal sTabName As String
+					, ByVal sGroupName As String
+					) As Integer
+
+OnError GoTo ErrorOccured
+
+	RBNAddButton = RBNAddControl(sName, sCaption, sKeytip, ControlType_Button, sTabName, sGroupName)
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNAddButton")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNInsertButton(  ByVal sName As String
+					, ByVal sCaption As String
+					, ByVal sKeytip As String
+					, ByVal sTabName As String
+					, ByVal sGroupName As String
+					, ByVal nPosition As Integer
+					) As Integer
+
+
+OnError GoTo ErrorOccured
+
+	RBNInsertButton = RBNInsertControl(sName, sCaption, sKeytip, ControlType_Button, sTabName, sGroupName, nPosition)
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNInsertButton")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNInsertButtonAfter(  ByVal sName As String
+						, ByVal sCaption As String
+						, ByVal sKeytip As String
+						, ByVal sTabName As String
+						, ByVal sGroupName As String
+						, ByVal sNameAfter As String
+						) As Integer
+
+Dim	nPosition As Integer
+
+OnError GoTo ErrorOccured
+
+	RBNInsertButtonAfter = RBNInsertControlAfter(sName, sCaption, sKeytip, ControlType_Button, sTabName, sGroupName, sNameAfter)
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNInsertButtonAfter")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNInsertButtonBefore( ByVal sName As String
+						, ByVal sCaption As String
+						, ByVal sKeytip As String
+						, ByVal sTabName As String
+						, ByVal sGroupName As String
+						, ByVal sNameBefore As String
+						) As Integer
+
+OnError GoTo ErrorOccured
+
+	RBNInsertButtonBefore = 	RBNInsertControlBefore(sName, sCaption, sKeytip, ControlType_Button, sTabName, sGroupName, sNameBefore)
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNInsertButtonBefore")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNAddButtonContext(	  ByVal sName As String
+						, ByVal sCaption As String
+						, ByVal sKeytip As String
+						, ByVal sTabName As String
+						, ByVal sGroupName As String
+						) As Integer
+
+Dim	rbnGroup As This,
+	rbnGroupsColl as This,
+	rbnTabFound As RefPtr,
+	rbnGroupFound As RefPtr,
+	rbnTab As This,
+	nCtrl As Integer
+
+OnError GoTo ErrorOccured
+
+RBNAddButtonContext = 0
+
+	Call RBNInitiate
+
+	If RBNGetTab(sTabName, rbnTabFound) Then
+		rbnTab = rbnTabFound
+
+		If RBNGetContextGroup(rbnTab, sGroupName, rbnGroupFound) Then
+
+			rbnGroup = rbnGroupFound
+			'Get Group controls collection
+			rbnGroupsColl = GetRbnCtrlGrpCtrls(rbnGroup)
+
+			nCtrl 			= RBNAddElement(GetRbnTabName(rbnTab), GetRbnCtrlGrpName(rbnGroup), sName, ControlType_Button)
+			marrControls(nCtrl) = MICtrlCollAddStrStrInt(rbnGroupsColl, sName, sCaption, ControlType_Button)
+
+			RBNAddButtonContext = nCtrl
+		End If
+	End If
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNAddButtonContext")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNSetControlToolTip(  rbnControl As This
+					, ByVal sText As String
+					, ByVal sDescription As String
+					, ByVal sDisabledText As String)
+
+Dim	rbnControlToolTip As this
+
+OnError GoTo ErrorOccured
+
+	If sDescription = "" Then
+		sDescription = sText
+	End If
+	If sDisabledText = "" Then
+		sDisabledText = sText
+	End If
+
+	'Create & Set the button tooltip
+	rbnControlToolTip = New_MapInfoRibbonToolTip()
+	Call SetMIRbnToolTipToolTipText (rbnControlToolTip, sText)
+	Call SetMIRbnToolTipToolTipDescription (rbnControlToolTip, sDescription)
+	Call SetMIRbnToolTipToolTipDisabledText (rbnControlToolTip, sDisabledText)
+
+	Call SetMICtrlToolTip(rbnControl, rbnControlToolTip)
+
+	rbnControlToolTip = NULL_PTR
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNSetControlToolTip: ToolTips Text: " & sText)
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNSetControlToolTipIdx(	  ByVal nElementIdx As Integer
+						, ByVal sText As String
+						, ByVal sDescription As String
+						, ByVal sDisabledText As String)
+
+OnError GoTo ErrorOccured
+
+	Call RBNSetControlToolTip(marrControls(nElementIdx), sText, sDescription, sDisabledText)
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNSetControlToolTipIdx")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNSetControlIcons(	  rbnControl As This
+					, ByVal bIsLarge As Logical
+					, ByVal sSmallIcon As String
+					, ByVal sLargeIcon As String)
+
+OnError GoTo ErrorOccured
+
+	Do Case GetMICtrlCtrlType(rbnControl)
+		Case ControlType_Button
+			'Set the button icon
+			Call SetRbnBtnCtrlIsLarge(rbnControl, bIsLarge)
+			Call SetRbnBtnCtrlLargeIcon(rbnControl, New_Uri(sLargeIcon, 0))
+			Call SetRbnBtnCtrlSmallIcon(rbnControl, New_Uri(sSmallIcon, 0))
+
+		Case ControlType_ToolButton
+			'Set the button icon
+			Call SetRbnToolBtnCtrlIsLarge(rbnControl, bIsLarge)
+			Call SetRbnToolBtnCtrlLargeIcon(rbnControl, New_Uri(sLargeIcon, 0))
+			Call SetRbnToolBtnCtrlSmallIcon(rbnControl, New_Uri(sSmallIcon, 0))
+
+		'Case ...	'Potentially this needs to be extended with other control types
+
+	End Case
+
+	Call SetMICtrlLeftMargin(rbnControl, 4.0)
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNSetControlIcons")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNSetControlIconsIdx( ByVal nElementIdx As Integer
+					, ByVal bIsLarge As Logical
+					, ByVal sSmallIcon As String
+					, ByVal sLargeIcon As String)
+
+OnError GoTo ErrorOccured
+
+	Call RBNSetControlIcons(marrControls(nElementIdx), bIsLarge, sSmallIcon, sLargeIcon)
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNSetControlIcons")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNSetControlCustomMBXHandler(	  ByVal rbnControl As This
+							, ByVal sMBXHandler As String)
+OnError GoTo ErrorOccured
+
+	Do Case GetMICtrlCtrlType(rbnControl)
+		Case ControlType_Button
+			Call SetRbnBtnCtrlCallingHandler(rbnControl, sMBXHandler)
+		Case ControlType_ToolButton
+			Call SetRbnToolBtnCtrlCallingHandler(rbnControl, sMBXHandler)
+		'Case ...	'Potentially this needs to be extended with other control types
+	End Case
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNSetControlCustomMBXHandler")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNSetControlCustomMBXHandlerIdx(	  ByVal nElementIdx As Integer
+								, ByVal sMBXHandler As String)
+OnError GoTo ErrorOccured
+
+	Call RBNSetControlCustomMBXHandler(marrControls(nElementIdx), sMBXHandler)
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNSetControlCustomMBXHandlerIdx")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNEnableControl(	  ByVal rbnControl As This
+					, ByVal bEnabled As Logical)
+
+OnError GoTo ErrorOccured
+
+	Call SetMICtrlEnabled (rbnControl, bEnabled)
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNEnableControl")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNEnableControlsName(	  ByVal sTabName As String
+						, ByVal sGroupName As String
+						, ByVal sControlName As String
+						, ByVal bEnabled As Logical)
+
+Dim	nElementIdx As Integer
+
+OnError GoTo ErrorOccured
+
+	nElementIdx	= 0
+	nElementIdx	= RBNGetElementIndexOffset(sTabName, sGroupName, sControlName, (nElementIdx + 1))
+	Do While (nElementIdx > 0)
+
+		Call RBNEnableControl(marrControls(nElementIdx), bEnabled)
+
+		nElementIdx = RBNGetElementIndexOffset(sTabName, sGroupName, sControlName, (nElementIdx + 1))
+	Loop
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNEnableControlsName")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNEnableControlName(  ByVal sTabName As String
+					, ByVal sGroupName As String
+					, ByVal sControlName As String
+					, ByVal bEnabled As Logical)
+
+Dim	nElementIdx As Integer
+
+OnError GoTo ErrorOccured
+
+	nElementIdx	= RBNGetElementIndex(sTabName, sGroupName, sControlName)
+	If nElementIdx > 0 Then
+		Call RBNEnableControl(marrControls(nElementIdx), bEnabled)
+	End If
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNEnableControlName")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNEnableControlIdx(	  ByVal nElementIdx As Integer
+					, ByVal bEnabled As Logical)
+
+OnError GoTo ErrorOccured
+
+	Call RBNEnableControl(marrControls(nElementIdx), bEnabled)
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNEnableControlIdx")
+	Call ERRShow()
+
+End Sub
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNGetTab(	  ByVal sTabName As String
+				, rbnTabFound As RefPtr
+				) As Logical
+
+Dim	nTabIndex As Integer,
+	sName, sCaption As String,
+	rbnTabItem as This
+
+OnError GoTo ErrorOccured
+
+RBNGetTab = FALSE
+
+	nTabIndex	= RBNGetTabIndex(sTabName)
+	If nTabIndex > RBN_ELEMENT_NOT_FOUND Then
+		rbnTabItem	= GetRbnTabCollItemInt(theTabsColl, nTabIndex)
+		rbnTabFound	= rbnTabItem
+		RBNGetTab		= TRUE
+	End If
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNGetTab")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNGetTabIndex(	ByVal sTabName As String
+					) As Integer
+
+Dim i, nNumTabs As Integer,
+	sName, sCaption As String,
+	rbnTabItem as This
+
+OnError GoTo ErrorOccured
+
+RBNGetTabIndex = FALSE
+
+	Call RBNInitiate
+
+	'--------------------------------
+	'Get Tabs Collection
+	theTabsColl = GetTabsColl(theRibbon)
+
+	nNumTabs = GetRbnTabCollCount(theTabsColl)
+	Call DEBUGPrint("Number of Tabs " & nNumTabs)
+	For i = 0 To (nNumTabs - 1)	'**First element is at position 0, not as normally in MapBasic at position 1
+		rbnTabItem = GetRbnTabCollItemInt(theTabsColl, i)
+
+		sName	= GetRbnTabName(rbnTabItem)
+		sCaption	= GetRbnTabCaption(rbnTabItem)
+		Call DEBUGPrint("Tab " & i & " is named " & sName & " but shown as " & sCaption)
+
+		If sName = sTabName Then
+			RBNGetTabIndex	= i
+			rbnTabItem	= NULL_PTR
+
+			Exit Function
+		End If
+	Next
+
+	rbnTabItem		= NULL_PTR
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNGetTabIndex")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNTabExists(	  ByVal sTabName As String
+					) As Integer
+
+OnError GoTo ErrorOccured
+
+	RBNTabExists = (RBNGetTabIndex(sTabName) > RBN_ELEMENT_NOT_FOUND)
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNGroupExists")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNGetGroup(	  rbnTab As This
+					, ByVal sGroupName As String
+					, rbnGroupFound As RefPtr
+					) As Logical
+
+Dim	i, nNumGroups, nGroupIndex As Integer,
+	sName, sCaption As String,
+	rbnGroupsColl As This,
+	rbnGroupItem As This
+
+OnError GoTo ErrorOccured
+
+RBNGetGroup = FALSE
+
+	nGroupIndex	= RBNGetGroupIndex(rbnTab, sGroupName)
+	If nGroupIndex > RBN_ELEMENT_NOT_FOUND Then
+		rbnGroupsColl	= GetRbnTabGrps(rbnTab)
+
+		rbnGroupItem 	= GetRbnCtrlGrpCollItemInt(rbnGroupsColl, nGroupIndex)
+		rbnGroupFound	= rbnGroupItem
+		RBNGetGroup	= TRUE
+		rbnGroupsColl	= NULL_PTR
+	End If
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNGetGroup")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNGetGroupIndex(	  rbnTab As This
+						, ByVal sGroupName As String
+						) As Integer
+
+Dim	i, nNumGroups As Integer,
+	sName, sCaption As String,
+	rbnGroupsColl As This,
+	rbnGroupItem As This
+
+OnError GoTo ErrorOccured
+
+RBNGetGroupIndex = RBN_ELEMENT_NOT_FOUND
+
+	rbnGroupsColl = GetRbnTabGrps(rbnTab)
+	nNumGroups = GetRbnCtrlGrpCollCount(rbnGroupsColl)
+	Call DEBUGPrint("   RBNGetGroupIndex: Number of Tab Groups " & nNumGroups)
+	For i = 0 To (nNumGroups - 1)
+		rbnGroupItem = GetRbnCtrlGrpCollItemInt(rbnGroupsColl, i)
+
+		sName	= GetRbnCtrlGrpName(rbnGroupItem)
+		sCaption	= GetRbnCtrlGrpCaption(rbnGroupItem)
+		Call DEBUGPrint("   Tab Ctrl Group " & i & " is named " & sName & " but shown as " & sCaption)
+
+		If sName = sGroupName Then
+			RBNGetGroupIndex	= i
+			rbnGroupsColl		= NULL_PTR
+			rbnGroupItem		= NULL_PTR
+			Exit Function
+		End If
+	Next
+
+	rbnGroupsColl	= NULL_PTR
+	rbnGroupItem	= NULL_PTR
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNGetGroupIndex")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNGroupExists(	  rbnTab As This
+					, ByVal sGroupName As String
+					) As Integer
+
+OnError GoTo ErrorOccured
+
+	RBNGroupExists = (RBNGetGroupIndex(rbnTab, sGroupName) > RBN_ELEMENT_NOT_FOUND)
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNGroupExists")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNGetContextGroup(	  rbnTab As This
+						, ByVal sGroupName As String
+						, rbnGroupFound As RefPtr
+						) As Logical
+
+Dim	i, nNumGroups As Integer,
+	sName, sCaption As String,
+	rbnGroupsColl As This,
+	rbnGroupItem As This
+
+OnError GoTo ErrorOccured
+
+RBNGetContextGroup = FALSE
+
+'	rbnGroupsColl = GetRbnTabGrps(rbnTab)
+	rbnGroupsColl = GetCntxtTabGrpsColl(theRibbon)
+	nNumGroups = GetRbnCntxtTabGrpCollCount(rbnGroupsColl)
+	Call DEBUGPrint("   RBNGetContextGroup: Number of Tab Groups " & nNumGroups)
+	For i = 0 To (nNumGroups - 1)
+		rbnGroupItem = GetRbnCntxtTabGrpCollItemInt(rbnGroupsColl, i)
+
+		sName	= GetRbnCntxtTabGrpName(rbnTabGrpItem)
+		sCaption	= GetRbnCntxtTabGrpCaption(rbnTabGrpItem)
+		Call DEBUGPrint("   Tab Ctrl Group " & i & " is named " & sName & " but shown as " & sCaption)
+
+		If sName = sGroupName Then
+			rbnGroupFound		= rbnGroupItem
+			RBNGetContextGroup	= TRUE
+			rbnGroupsColl		= NULL_PTR
+			'rbnGroupItem		= NULL_PTR
+
+			Exit Function
+		End If
+	Next
+
+	rbnGroupsColl	= NULL_PTR
+	rbnGroupItem	= NULL_PTR
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNGetContextGroup")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNGetControlIndex(	  ByVal sTabName As String
+						, ByVal sGroupName As String
+						, ByVal sControlName As String
+						) As Integer
+
+OnError GoTo ErrorOccured
+
+RBNGetControlIndex = 0
+
+Dim	rbnTab As This,
+	rbnGroup As This,
+	rbnGroupsColl as This,
+	rbnControlItem As This,
+	rbnTabFound As RefPtr,
+	rbnGroupFound As RefPtr,
+	nNumCntrls, k As Integer,
+	sName, sCaption As String
+
+OnError GoTo ErrorOccured
+
+RBNGetControlIndex = 0
+
+	Call RBNInitiate
+
+	If RBNGetTab(sTabName, rbnTabFound) Then
+		rbnTab = rbnTabFound
+
+		If RBNGetGroup(rbnTab, sGroupName, rbnGroupFound) Then
+
+			rbnGroup = rbnGroupFound
+			'Get Group controls collection
+			rbnGroupsColl = GetRbnCtrlGrpCtrls(rbnGroup)
+
+			nNumCntrls = GetMICtrlCollCount(rbnGroupsColl)
+			Call DEBUGPrint("      Number of Controls " & nNumCntrls)
+
+			For k = 0 To (nNumCntrls - 1)
+				rbnControlItem	= GetMICtrlCollItemInt(rbnGroupsColl, k)
+
+				sName		= GetMICtrlName(rbnControlItem)
+				sCaption		= GetMICtrlCaption(rbnControlItem)
+				Call DEBUGPrint("           is named " & sName & " but shown as " & sCaption)
+				If sName = sControlName Then
+					RBNGetControlIndex = k
+					Exit Function
+				End If
+			Next
+		End If
+	End If
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNGetControlIndex")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNAddElement(	  ByVal sTabName As String
+					, ByVal sGroupName As String
+					, ByVal sControlName As String
+					, ByVal nControlType As Integer
+					) As Integer
+
+OnError GoTo ErrorOccured
+
+RBNAddElement = 0
+
+	mnNumElements = mnNumElements + 1
+	Redim marrControls(mnNumElements)
+	Redim marrTabNames(mnNumElements)
+	Redim marrGroupNames(mnNumElements)
+	Redim marrControlNames(mnNumElements)
+	Redim marrControlTypes(mnNumElements)
+
+	marrTabNames(mnNumElements)		= sTabName
+	marrGroupNames(mnNumElements)		= sGroupName
+	marrControlNames(mnNumElements)	= sControlName
+	marrControlTypes(mnNumElements)	= nControlType
+
+	RBNAddElement = mnNumElements
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNAddElement")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNGetElementIndex(	  ByVal sTabName As String
+						, ByVal sGroupName As String
+						, ByVal sControlName As String
+						) As Integer
+
+Dim	nElement As Integer
+
+OnError GoTo ErrorOccured
+
+RBNGetElementIndex = 0
+
+	For nElement = 1 To mnNumElements
+		If sTabName = marrTabNames(nElement) OR sTabName = "" Then
+			If sGroupName = marrGroupNames(nElement) OR sGroupName = "" Then
+				If sControlName = marrControlNames(nElement) OR sControlName = "" Then
+					RBNGetElementIndex = nElement
+					Exit Function
+				End If
+			End If
+		End If
+	Next
+
+'	If sTabName <> "" Then
+'		'**Looking for the tab, group and control name
+'		For nElement = 1 To mnNumElements
+'			If sTabName = marrTabNames(nElement) Then
+'				If sGroupName <> "" Then
+'					If sGroupName = marrGroupNames(nElement) Then
+'						If sControlName <> "" Then
+'							RBNGetElementIndex = nElement
+'							Exit Function
+'						Else
+'							If sControlName = marrControlNames(nElement) Then
+'								RBNGetElementIndex = nElement
+'								Exit Function
+'							End If
+'						End If
+'					End If
+'				ElseIf sControlName <> "" Then
+'					If sControlName = marrControlNames(nElement) Then
+'						RBNGetElementIndex = nElement
+'						Exit Function
+'					End If
+'				Else
+'					RBNGetElementIndex = nElement
+'					Exit Function
+'				End If
+'			End If
+'		Next
+'	ElseIf sGroupName <> "" Then
+'		'**just looking for the group and control name
+'		For nElement = 1 To mnNumElements
+'			If sControlName = marrControlNames(nElement) Then
+'				If sControlName <> "" Then
+'					If sControlName = marrControlNames(nElement) Then
+'						RBNGetElementIndex = nElement
+'						Exit Function
+'					End If
+'				Else
+'					RBNGetElementIndex = nElement
+'					Exit Function
+'				End If
+'			End If
+'		Next
+'	ElseIf sControlName <> "" Then
+'		'**just looking for the control name
+'		For nElement = 1 To mnNumElements
+'			If sControlName = marrControlNames(nElement) Then
+'				RBNGetElementIndex = nElement
+'				Exit Function
+'			End If
+'		Next
+'	End If
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNGetElementIndex")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'	:
+'Return value:
+'
+'**********************************************************************************************''
+Function RBNGetElementIndexOffset(	  ByVal sTabName As String
+							, ByVal sGroupName As String
+							, ByVal sControlName As String
+							, ByVal nOffset As Integer
+							) As Integer
+
+Dim	nElement As Integer
+
+OnError GoTo ErrorOccured
+
+RBNGetElementIndexOffset = 0
+
+	For nElement = nOffset To mnNumElements
+		If sTabName = marrTabNames(nElement) OR sTabName = "" Then
+			If sGroupName = marrGroupNames(nElement) OR sGroupName = "" Then
+				If sControlName = marrControlNames(nElement) OR sControlName = "" Then
+					RBNGetElementIndexOffset = nElement
+					Exit Function
+				End If
+			End If
+		End If
+	Next
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNGetElementIndexOffset")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Parameters:
+'
+'**********************************************************************************************''
+Sub RBNClearCustomRibbonElements
+
+Dim	bRemoved as Logical,
+	i, nTabIndex, nGroupIndex As Integer,
+	rbnTab As This,
+	rbnGroupsColl As This,
+	rbnGroupItem As This,
+	rbnControlsColl As This,
+	rbnControl As RefPtr
+
+OnError GoTo ErrorOccured
+
+	Call RBNInitiate
+
+	'--------------------------------
+	'Get Tabs Collection
+	theTabsColl = GetTabsColl(theRibbon)
+
+	Call DEBUGPrint("Removing Controls from the ribbon")
+	For i = mnNumElements To 1 Step -1
+		Call DEBUGPrint("   " & i & " finding Tab " & marrTabNames(i))
+
+		nTabIndex	= RBNGetTabIndex(marrTabNames(i))
+		If nTabIndex > RBN_ELEMENT_NOT_FOUND Then
+			Call DEBUGPrint("   was found as index " & nTabIndex)
+			rbnTab = GetRbnTabCollItemInt(theTabsColl, nTabIndex)
+
+			If marrGroupNames(i) <> "" Then
+				'**Now lets find the Ribbon Group Collection on this tab
+				Call DEBUGPrint("   finding Control Group " & marrGroupNames(i))
+
+				nGroupIndex	= RBNGetGroupIndex(rbnTab, marrGroupNames(i))
+				If nGroupIndex > RBN_ELEMENT_NOT_FOUND Then
+					Call DEBUGPrint("   was found as index " & nGroupIndex)
+					rbnGroupsColl = GetRbnTabGrps(rbnTab)
+					rbnGroupItem	= GetRbnCtrlGrpCollItemInt(rbnGroupsColl, nGroupIndex)
+
+					If marrControlNames(i) <> "" Then
+
+						rbnControlsColl	= GetCtrlGrpCtrls(rbnGroupItem)
+
+						rbnControl	= marrControls(i)
+						Call DEBUGPrint("   removing Control " & GetMICtrlName(marrControls(i)))
+						bRemoved	= MICtrlCollRemove(rbnControlsColl, rbnControl)
+
+						If bRemoved Then
+							marrControls(i) = NULL_PTR
+						End If
+					Else
+						bRemoved	= RbnCtrlGrpCollRemove(rbnGroupsColl, rbnGroupItem)
+						If bRemoved Then
+							marrTabNames(i)	= ""
+							marrGroupNames(i)	= ""
+						End If
+					End If
+				Else
+					Call DEBUGPrint("   wasn't found")
+				End If
+			Else
+				bRemoved	= RbnTabCollRemove(theTabsColl, rbnTab)
+				If bRemoved Then
+					marrTabNames(i) = ""
+				End If
+			End If
+		Else
+			Call DEBUGPrint("   wasn't found")
+		End If
+	Next
+
+	mnNumElements	= 0
+	Redim marrTabNames(0)
+	Redim marrGroupNames(0)
+	Redim marrControlNames(0)
+	Redim marrControlTypes(0)
+
+	Exit Sub
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "RBNClearCustomRibbonElements: Ctrl Group Index: " & i & " Tab: " & marrTabNames(i) & ", Group: " & marrGroupNames(i) & ", Control: " & marrControlNames(i))
+	Call ERRShow()
+	Resume Next
+
+End Sub
+
