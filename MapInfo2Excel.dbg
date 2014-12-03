@@ -1,0 +1,29 @@
+21:08:38 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+21:08:38 NumWindows: 0
+21:08:38 NumTables: 0
+21:08:46 WinFocusChangedHandler
+21:14:58 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+21:14:58 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+21:14:58 NumWindows: 0
+21:14:58 NumTables: 0
+21:20:55 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+21:20:55 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+21:20:55 NumWindows: 0
+21:20:55 NumTables: 0
+21:55:19 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+21:55:19 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+21:55:19 NumWindows: 0
+21:55:20 NumTables: 0
+21:56:12 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+21:56:12 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+21:56:12 NumWindows: 0
+21:56:12 NumTables: 0
+21:56:21 MENUTableOpenedHandler
+21:56:21 WinFocusChangedHandler
+22:05:14 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+22:05:14 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+22:05:14 NumWindows: 0
+22:05:14 NumTables: 0
+22:05:36 MENUTableOpenedHandler
+22:05:36 WinFocusChangedHandler
+22:06:02 MENUTableOpenedHandler

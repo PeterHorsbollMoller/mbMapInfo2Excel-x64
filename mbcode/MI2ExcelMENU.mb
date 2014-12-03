@@ -15,7 +15,7 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"2.00.1 x64"
+Define xVersion 		"2.00.2 x64"
 Define xYear			"2014"
 Define xAddToMenuBar	FALSE
 
@@ -104,7 +104,7 @@ OnError GoTo ErrorOccured
 	Call PRGISetApplicationVersion(xVersion)
 	Call PRGISetApplicationCopyrightYear(xYear)
 	Call PRGISetApplicationDevelopedBy("Peter Horsbøll Møller")
-	Call PRGISetApplicationImageUri(PATH_IMAGES & "MapWindowExcel_16.bmp")
+	Call PRGISetApplicationImageUri(PATH_IMAGES & "MapWindowExcel_32.png")
 	Call PRGISetApplicationHelpFile(FILE_HLP)
 
 	If RESSTRNGGetString(STR_APP_DESCRIPTION) = "" Then
@@ -124,13 +124,13 @@ OnError GoTo ErrorOccured
 		Call MENUBuildRibbonInterface
 		Call EnableDisableGUI
 
-		Alter Menu ID 4
-			Add
-			RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS)
-				HelpMsg ""
-				Calling MENUExportTableToExcel,
-			RESSTRNGGetString(STR_MNU_RATE_APPLICATION) 		'"Rate the application at Community Downloads"
-				Calling MENUGoToCommunityDownloads
+'		Alter Menu ID 4
+'			Add
+'			RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS)
+'				HelpMsg ""
+'				Calling MENUExportTableToExcel,
+'			RESSTRNGGetString(STR_MNU_RATE_APPLICATION) 		'"Rate the application at Community Downloads"
+'				Calling MENUGoToCommunityDownloads
 
 	Else
 		Create Menu xProgramMenu As
@@ -234,15 +234,15 @@ OnError GoTo ErrorOccured
 			Do Case WindowInfo(nWID, WIN_INFO_TYPE)
 				Case WIN_MAPPER
 					If msLatestExcelFile <> "" Then
-						Call RBNEnableControlsName("", "", "exportMapToExcel", TRUE)
+						Call RBNGroupEnableControls("", "", "exportMapToExcel", TRUE)
 					End If
-					Call RBNEnableControlsName("", "", "exportBrowserToExcel", FALSE)
+					Call RBNGroupEnableControls("", "", "exportBrowserToExcel", FALSE)
 				Case WIN_BROWSER
-					Call RBNEnableControlsName("", "", "exportMapToExcel", FALSE)
-					Call RBNEnableControlsName("", "", "exportBrowserToExcel", TRUE)
+					Call RBNGroupEnableControls("", "", "exportMapToExcel", FALSE)
+					Call RBNGroupEnableControls("", "", "exportBrowserToExcel", TRUE)
 				Case Else
-					Call RBNEnableControlsName("", "", "exportMapToExcel", FALSE)
-					Call RBNEnableControlsName("", "", "exportBrowserToExcel", FALSE)
+					Call RBNGroupEnableControls("", "", "exportMapToExcel", FALSE)
+					Call RBNGroupEnableControls("", "", "exportBrowserToExcel", FALSE)
 			End Case
 		End If
 	End If
@@ -266,8 +266,8 @@ OnError GoTo ErrorOccured
 	Call DEBUGPrint("WinClosedHandler")
 	If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
 		If NumWindows() <= 1 Then
-			Call RBNEnableControlsName("", "", "exportMapToExcel", FALSE)
-			Call RBNEnableControlsName("", "", "exportBrowserToExcel", FALSE)
+			Call RBNGroupEnableControls("", "", "exportMapToExcel", FALSE)
+			Call RBNGroupEnableControls("", "", "exportBrowserToExcel", FALSE)
 		Else
 			Call EnableDisableGUI
 		End If
@@ -294,9 +294,9 @@ OnError GoTo ErrorOccured
 	Call DEBUGPrint("MENUTableOpenedHandler")
 	If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
 		If NumTables() = 0 Then
-			Call RBNEnableControlsName("", "", "exportTableToExcel", FALSE)
+			Call RBNGroupEnableControls("", "", "exportTableToExcel", FALSE)
 		Else
-			Call RBNEnableControlsName("", "", "exportTableToExcel", TRUE)
+			Call RBNGroupEnableControls("", "", "exportTableToExcel", TRUE)
 		End If
 	End If
 	Exit Sub
@@ -321,9 +321,9 @@ OnError GoTo ErrorOccured
 	Call DEBUGPrint("MENUTableClosedHandler")
 	If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
 		If NumTables() <= 1 Then
-			Call RBNEnableControlsName("", "", "exportTableToExcel", FALSE)
+			Call RBNGroupEnableControls("", "", "exportTableToExcel", FALSE)
 		Else
-			Call RBNEnableControlsName("", "", "exportTableToExcel", TRUE)
+			Call RBNGroupEnableControls("", "", "exportTableToExcel", TRUE)
 		End If
 	End If
 	Exit Sub
@@ -348,38 +348,38 @@ OnError GoTo ErrorOccured
 
 	If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
 		If NumWindows() = 0 Then
-			Call RBNEnableControlsName("", "", "exportMapToExcel", FALSE)
-			Call RBNEnableControlsName("", "", "exportBrowserToExcel", FALSE)
-'			Call RBNEnableControlName("TabMap", "MapClipboard", "exportMapToExcel", FALSE)
-'			Call RBNEnableControlName("TabTable", "TableData", "exportBrowserToExcel", FALSE)
+			Call RBNGroupEnableControls("", "", "exportMapToExcel", FALSE)
+			Call RBNGroupEnableControls("", "", "exportBrowserToExcel", FALSE)
+'			Call RBNGroupEnableControl("TabMap", "MapClipboard", "exportMapToExcel", FALSE)
+'			Call RBNGroupEnableControl("TabTable", "TableData", "exportBrowserToExcel", FALSE)
 		Else
 			Do Case WindowInfo(FrontWindow(), WIN_INFO_TYPE)
 				Case WIN_MAPPER
 					If msLatestExcelFile <> "" Then
-						Call RBNEnableControlsName("", "", "exportMapToExcel", TRUE)
+						Call RBNGroupEnableControls("", "", "exportMapToExcel", TRUE)
 					End If
-					Call RBNEnableControlsName("", "", "exportBrowserToExcel", FALSE)
-'					Call RBNEnableControlName("TabMap", "MapClipboard", "exportMapToExcel", TRUE)
-'					Call RBNEnableControlName("TabTable", "TableData", "exportBrowserToExcel", FALSE)
+					Call RBNGroupEnableControls("", "", "exportBrowserToExcel", FALSE)
+'					Call RBNGroupEnableControl("TabMap", "MapClipboard", "exportMapToExcel", TRUE)
+'					Call RBNGroupEnableControl("TabTable", "TableData", "exportBrowserToExcel", FALSE)
 				Case WIN_BROWSER
-					Call RBNEnableControlsName("", "", "exportMapToExcel", FALSE)
-					Call RBNEnableControlsName("", "", "exportBrowserToExcel", TRUE)
-'					Call RBNEnableControlName("TabMap", "MapClipboard", "exportMapToExcel", FALSE)
-'					Call RBNEnableControlName("TabTable", "TableData", "exportBrowserToExcel", TRUE)
+					Call RBNGroupEnableControls("", "", "exportMapToExcel", FALSE)
+					Call RBNGroupEnableControls("", "", "exportBrowserToExcel", TRUE)
+'					Call RBNGroupEnableControl("TabMap", "MapClipboard", "exportMapToExcel", FALSE)
+'					Call RBNGroupEnableControl("TabTable", "TableData", "exportBrowserToExcel", TRUE)
 				Case Else
-					Call RBNEnableControlsName("", "", "exportMapToExcel", FALSE)
-					Call RBNEnableControlsName("", "", "exportBrowserToExcel", FALSE)
-'					Call RBNEnableControlName("TabMap", "MapClipboard", "exportMapToExcel", FALSE)
-'					Call RBNEnableControlName("TabTable", "TableData", "exportBrowserToExcel", FALSE)
+					Call RBNGroupEnableControls("", "", "exportMapToExcel", FALSE)
+					Call RBNGroupEnableControls("", "", "exportBrowserToExcel", FALSE)
+'					Call RBNGroupEnableControl("TabMap", "MapClipboard", "exportMapToExcel", FALSE)
+'					Call RBNGroupEnableControl("TabTable", "TableData", "exportBrowserToExcel", FALSE)
 			End Case
 		End If
 
 		If NumTables() = 0 Then
-			Call RBNEnableControlsName("", "", "exportTableToExcel", FALSE)
-'			Call RBNEnableControlName("TabHome", "HomeOutput", "exportTableToExcel", FALSE)
+			Call RBNGroupEnableControls("", "", "exportTableToExcel", FALSE)
+'			Call RBNGroupEnableControl("TabHome", "HomeOutput", "exportTableToExcel", FALSE)
 		Else
-			Call RBNEnableControlsName("", "", "exportTableToExcel", TRUE)
-'			Call RBNEnableControlName("TabHome", "HomeOutput", "exportTableToExcel", TRUE)
+			Call RBNGroupEnableControls("", "", "exportTableToExcel", TRUE)
+'			Call RBNGroupEnableControl("TabHome", "HomeOutput", "exportTableToExcel", TRUE)
 		End If
 	End If
 
@@ -402,87 +402,106 @@ Dim	nCtrlIdx As Integer
 
 OnError GoTo ErrorOccured
 
-	nCtrlIdx = RBNAddButton("exportTableToExcel", "Excel", "CT", "TabHome", "HomeOutput")
+	nCtrlIdx = RBNGroupAddButton("exportTableToExcel", "Excel", "CT", "TabHome", "HomeOutput")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
-		Call RBNSetControlToolTipIdx(nCtrlIdx, STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
+		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
 		'Set the button icon
-		Call RBNSetControlIconsIdx(nCtrlIdx, FALSE, PATH_IMAGES & "BrowserWindowExcel_24.bmp", "")
+		Call RBNControlSetIconsIdx(nCtrlIdx, FALSE, PATH_IMAGES & "BrowserWindowExcel_32.png", "")
 		'Set Custom MapBasic Handle to the button
-		Call RBNSetControlCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
+		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
 	End If
-	nCtrlIdx = RBNAddButton("exportMapToExcel", "Excel", "CM", "TabHome", "HomeOutput")
+	nCtrlIdx = RBNGroupAddButton("exportMapToExcel", "Excel", "CM", "TabHome", "HomeOutput")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
-		Call RBNSetControlToolTipIdx(nCtrlIdx, STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "&", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP))
+		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP))
 		'Set the button icon
-		Call RBNSetControlIconsIdx(nCtrlIdx, FALSE, PATH_IMAGES & "MapWindowExcel_24.bmp", "")
+		Call RBNControlSetIconsIdx(nCtrlIdx, FALSE, PATH_IMAGES & "MapWindowExcel_32.png", "")
 		'Set Custom MapBasic Handle to the button
-		Call RBNSetControlCustomMBXHandlerIdx(nCtrlIdx, "MENUExportMapWindowToExcel")
-	End If
-
-	nCtrlIdx = RBNAddButton("exportMapToExcel", "Excel", "CM", "TabMap", "MapAnalyze")
-	If nCtrlIdx > 0 Then
-		'Create & Set the button tooltip
-		Call RBNSetControlToolTipIdx(nCtrlIdx, STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "&", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP))
-		'Set the button icon
-		Call RBNSetControlIconsIdx(nCtrlIdx, TRUE, PATH_IMAGES & "MapWindowExcel_24.bmp", "")
-		'Set Custom MapBasic Handle to the button
-		Call RBNSetControlCustomMBXHandlerIdx(nCtrlIdx, "MENUExportMapWindowToExcel")
+		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportMapWindowToExcel")
 	End If
 
-	nCtrlIdx = RBNAddButton("exportBrowserToExcel", "Excel", "CB", "TabTable", "BrowserTools")
+	nCtrlIdx = RBNGroupAddButton("exportMapToExcel", "Excel", "CM", "TabMap", "MapAnalyze")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
-		Call RBNSetControlToolTipIdx(nCtrlIdx, STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_BROWSER_TO_XLS), "&", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE))
+		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP))
 		'Set the button icon
-		Call RBNSetControlIconsIdx(nCtrlIdx, FALSE, PATH_IMAGES & "BrowserWindowExcel_24.bmp", "")
+		Call RBNControlSetIconsIdx(nCtrlIdx, TRUE, PATH_IMAGES & "MapWindowExcel_32.png", "")
 		'Set Custom MapBasic Handle to the button
-		Call RBNSetControlLefttMarginIdx(nCtrlIdx, 0.0)
-		Call RBNSetControlCustomMBXHandlerIdx(nCtrlIdx, "MENUExportBrowserDataToExcel")
+		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportMapWindowToExcel")
 	End If
-	nCtrlIdx = RBNInsertButtonBefore("exportTableToExcel", "Excel", "CT", "TabTable", "TableData", "ExportButton")
+
+	nCtrlIdx = RBNGroupAddButton("exportBrowserToExcel", "Excel", "CB", "TabTable", "BrowserTools")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
-		Call RBNSetControlToolTipIdx(nCtrlIdx, STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
+		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_BROWSER_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE))
 		'Set the button icon
-		Call RBNSetControlIconsIdx(nCtrlIdx, FALSE, PATH_IMAGES & "BrowserWindowExcel_24.bmp", "")
+		Call RBNControlSetIconsIdx(nCtrlIdx, FALSE, PATH_IMAGES & "BrowserWindowExcel_32.png", "")
 		'Set Custom MapBasic Handle to the button
-		Call RBNSetControlCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
+		Call RBNControlSetLeftMarginIdx(nCtrlIdx, 0.0)
+		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportBrowserDataToExcel")
+	End If
+	nCtrlIdx = RBNGroupInsertButtonBefore("exportTableToExcel", "Excel", "CT", "TabTable", "TableData", "ExportButton")
+	If nCtrlIdx > 0 Then
+		'Create & Set the button tooltip
+		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
+		'Set the button icon
+		Call RBNControlSetIconsIdx(nCtrlIdx, FALSE, PATH_IMAGES & "BrowserWindowExcel_32.png", "")
+		'Set Custom MapBasic Handle to the button
+		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
+	End If
+
+	nCtrlIdx	= RBNToolContextMenuAddMenuItem("exportTableToExcel", STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "")
+	If nCtrlIdx > 0 Then
+		'Create & Set the button tooltip
+		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
+		'Set the button icon
+		Call RBNControlSetIconsIdx(nCtrlIdx, FALSE, PATH_IMAGES & "BrowserWindowExcel_32.png", "")
+		'Set Custom MapBasic Handle to the button
+		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
+	End If
+	nCtrlIdx	= RBNToolContextMenuAddMenuItem("rateApplication", STRINGReplace(RESSTRNGGetString(STR_MNU_RATE_APPLICATION), "&", ""), "")
+	If nCtrlIdx > 0 Then
+		'Create & Set the button tooltip
+		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_RATE_APPLICATION), "&", ""), "...", ""), "", "")
+		'Set the button icon
+		Call RBNControlSetIconsIdx(nCtrlIdx, FALSE, PATH_IMAGES & "CommunityDownloads_32.png", "")
+		'Set Custom MapBasic Handle to the button
+		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUGoToCommunityDownloads")
 	End If
 
 '	Call DEBUGPrint("RBNAddTab('TabTools', 'TOOLS', 'Tools')")
 '	If RBNAddTab("TabTools", "TOOLS", "X") > 0 Then
 '		Call DEBUGPrint("RBNAddGroup('" & xProgramMenu & "', '" & xProgramMenu & "', 'TabTools')")
 '		If RBNAddGroup(xProgramMenu, xProgramMenu, "TabTools") > 0 Then
-'			nCtrlIdx = RBNAddButton("exportTableToExcel", "Table", "XT", "TabTools", xProgramMenu)
+'			nCtrlIdx = RBNGroupAddButton("exportTableToExcel", "Table", "XT", "TabTools", xProgramMenu)
 '			If nCtrlIdx > 0 Then
 '				'Create & Set the button tooltip
-'				Call RBNSetControlToolTipIdx(nCtrlIdx, RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "", "Open a table before using this feature")
+'				Call RBNControlSetToolTipIdx(nCtrlIdx, RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "", "Open a table before using this feature")
 '				'Set the button icon
-'				Call RBNSetControlIconsIdx(nCtrlIdx, TRUE, PATH_IMAGES & "BrowserWindowExcel_16.bmp", PATH_IMAGES & "BrowserWindowExcel_24.bmp")
+'				Call RBNControlSetIconsIdx(nCtrlIdx, TRUE, PATH_IMAGES & "BrowserWindowExcel_16.bmp", PATH_IMAGES & "BrowserWindowExcel_32.png")
 '				'Set Custom MapBasic Handle to the button
-'				Call RBNSetControlCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
+'				Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
 '			End If
 '
-'			nCtrlIdx = RBNAddButton("exportMapToExcel", "Map", "XM", "TabTools", xProgramMenu)
+'			nCtrlIdx = RBNGroupAddButton("exportMapToExcel", "Map", "XM", "TabTools", xProgramMenu)
 '			If nCtrlIdx > 0 Then
 '				'Create & Set the button tooltip
-'				Call RBNSetControlToolTipIdx(nCtrlIdx, RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "", "Open a map window before using this feature")
+'				Call RBNControlSetToolTipIdx(nCtrlIdx, RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "", "Open a map window before using this feature")
 '				'Set the button icon
-'				Call RBNSetControlIconsIdx(nCtrlIdx, TRUE, PATH_IMAGES & "MapWindowExcel_16.bmp", PATH_IMAGES & "MapWindowExcel_24.bmp")
+'				Call RBNControlSetIconsIdx(nCtrlIdx, TRUE, PATH_IMAGES & "MapWindowExcel_16.bmp", PATH_IMAGES & "MapWindowExcel_32.png")
 '				'Set Custom MapBasic Handle to the button
-'				Call RBNSetControlCustomMBXHandlerIdx(nCtrlIdx, "MENUExportMapWindowToExcel")
+'				Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportMapWindowToExcel")
 '			End If
 '
-'			nCtrlIdx = RBNAddButton("exportBrowserToExcel", "Browser", "XB", "TabTools", xProgramMenu)
+'			nCtrlIdx = RBNGroupAddButton("exportBrowserToExcel", "Browser", "XB", "TabTools", xProgramMenu)
 '			If nCtrlIdx > 0 Then
 '				'Create & Set the button tooltip
-'				Call RBNSetControlToolTipIdx(nCtrlIdx, RESSTRNGGetString(STR_MNU_EXPORT_BROWSER_TO_XLS), "", "Open a browser window before using this feature")
+'				Call RBNControlSetToolTipIdx(nCtrlIdx, RESSTRNGGetString(STR_MNU_EXPORT_BROWSER_TO_XLS), "", "Open a browser window before using this feature")
 '				'Set the button icon
-'				Call RBNSetControlIconsIdx(nCtrlIdx, TRUE, PATH_IMAGES & "BrowserWindowExcel_16.bmp", PATH_IMAGES & "BrowserWindowExcel_24.bmp")
+'				Call RBNControlSetIconsIdx(nCtrlIdx, TRUE, PATH_IMAGES & "BrowserWindowExcel_16.bmp", PATH_IMAGES & "BrowserWindowExcel_32.png")
 '				'Set Custom MapBasic Handle to the button
-'				Call RBNSetControlCustomMBXHandlerIdx(nCtrlIdx, "MENUExportBrowserDataToExcel")
+'				Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportBrowserDataToExcel")
 '			End If
 '		End If
 '	End If
@@ -622,7 +641,7 @@ OnError GoTo ErrorOccured
 
 	Redim marrTables(0)
 	If TABGetListOfNames(TAB_USE_ALL_BUT_IMAGES, marrTables) = 0 Then
-		Call RBNShowNotification(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE), Notify_Error, 10000)
+		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE), Notify_Error, 10000)
 		'Note RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE)		'"Please open one or more native tables!"
 		Exit Sub
 	End If
@@ -712,12 +731,12 @@ OnError GoTo ErrorOccured
 
 	nBID = FrontWindow()
 	If nBID = 0 Then
-		Call RBNShowNotification(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_OPEN_BROWSER), Notify_Error, 10000)
+		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_OPEN_BROWSER), Notify_Error, 10000)
 '		Note RESSTRNGGetString(STR_ERR_PLEASE_OPEN_BROWSER)
 		Exit Sub
 	End If
 	If WindowInfo(nBID, WIN_INFO_TYPE) <> WIN_BROWSER Then
-		Call RBNShowNotification(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE), Notify_Error, 10000)
+		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE), Notify_Error, 10000)
 '		Note RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE)
 		Exit Sub
 	End If
@@ -843,7 +862,7 @@ OnError GoTo ErrorOccured
 	Loop
 
 	If NOT FileExists(MENUGetExcelTemplateFile()) Then
-		Call RBNShowNotification(xProgram, RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND) & lf & MENUGetExcelTemplateFile(), Notify_Error, 10000)
+		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND) & lf & MENUGetExcelTemplateFile(), Notify_Error, 10000)
 '		Note RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND)
 '			& lf & MENUGetExcelTemplateFile()
 		Exit Sub
@@ -862,7 +881,7 @@ OnError GoTo ErrorOccured
 	Call DEBUGPrint("   as " & sOutputFile)
 	Save File MENUGetExcelTemplateFile() As sOutputFile
 	If NOT EXCELOpenFile(sOutputFile) Then
-		Call RBNShowNotification(xProgram, RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile, Notify_Error, 10000)
+		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile, Notify_Error, 10000)
 '		Note RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile
 		Exit Function
 	End If
@@ -873,7 +892,7 @@ OnError GoTo ErrorOccured
 
 	nChannel = EXCELDDEOpenChannel(sSheet)
 	If nChannel = 0 Then
-		Call RBNShowNotification(xProgram, RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS) & lf & lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA, Notify_Error, 10000)
+		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS) & lf & lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA, Notify_Error, 10000)
 '		Note RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS)
 '			& lf
 '			& lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA
@@ -961,7 +980,7 @@ OnError GoTo ErrorOccured
 	Loop
 
 	If NOT FileExists(MENUGetExcelTemplateFile()) Then
-		Call RBNShowNotification(xProgram, RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND) & lf & MENUGetExcelTemplateFile(), Notify_Error, 10000)
+		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND) & lf & MENUGetExcelTemplateFile(), Notify_Error, 10000)
 '		Note RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND)
 '			& lf & MENUGetExcelTemplateFile()
 		Exit Sub
@@ -980,7 +999,7 @@ OnError GoTo ErrorOccured
 	Call DEBUGPrint("   as " & sOutputFile)
 	Save File MENUGetExcelTemplateFile() As sOutputFile
 	If NOT EXCELOpenFile(sOutputFile) Then
-		Call RBNShowNotification(xProgram, RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile, Notify_Error, 10000)
+		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile, Notify_Error, 10000)
 '		Note RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile
 		Exit Function
 	End If
@@ -992,7 +1011,7 @@ OnError GoTo ErrorOccured
 
 	nChannel = EXCELDDEOpenChannel(sSheet)
 	If nChannel = 0 Then
-		Call RBNShowNotification(xProgram, RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS) & lf & lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA, Notify_Error, 10000)
+		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS) & lf & lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA, Notify_Error, 10000)
 '		Note RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS)
 '			& lf
 '			& lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA
@@ -1120,20 +1139,20 @@ Dim	bWinWasResized As Logical,
 OnError GoTo ErrorOccured
 
 	If msLatestExcelFile = "" Then
-		Call RBNShowNotification(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP), Notify_Error, 10000)
+		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP), Notify_Error, 10000)
 '		Note RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP)
 		Exit Sub
 	End If
 
 	nMID = MAPFrontMostWindow()
 	If nMID = 0 Then
-		Call RBNShowNotification(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_OPEN_A_MAP), Notify_Error, 10000)
+		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_OPEN_A_MAP), Notify_Error, 10000)
 '		Note RESSTRNGGetString(STR_ERR_PLEASE_OPEN_A_MAP)
 		Exit Sub
 	End If
 
 	If NOT EXCELIsFileOpen(msLatestExcelFile) Then
-		Call RBNShowNotification(xProgram, RESSTRNGGetString(STR_ERR_LATEST_XLS_FILE_NOT_OPEN), Notify_Error, 10000)
+		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_LATEST_XLS_FILE_NOT_OPEN), Notify_Error, 10000)
 '		Note RESSTRNGGetString(STR_ERR_LATEST_XLS_FILE_NOT_OPEN)
 		msLatestExcelFile	= ""
 		mnNumMapExported	= 0
