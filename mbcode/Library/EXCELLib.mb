@@ -93,6 +93,72 @@ End Function
 '			: if "", it will use the name 'RegisteredExcelFile' and store it in the temp folder
 '			: if only a name of a table, this name will be used and the file be stored in the temp folder
 '			: other wise this name will be used
+'Return value:
+'	If the Excel was registered and opened, it will return the name of the table
+'	Otherwise it will return an empty string
+'**********************************************************************************************''
+Function EXCELOpenNoTitles(ByVal sExcelFile As String, ByVal sTabFile As String) As String
+
+Dim	sCmd, sTab, sRange As String,
+	nCols As Integer
+
+OnError GoTo ErrorOccured
+
+EXCELOpenNoTitles = ""
+
+	If NOT FileExists(sExcelFile) Then
+		Note "This Excel file does not exist: " & sExcelFile
+		Exit Function
+	End If
+
+	If sTabFile = "" Then
+		sTabFile = PathToDirectory$(TempFileName$("")) & "RegisteredExcelFile.tab"
+	ElseIf sTabFile = PathToTableName$(sTabFile) Then
+		sTabFile = PathToDirectory$(TempFileName$("")) & sTabFile & ".tab"
+	End If
+	sTab = PathToTableName$(sTabFile)
+
+	sCmd	= "Register Table """ & sExcelFile & """"
+			& " Type XLS"
+		'	& " Titles"
+			& " Into """ & sTabFile & """"
+	Call DEBUGPrint("sCmd: " & sCmd)
+	Run Command sCmd
+	Open Table sTabFile
+
+	nCols	= TableInfo(sTab, TAB_INFO_NCOLS) - 1
+	sRange	= "A" + Str$(2)+":"+Left$(chr$(64 + nCols\26),int(nCols > 25)) + Chr$(65 + nCols mod 26) + TableInfo(sTab, TAB_INFO_NROWS)
+
+	Close Table sTab
+
+	sCmd	= "Register Table """ & sExcelFile & """"
+			& " Type XLS"
+		'	& " Titles"
+			& " Range """ & sRange & """"
+			'Interactive
+			& " Into """ & sTabFile & """"
+	Call DEBUGPrint("sCmd: " & sCmd)
+	Run Command sCmd
+	Open Table sTabFile
+
+EXCELOpenNoTitles = sTab
+
+	Exit Function
+'-------------------------
+ErrorOccured:
+	Call ERRCreate(Err(), Error$(), "EXCELOpenNoTitles")
+	Call ERRShow()
+
+End Function
+
+'**********************************************************************************************''
+'Created by Peter Horsbøll Møller, Pitney Bowes Business Insight
+'Parameters:
+'	sExcelFile	: Name of Excel file to open into MapInfo Pro
+'	sTabFile	: Name of tab file to "register it into to"
+'			: if "", it will use the name 'RegisteredExcelFile' and store it in the temp folder
+'			: if only a name of a table, this name will be used and the file be stored in the temp folder
+'			: other wise this name will be used
 '	sSheetName	: Name of Spreadsheet to open
 'Return value:
 '	If the Excel was registered and opened, it will return the name of the table
@@ -193,7 +259,7 @@ End Function
 '**********************************************************************************************''
 Function EXCELIsRunning() As Logical
 
-Dim	nChannel As Integer
+Dim	nErr, nChannel As Integer
 
 OnError GoTo ErrorOccured
 
@@ -229,11 +295,13 @@ OnError GoTo ErrorOccured
 
 EXCELIsFileOpen = FALSE
 
-	nChannel = EXCELDDEOpenChannelNoWait(sFile)
-	If nChannel <> 0 Then
-		Call EXCELDDECloseChannel(nChannel)
+	If EXCELIsRunning() Then
+		nChannel = EXCELDDEOpenChannelNoWait(sFile)
+		If nChannel <> 0 Then
+			Call EXCELDDECloseChannel(nChannel)
 
-		EXCELIsFileOpen = TRUE
+			EXCELIsFileOpen = TRUE
+		End If
 	End If
 
 	Exit Function
@@ -368,13 +436,12 @@ OpeningChannel:
 	Exit Function
 '-------------------------
 ErrorOpeningChannel:
-	Call DEBUGPrint("   EXCELDDEOpenChannelNoWait:" & Err() & ": " & Error$())
+	Call ERRCreate(Err(), Error$(), "EXCELDDEOpenChannelNoWait: Topic: " & sTopic)
 
 	Exit Function
 '-------------------------
 ErrorOccured:
 	Call ERRCreate(Err(), Error$(), "EXCELDDEOpenChannelNoWait: Topic: " & sTopic)
-	Call ERRShow()
 
 End Function
 
@@ -388,6 +455,7 @@ Sub EXCELDDECloseChannel(	ByVal nChannel As Integer	'The Channel to close
 
 OnError GoTo ErrorOccured
 
+	Call DEBUGPrint("   EXCELDDECloseChannel: " & nChannel)
 	If nChannel > 0 Then
 		DDETerminate nChannel
 	End If
