@@ -1,12 +1,28 @@
 [Open Files]
 Active File Display Mode=3
 Active File Index=0
-Open File Line0=2917
-Open File Pos0=4269
+Open File Line0=0
+Open File Line1=400
+Open File Line2=0
+Open File Line3=0
+Open File Line4=57171
+Open File Pos0=1125
+Open File Pos1=1259
+Open File Pos2=1503
+Open File Pos3=1606
+Open File Pos4=58977
 Open File Window Pos0=2,3,-1,-1,-8,-30,75,75,1712,692
+Open File Window Pos1=0,1,-1,-1,-8,-30,25,25,1605,534
+Open File Window Pos2=0,1,-1,-1,-8,-30,200,200,1780,709
+Open File Window Pos3=0,1,-1,-1,-8,-30,150,150,1730,659
+Open File Window Pos4=0,1,-1,-1,-8,-30,50,50,1630,559
 Open File0=D:\Dropbox\3. MB_Kode\mbMapInfo2Excel-x64\mbcode\MI2ExcelMENU.mb
-Open File1=
+Open File1=D:\Dropbox\3. MB_Kode\mbMapInfo2Excel-x64\English.str
+Open File2=D:\Dropbox\3. MB_Kode\mbMapInfo2Excel-x64\French.str
+Open File3=D:\Dropbox\3. MB_Kode\mbMapInfo2Excel-x64\Dutch.str
+Open File4=D:\Dropbox\3. MB_Kode\mbMapInfo2Excel-x64\mbcode\Library\MAPBASIC.DEF
+Open File5=
 
 [Project Information]
 Project Start=DE070B0006001D000E0007000000000028
-Working Time=1636246
+Working Time=1650860

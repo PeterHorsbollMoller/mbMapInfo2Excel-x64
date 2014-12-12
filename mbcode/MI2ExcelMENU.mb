@@ -15,7 +15,7 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"2.00.3 x64"
+Define xVersion 		"2.00.4 x64"
 Define xYear			"2014"
 Define xAddToMenuBar	FALSE
 
@@ -109,12 +109,6 @@ OnError GoTo ErrorOccured
 	Call PRGISetApplicationDevelopedBy("Peter Horsbøll Møller")
 	Call PRGISetApplicationImageUri(PATH_IMAGES & "MapWindowExcel_32.png")
 	Call PRGISetApplicationHelpFile(FILE_HLP)
-
-	If RESSTRNGGetString(STR_APP_DESCRIPTION) = "" Then
-		Call PRGISetDescription("This application lets you easily transfer data from a table or browser window into Microsoft Excel. You can also transfer a map window.")
-	Else
-		Call PRGISetDescription(RESSTRNGGetString(STR_APP_DESCRIPTION))
-	End If
 
 	Call MENUReadConfigFile
 
