@@ -15,7 +15,7 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"2.00.5 x64"
+Define xVersion 		"2.00.6 x64"
 Define xYear			"2014"
 Define xAddToMenuBar	FALSE
 
@@ -120,15 +120,6 @@ OnError GoTo ErrorOccured
 	If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
 		Call MENUBuildRibbonInterface
 		Call EnableDisableGUI
-
-'		Alter Menu ID 4
-'			Add
-'			RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS)
-'				HelpMsg ""
-'				Calling MENUExportTableToExcel,
-'			RESSTRNGGetString(STR_MNU_RATE_APPLICATION) 		'"Rate the application at Community Downloads"
-'				Calling MENUGoToCommunityDownloads
-
 	Else
 		Create Menu xProgramMenu As
 			RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS)
@@ -487,7 +478,7 @@ Dim	nCtrlIdx As Integer
 
 OnError GoTo ErrorOccured
 
-	nCtrlIdx = RBNGroupAddButton("exportTableToExcel", "Excel", "CT", "TabHome", "HomeOutput")
+	nCtrlIdx = RBNGroupAddButton("exportTableToExcel", RESSTRNGGetString(STR_BTN_EXPORT_TABLE), "CT", "TabHome", "HomeOutput")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
 		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
@@ -496,7 +487,7 @@ OnError GoTo ErrorOccured
 		'Set Custom MapBasic Handle to the button
 		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
 	End If
-	nCtrlIdx = RBNGroupAddButton("exportMapToExcel", "Excel", "CM", "TabHome", "HomeOutput")
+	nCtrlIdx = RBNGroupAddButton("exportMapToExcel", RESSTRNGGetString(STR_BTN_EXPORT_MAP), "CM", "TabHome", "HomeOutput")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
 		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP))
@@ -506,7 +497,7 @@ OnError GoTo ErrorOccured
 		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportMapWindowToExcel")
 	End If
 
-	nCtrlIdx = RBNGroupAddButton("exportMapToExcel", "Excel", "CM", "TabMap", "MapAnalyze")
+	nCtrlIdx = RBNGroupAddButton("exportMapToExcel", RESSTRNGGetString(STR_BTN_EXPORT_MAP), "CM", "TabMap", "MapAnalyze")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
 		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP))
@@ -516,7 +507,7 @@ OnError GoTo ErrorOccured
 		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportMapWindowToExcel")
 	End If
 
-	nCtrlIdx = RBNGroupAddButton("exportBrowserToExcel", "Excel", "CB", "TabTable", "BrowserTools")
+	nCtrlIdx = RBNGroupAddButton("exportBrowserToExcel", RESSTRNGGetString(STR_BTN_EXPORT_BROWSER), "CB", "TabTable", "BrowserTools")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
 		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_BROWSER_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE))
@@ -526,7 +517,7 @@ OnError GoTo ErrorOccured
 		Call RBNControlSetLeftMarginIdx(nCtrlIdx, 0.0)
 		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportBrowserDataToExcel")
 	End If
-	nCtrlIdx = RBNGroupInsertButtonBefore("exportTableToExcel", "Excel", "CT", "TabTable", "TableData", "ExportButton")
+	nCtrlIdx = RBNGroupInsertButtonBefore("exportTableToExcel", RESSTRNGGetString(STR_BTN_EXPORT_TABLE), "CT", "TabTable", "TableData", "ExportButton")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
 		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))

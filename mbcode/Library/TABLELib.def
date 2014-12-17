@@ -1,7 +1,13 @@
 '************************************************************************************************************
 '	H I S T O R Y
 '************************************************************************************************************
-'	04-12-2014 10:42:38		- Added TABHasDeletedRows
+'	18-01-2011 10:28:49	Added new functions:
+'					- TABGetListOfNames(ByVal nTypesToUse As Integer, arrTables() As String) As Integer
+'					- TABUseTableNo(ByVal nTab As Integer, ByVal nTypesToUse As Integer) As Logical
+'					- TABUseTable(ByVal sTab As Integer, ByVal nTypesToUse As Integer) As Logical
+'					- TABIsBitOn(ByVal nBit As Integer, ByVal nBitSum As Integer) As Logical
+'	04-12-2014 10:42:38	Added
+'					- Function TABHasDeletedRows(...) As Logical
 '************************************************************************************************************
 
 'Requires MapInfo Pro 9.5

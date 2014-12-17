@@ -35,3 +35,7 @@ Define	STR_ERR_PLEASE_OPEN_A_MAP			27		'"Please open a Map Window before trying 
 Define	STR_ERR_LATEST_XLS_FILE_NOT_OPEN		28		'"The latest used MS Excel file is no longer open."
 
 Define	STR_APP_DESCRIPTION					29		'"This application lets you easily transfer data from a table or browser window into Microsoft Excel. You can also transfer a map window."
+
+Define	STR_BTN_EXPORT_TABLE				30
+Define	STR_BTN_EXPORT_MAP					31
+Define	STR_BTN_EXPORT_BROWSER				32
