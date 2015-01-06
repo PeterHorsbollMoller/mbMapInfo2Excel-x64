@@ -15,8 +15,8 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"2.00.6 x64"
-Define xYear			"2014"
+Define xVersion 		"2.01.0 x64"
+Define xYear			"2015"
 Define xAddToMenuBar	FALSE
 
 Define FILE_INI			xProgram & ".ini"
@@ -478,15 +478,21 @@ Dim	nCtrlIdx As Integer
 
 OnError GoTo ErrorOccured
 
+	Call DEBUGPrint("exportTableToExcel")
 	nCtrlIdx = RBNGroupAddButton("exportTableToExcel", RESSTRNGGetString(STR_BTN_EXPORT_TABLE), "CT", "TabHome", "HomeOutput")
+	Call DEBUGPrint("nCtrlIdx = " & nCtrlIdx)
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
+		Call DEBUGPrint("RBNControlSetToolTipIdx")
 		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
 		'Set the button icon
+		Call DEBUGPrint("RBNControlSetIconsIdx")
 		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "BrowserWindowExcel_32.png", "")
 		'Set Custom MapBasic Handle to the button
+		Call DEBUGPrint("RBNControlSetCustomMBXHandlerIdx")
 		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
 	End If
+	Call DEBUGPrint("exportMapToExcel")
 	nCtrlIdx = RBNGroupAddButton("exportMapToExcel", RESSTRNGGetString(STR_BTN_EXPORT_MAP), "CM", "TabHome", "HomeOutput")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
@@ -631,7 +637,7 @@ Sub MENUGoToCommunityDownloads
 
 OnError GoTo ErrorOccured
 
-	Call FILELaunch("http://communitydownloads.pbinsight.com/code-exchange/find/")
+	Call FILELaunch("http://communitydownloads.pbinsight.com/code-exchange/download/mapinfo2excel-2.0-x64")
 '	Call FILELaunch("http://communitydownloads.pbinsight.com/code-exchange/download/mapinfo2excel")
 	Exit Sub
 '-------------------------

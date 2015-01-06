@@ -1,1 +1,16 @@
-10:38:22 NumTables: 0
+12:50:41 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+12:50:41 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+12:50:41 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+12:50:41 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+12:50:41 NumWindows: 0
+12:50:41 NumTables: 0
+12:56:24    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 110
+12:56:24    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+12:56:24    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 124
+12:56:24    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+12:56:24    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 142
+12:56:24    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+12:56:24    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 159
+12:56:24    RBNTabGetGroupIndexThs: Number of Tab Groups 5
+12:56:24    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 174
+12:56:24    RBNTabGetGroupIndexThs: Number of Tab Groups 5
