@@ -1,16 +1,181 @@
-12:50:41 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
-12:50:41 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
-12:50:41 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
-12:50:41 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
-12:50:41 NumWindows: 0
-12:50:41 NumTables: 0
-12:56:24    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 110
-12:56:24    RBNTabGetGroupIndexThs: Number of Tab Groups 6
-12:56:24    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 124
-12:56:24    RBNTabGetGroupIndexThs: Number of Tab Groups 6
-12:56:24    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 142
-12:56:24    RBNTabGetGroupIndexThs: Number of Tab Groups 6
-12:56:24    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 159
-12:56:24    RBNTabGetGroupIndexThs: Number of Tab Groups 5
-12:56:24    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 174
-12:56:24    RBNTabGetGroupIndexThs: Number of Tab Groups 5
+14:59:02    5 Français
+14:59:02    6 Italian
+14:59:02    7 Spanish
+14:59:02    8 Swedish
+14:59:02 2. Number of language files found: 8
+14:59:02 exportTableToExcel
+14:59:03 RBNGetTab
+14:59:03 RBNTabGetGroupThs
+14:59:03    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+14:59:03    RBNTabGetGroupIndexThs: Number of Tab Groups 5
+14:59:03 nCtrlIdx = 1
+14:59:03 RBNControlSetToolTipIdx
+14:59:03 RBNControlSetIconsIdx
+14:59:03 RBNControlSetCustomMBXHandlerIdx
+14:59:03 exportMapToExcel
+14:59:03 RBNGetTab
+14:59:03 RBNTabGetGroupThs
+14:59:03    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+14:59:03    RBNTabGetGroupIndexThs: Number of Tab Groups 5
+14:59:03 RBNGetTab
+14:59:03 RBNTabGetGroupThs
+14:59:03    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+14:59:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+14:59:03 RBNGetTab
+14:59:03 RBNTabGetGroupThs
+14:59:03    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+14:59:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+14:59:03    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+14:59:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+14:59:03    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+14:59:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+14:59:03 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+14:59:03 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+14:59:03 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+14:59:03 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+14:59:03 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+14:59:03 NumWindows: 0
+14:59:03 NumTables: 0
+15:02:10    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 108
+15:02:10    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:02:10    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 122
+15:02:10    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:02:11    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 140
+15:02:11    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:02:11    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 157
+15:02:11    RBNTabGetGroupIndexThs: Number of Tab Groups 5
+15:02:11    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 172
+15:02:11    RBNTabGetGroupIndexThs: Number of Tab Groups 5
+15:02:24 1. Number of language files found: 0
+15:02:24 Searching for language files in: 'D:\Dropbox (Horsboll-Moller)\3. MB_Kode\mbMapInfo2Excel-x64\'
+15:02:24 Searching D:\Dropbox (Horsboll-Moller)\3. MB_Kode\mbMapInfo2Excel-x64\*.str
+15:02:24 1: Length: 10 Danish.str
+15:02:24 2: Length: 9 Dutch.str
+15:02:24 3: Length: 11 English.str
+15:02:24 4: Length: 11 Finnish.str
+15:02:24 5: Length: 10 French.str
+15:02:24 6: Length: 11 Italian.str
+15:02:24 7: Length: 11 Spanish.str
+15:02:24 8: Length: 11 Swedish.str
+15:02:24 Found 8 string files!
+15:02:24    1 Dansk
+15:02:24    2 Nederlands
+15:02:24    3 English
+15:02:24    4 Finnish
+15:02:24    5 Français
+15:02:24    6 Italian
+15:02:24    7 Spanish
+15:02:24    8 Swedish
+15:02:24 2. Number of language files found: 8
+15:02:24 exportTableToExcel
+15:02:25 RBNGetTab
+15:02:25 RBNTabGetGroupThs
+15:02:25    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+15:02:25    RBNTabGetGroupIndexThs: Number of Tab Groups 5
+15:02:25 nCtrlIdx = 1
+15:02:25 RBNControlSetToolTipIdx
+15:02:25 RBNControlSetIconsIdx
+15:02:25 RBNControlSetCustomMBXHandlerIdx
+15:02:25 exportMapToExcel
+15:02:25 RBNGetTab
+15:02:25 RBNTabGetGroupThs
+15:02:25    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+15:02:25    RBNTabGetGroupIndexThs: Number of Tab Groups 5
+15:02:25 RBNGetTab
+15:02:25 RBNTabGetGroupThs
+15:02:25    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+15:02:25    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:02:25 RBNGetTab
+15:02:25 RBNTabGetGroupThs
+15:02:25    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+15:02:25    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:02:25    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+15:02:25    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:02:25    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+15:02:25    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:02:25 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+15:02:25 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+15:02:25 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+15:02:25 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+15:02:25 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+15:02:25 NumWindows: 0
+15:02:25 NumTables: 0
+15:04:26    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 108
+15:04:26    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:04:26    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 122
+15:04:26    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:04:26    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 140
+15:04:26    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:04:27    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 157
+15:04:27    RBNTabGetGroupIndexThs: Number of Tab Groups 5
+15:04:27    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 172
+15:04:27    RBNTabGetGroupIndexThs: Number of Tab Groups 5
+15:04:37 1. Number of language files found: 0
+15:04:37 Searching for language files in: 'D:\Dropbox (Horsboll-Moller)\3. MB_Kode\mbMapInfo2Excel-x64\'
+15:04:37 Searching D:\Dropbox (Horsboll-Moller)\3. MB_Kode\mbMapInfo2Excel-x64\*.str
+15:04:37 1: Length: 10 Danish.str
+15:04:37 2: Length: 9 Dutch.str
+15:04:37 3: Length: 11 English.str
+15:04:37 4: Length: 11 Finnish.str
+15:04:37 5: Length: 10 French.str
+15:04:37 6: Length: 11 Italian.str
+15:04:37 7: Length: 11 Spanish.str
+15:04:37 8: Length: 11 Swedish.str
+15:04:37 Found 8 string files!
+15:04:37    1 Dansk
+15:04:37    2 Nederlands
+15:04:37    3 English
+15:04:37    4 Finnish
+15:04:37    5 Français
+15:04:37    6 Italian
+15:04:37    7 Spanish
+15:04:37    8 Swedish
+15:04:37 2. Number of language files found: 8
+15:04:37 exportTableToExcel
+15:04:38 RBNGetTab
+15:04:38 RBNTabGetGroupThs
+15:04:38    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+15:04:38    RBNTabGetGroupIndexThs: Number of Tab Groups 5
+15:04:38 nCtrlIdx = 1
+15:04:38 RBNControlSetToolTipIdx
+15:04:38 RBNControlSetIconsIdx
+15:04:38 RBNControlSetCustomMBXHandlerIdx
+15:04:38 exportMapToExcel
+15:04:38 RBNGetTab
+15:04:38 RBNTabGetGroupThs
+15:04:38    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+15:04:38    RBNTabGetGroupIndexThs: Number of Tab Groups 5
+15:04:38 RBNGetTab
+15:04:38 RBNTabGetGroupThs
+15:04:38    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+15:04:38    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:04:38 RBNGetTab
+15:04:38 RBNTabGetGroupThs
+15:04:38    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+15:04:38    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:04:38    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+15:04:38    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:04:38    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+15:04:38    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+15:04:38 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+15:04:38 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+15:04:38 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+15:04:38 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+15:04:38 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+15:04:38 NumWindows: 0
+15:04:38 NumTables: 0
+20:23:29 MENUTableOpenedHandler
+20:23:29 MENUWinCreatedHandler
+20:23:29 WinFocusChangedHandler
+20:23:29 WinFocusChangedHandler
+20:23:36 WinFocusChangedHandler
+20:23:37    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 110
+20:23:37    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+20:23:37    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 124
+20:23:37    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+20:23:37    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 142
+20:23:37    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+20:23:37    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 159
+20:23:37    RBNTabGetGroupIndexThs: Number of Tab Groups 5
+20:23:37    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 174
+20:23:37    RBNTabGetGroupIndexThs: Number of Tab Groups 5

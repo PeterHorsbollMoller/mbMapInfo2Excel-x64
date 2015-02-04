@@ -15,7 +15,7 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"2.01.0 x64"
+Define xVersion 		"2.02.0 x64"
 Define xYear			"2015"
 Define xAddToMenuBar	FALSE
 
@@ -110,12 +110,12 @@ OnError GoTo ErrorOccured
 	Call PRGISetApplicationImageUri(PATH_IMAGES & "MapWindowExcel_32.png")
 	Call PRGISetApplicationHelpFile(FILE_HLP)
 
+	'***Enabling Debug if file exists
+	Call DEBUGEnableByFile(FILE_DBG)
+
 	Call MENUReadConfigFile
 
 	Call PRGILoadLanguageStrings(msLanguage)
-
-	'***Enabling Debug if file exists
-	Call DEBUGEnableByFile(FILE_DBG)
 
 	If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
 		Call MENUBuildRibbonInterface

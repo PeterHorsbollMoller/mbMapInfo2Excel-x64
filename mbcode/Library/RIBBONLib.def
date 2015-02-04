@@ -184,6 +184,17 @@
 '							- RBNTabGetGroup(...) As Logical
 '							- RBNTabGetGroupIndex(...) As Integer
 '							- RBNTabGroupExists(...) As Logical
+'	10-01-2015 09:54:49		- Added:
+'							- RBNTabExistsCaption(...) As Logical
+'							- RBNTabGetNameFromCaption(...) As String
+'							- RBNTabEnableThs(...)
+'							- RBNTabEnableIdx(...)
+'							- RBNTabSetToolTipThs(...)
+'							- RBNGroupEnableThs(...)
+'							- RBNGroupEnableIdx(...)
+'							- RBNGroupSetToolTipThs(...)
+'						- Removed:
+'							- RBNGetTableEventArgsTableAlias
 '*****************************************************************************************************************************
 
 
@@ -245,6 +256,9 @@ Define		CONTROL_SIZE_EXTRASMALL	1
 Define		CONTROL_SIZE_SMALL		2
 Define		CONTROL_SIZE_LARGE		3
 
+Define		CONTROL_TYPE_RLIB_TAB	100
+Define		CONTROL_TYPE_RLIB_GROUP	101
+
 Declare Method ObjectToString Class "System.Object" Lib "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" alias ToString (ByVal objectInstace As This) As String
 
 '**For testing and for getting the names of the controls and elements
@@ -267,10 +281,18 @@ Declare Function RBNGetTabIndex(	ByVal sTabName As String
 							) As Integer
 Declare Function RBNTabExists(	  ByVal sTabName As String
 							) As Logical
+Declare Function RBNTabExistsCaption(	  ByVal sTabCaption As String
+								) As Logical
+Declare Function RBNTabGetNameFromCaption(	  ByVal sTabCaption As String
+									) As String				'Returns "" if tab isn't found
 
 '** WORKING WITH GROUPS ON TABS **********************************************************************************
 Declare Function RBNTabNumGroups(  ByVal sTabName As String
 							) As Integer
+Declare Sub RBNTabSetToolTipThs(	  rbnTab As This
+							, ByVal sText As String
+							, ByVal sDescription As String
+							, ByVal sDisabledText As String)
 Declare Sub RBNTabSetToolTip(	  ByVal sTabName As String
 						, ByVal sText As String
 						, ByVal sDescription As String
@@ -280,6 +302,10 @@ Declare Sub RBNTabSetToolTipIdx(	  ByVal nTabIdx As Integer		'The tabIdx returne
 							, ByVal sDescription As String
 							, ByVal sDisabledText As String
 							)
+Declare Sub RBNTabEnableThs(	  ByVal rbnTab As This
+						, ByVal bEnabled As Logical)
+Declare Sub RBNTabEnableIdx(	  ByVal nTabIdx As Integer
+						, ByVal bEnabled As Logical)
 
 Declare Function RBNTabAddGroup(	  ByVal sGroupName As String
 							, ByVal sCaption As String
@@ -313,6 +339,10 @@ Declare Function RBNTabGroupExistsThs(	  rbnTab As This
 Declare Function RBNGroupNumControls(	  ByVal sGroupName As String
 								, ByVal sTabName As String
 								) As Integer
+Declare Sub RBNGroupSetToolTipThs(	  rbnGroup As This
+							, ByVal sText As String
+							, ByVal sDescription As String
+							, ByVal sDisabledText As String)
 Declare Sub RBNGroupSetToolTip(	  ByVal sTabName As String
 							, ByVal sGroupName As String
 							, ByVal sText As String
@@ -323,6 +353,10 @@ Declare Sub RBNGroupSetToolTipIdx(	  ByVal nGroupIdx As Integer		'The groupIdx r
 							, ByVal sDescription As String
 							, ByVal sDisabledText As String
 							)
+Declare Sub RBNGroupEnableThs(	  ByVal rbnGroup As This
+							, ByVal bEnabled As Logical)
+Declare Sub RBNGroupEnableIdx(	  ByVal nElementIdx As Integer
+							, ByVal bEnabled As Logical)
 
 Declare Function RBNGroupAddControl(	  ByVal sControlName As String
 								, ByVal sCaption As String
@@ -599,8 +633,6 @@ Declare Function RBNEventUnsubscribe(  	  ByVal nEventType As Integer
 								) As Logical
 Declare Function RBNEventUnsubscribeAll(
 								) As Logical
-
-Declare Function RBNGetTableEventArgsTableAlias(ByVal arg As This) As String
 
 
 '**** N O T I F I C A T I O N **************************************************************

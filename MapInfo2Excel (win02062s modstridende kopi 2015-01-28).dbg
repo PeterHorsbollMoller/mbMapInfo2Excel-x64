@@ -1,0 +1,869 @@
+21:17:25    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 172
+21:17:25    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:20:07 exportTableToExcel
+21:20:08 RBNGetTab
+21:20:08 RBNTabGetGroupThs
+21:20:08    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+21:20:08    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:20:08 RBNAddElement
+21:20:08 nCtrlIdx = 1
+21:20:08 RBNControlSetToolTipIdx
+21:20:08 RBNControlSetIconsIdx
+21:20:08 RBNControlSetCustomMBXHandlerIdx
+21:20:08 exportMapToExcel
+21:20:08 RBNGetTab
+21:20:08 RBNTabGetGroupThs
+21:20:08    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+21:20:08    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:20:08 RBNAddElement
+21:20:08 RBNGetTab
+21:20:08 RBNTabGetGroupThs
+21:20:08    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+21:20:08    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:20:08 RBNAddElement
+21:20:08 RBNGetTab
+21:20:08 RBNTabGetGroupThs
+21:20:08    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+21:20:08    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:20:08 RBNAddElement
+21:20:08    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+21:20:08    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:20:08    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+21:20:08    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:20:08 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+21:20:08 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+21:20:08 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+21:20:08 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+21:20:08 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+21:20:08 NumWindows: 0
+21:20:08 NumTables: 0
+21:20:19 MENUWinCreatedHandler
+21:22:29 MENUTableOpenedHandler
+21:22:29 MENUWinCreatedHandler
+21:22:29 WinFocusChangedHandler
+21:22:50 WinClosedHandler
+21:22:50 MENUAllClosedHandler
+21:26:02    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 112
+21:26:02    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:02    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 126
+21:26:02    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:02    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 144
+21:26:02    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:02    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 161
+21:26:02    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:02    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 176
+21:26:02    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:29 exportTableToExcel
+21:26:29 RBNGetTab
+21:26:29 RBNTabGetGroupThs
+21:26:29    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+21:26:29    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:29 RBNAddElement
+21:26:29 nCtrlIdx = 1
+21:26:29 RBNControlSetToolTipIdx
+21:26:29 RBNControlSetIconsIdx
+21:26:30 RBNControlSetCustomMBXHandlerIdx
+21:26:30 exportMapToExcel
+21:26:30 RBNGetTab
+21:26:30 RBNTabGetGroupThs
+21:26:30    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+21:26:30    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:30 RBNAddElement
+21:26:30 RBNGetTab
+21:26:30 RBNTabGetGroupThs
+21:26:30    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+21:26:30    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:30 RBNAddElement
+21:26:30 RBNGetTab
+21:26:30 RBNTabGetGroupThs
+21:26:30    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+21:26:30    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:30 RBNAddElement
+21:26:30    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+21:26:30    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:30    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+21:26:30    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:30 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+21:26:30 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+21:26:30 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+21:26:30 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+21:26:30 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+21:26:30 NumWindows: 0
+21:26:30 NumTables: 0
+21:26:39    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 108
+21:26:39    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:39    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 122
+21:26:39    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:39    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 140
+21:26:39    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:39    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 157
+21:26:39    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+21:26:39    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 172
+21:26:39    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+08:57:07 exportTableToExcel
+08:57:07 RBNGetTab
+08:57:07 RBNTabGetGroupThs
+08:57:07    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+08:57:07    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+08:57:07 RBNAddElement
+08:57:07 nCtrlIdx = 1
+08:57:07 RBNControlSetToolTipIdx
+08:57:07 RBNControlSetIconsIdx
+08:57:07 RBNControlSetCustomMBXHandlerIdx
+08:57:07 exportMapToExcel
+08:57:07 RBNGetTab
+08:57:07 RBNTabGetGroupThs
+08:57:07    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+08:57:07    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+08:57:07 RBNAddElement
+08:57:07 RBNGetTab
+08:57:07 RBNTabGetGroupThs
+08:57:07    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+08:57:07    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+08:57:07 RBNAddElement
+08:57:07 RBNGetTab
+08:57:07 RBNTabGetGroupThs
+08:57:08    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+08:57:08    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+08:57:08 RBNAddElement
+08:57:08    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+08:57:08    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+08:57:08    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+08:57:08    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+08:57:08 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+08:57:08 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+08:57:08 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+08:57:08 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+08:57:08 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+08:57:08 NumWindows: 0
+08:57:08 NumTables: 0
+08:59:12 MENUWinCreatedHandler
+09:01:55    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 109
+09:01:55    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:01:55    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 123
+09:01:55    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:01:55    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 141
+09:01:55    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:01:55    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 158
+09:01:55    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:01:56    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 173
+09:01:56    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:02:21 exportTableToExcel
+09:02:22 RBNGetTab
+09:02:22 RBNTabGetGroupThs
+09:02:22    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+09:02:22    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:02:22 RBNAddElement
+09:02:22 nCtrlIdx = 1
+09:02:22 RBNControlSetToolTipIdx
+09:02:22 RBNControlSetIconsIdx
+09:02:22 RBNControlSetCustomMBXHandlerIdx
+09:02:22 exportMapToExcel
+09:02:22 RBNGetTab
+09:02:22 RBNTabGetGroupThs
+09:02:22    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+09:02:22    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:02:22 RBNAddElement
+09:02:22 RBNGetTab
+09:02:22 RBNTabGetGroupThs
+09:02:22    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+09:02:22    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:02:22 RBNAddElement
+09:02:22 RBNGetTab
+09:02:22 RBNTabGetGroupThs
+09:02:22    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+09:02:22    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:02:22 RBNAddElement
+09:02:22    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+09:02:22    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:02:22    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+09:02:22    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:02:22 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+09:02:22 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+09:02:22 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+09:02:22 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+09:02:22 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+09:02:22 NumWindows: 0
+09:02:22 NumTables: 0
+09:02:28    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 108
+09:02:28    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:02:28    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 122
+09:02:28    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:02:28    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 140
+09:02:28    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:02:28    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 157
+09:02:28    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:02:28    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 172
+09:02:28    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:03:58 exportTableToExcel
+09:03:59 RBNGetTab
+09:03:59 RBNTabGetGroupThs
+09:03:59    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+09:03:59    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:03:59 RBNAddElement
+09:03:59 nCtrlIdx = 1
+09:03:59 RBNControlSetToolTipIdx
+09:03:59 RBNControlSetIconsIdx
+09:03:59 RBNControlSetCustomMBXHandlerIdx
+09:03:59 exportMapToExcel
+09:03:59 RBNGetTab
+09:03:59 RBNTabGetGroupThs
+09:03:59    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+09:03:59    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:03:59 RBNAddElement
+09:03:59 RBNGetTab
+09:03:59 RBNTabGetGroupThs
+09:03:59    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+09:03:59    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:03:59 RBNAddElement
+09:03:59 RBNGetTab
+09:03:59 RBNTabGetGroupThs
+09:03:59    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+09:03:59    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:03:59 RBNAddElement
+09:03:59    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+09:03:59    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:03:59    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+09:03:59    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:03:59 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+09:03:59 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+09:03:59 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+09:03:59 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+09:03:59 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+09:03:59 NumWindows: 0
+09:03:59 NumTables: 0
+09:04:03    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 108
+09:04:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:04:03    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 122
+09:04:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:04:03    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 140
+09:04:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:04:03    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 157
+09:04:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:04:03    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 172
+09:04:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:31:18 exportTableToExcel
+09:31:18 RBNGetTab
+09:31:18 RBNTabGetGroupThs
+09:31:18    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+09:31:18    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:31:18 RBNAddElement
+09:31:18 nCtrlIdx = 1
+09:31:18 RBNControlSetToolTipIdx
+09:31:18 RBNControlSetIconsIdx
+09:31:18 RBNControlSetCustomMBXHandlerIdx
+09:31:18 exportMapToExcel
+09:31:18 RBNGetTab
+09:31:18 RBNTabGetGroupThs
+09:31:19    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+09:31:19    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:31:19 RBNAddElement
+09:31:19 RBNGetTab
+09:31:19 RBNTabGetGroupThs
+09:31:19    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+09:31:19    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:31:19 RBNAddElement
+09:31:19 RBNGetTab
+09:31:19 RBNTabGetGroupThs
+09:31:19    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+09:31:19    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:31:19 RBNAddElement
+09:31:19    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+09:31:19    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:31:19    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+09:31:19    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:31:19 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+09:31:19 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+09:31:19 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+09:31:19 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+09:31:19 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+09:31:19 NumWindows: 0
+09:31:19 NumTables: 0
+09:31:36    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 108
+09:31:36    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:31:36    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 122
+09:31:36    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:31:36    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 140
+09:31:36    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:31:36    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 157
+09:31:36    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+09:31:36    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 172
+09:31:36    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:01:05 exportTableToExcel
+10:01:05 RBNGetTab
+10:01:05 RBNTabGetGroupThs
+10:01:05    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+10:01:05    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:01:05 RBNAddElement
+10:01:05 nCtrlIdx = 1
+10:01:05 RBNControlSetToolTipIdx
+10:01:05 RBNControlSetIconsIdx
+10:01:05 RBNControlSetCustomMBXHandlerIdx
+10:01:05 exportMapToExcel
+10:01:05 RBNGetTab
+10:01:05 RBNTabGetGroupThs
+10:01:05    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+10:01:05    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:01:05 RBNAddElement
+10:01:05 RBNGetTab
+10:01:05 RBNTabGetGroupThs
+10:01:05    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+10:01:05    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:01:05 RBNAddElement
+10:01:05 RBNGetTab
+10:01:05 RBNTabGetGroupThs
+10:01:05    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+10:01:05    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:01:05 RBNAddElement
+10:01:05    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+10:01:05    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:01:05    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+10:01:06    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:01:06 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+10:01:06 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+10:01:06 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+10:01:06 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+10:01:06 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+10:01:06 NumWindows: 0
+10:01:06 NumTables: 0
+10:01:28 MENUTableOpenedHandler
+10:01:47 WinFocusChangedHandler
+10:01:48 MENUWinCreatedHandler
+10:02:10 MENUWinCreatedHandler
+10:38:22 MENUTableOpenedHandler
+10:38:22 MENUWinCreatedHandler
+10:38:22 WinFocusChangedHandler
+10:38:54    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 113
+10:38:54    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:38:54    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 127
+10:38:54    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:38:54    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 145
+10:38:54    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:38:55    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 162
+10:38:55    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:38:55    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 177
+10:38:55    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:39:19 exportTableToExcel
+10:39:19 RBNGetTab
+10:39:19 RBNTabGetGroupThs
+10:39:19    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+10:39:19    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:39:19 RBNAddElement
+10:39:19 nCtrlIdx = 1
+10:39:19 RBNControlSetToolTipIdx
+10:39:19 RBNControlSetIconsIdx
+10:39:20 RBNControlSetCustomMBXHandlerIdx
+10:39:20 exportMapToExcel
+10:39:20 RBNGetTab
+10:39:20 RBNTabGetGroupThs
+10:39:20    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+10:39:20    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:39:20 RBNAddElement
+10:39:20 RBNGetTab
+10:39:20 RBNTabGetGroupThs
+10:39:20    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+10:39:20    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:39:20 RBNAddElement
+10:39:20 RBNGetTab
+10:39:20 RBNTabGetGroupThs
+10:39:20    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+10:39:20    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:39:20 RBNAddElement
+10:39:20    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+10:39:20    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:39:20    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+10:39:20    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:39:20 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+10:39:20 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+10:39:20 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+10:39:20 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+10:39:20 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+10:39:20 NumWindows: 0
+10:39:20 NumTables: 0
+10:40:09 MENUTableOpenedHandler
+10:40:27 WinFocusChangedHandler
+10:40:27 MENUWinCreatedHandler
+10:40:36    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 110
+10:40:36    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:40:36    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 124
+10:40:36    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:40:36    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 142
+10:40:36    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:40:36    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 159
+10:40:36    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+10:40:36    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 174
+10:40:36    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+11:51:22 exportTableToExcel
+11:51:22 RBNGetTab
+11:51:23 RBNTabGetGroupThs
+11:51:23    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+11:51:23    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+11:51:23 RBNAddElement
+11:51:23 nCtrlIdx = 1
+11:51:23 RBNControlSetToolTipIdx
+11:51:23 RBNControlSetIconsIdx
+11:51:23 RBNControlSetCustomMBXHandlerIdx
+11:51:23 exportMapToExcel
+11:51:23 RBNGetTab
+11:51:23 RBNTabGetGroupThs
+11:51:23    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+11:51:23    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+11:51:23 RBNAddElement
+11:51:23 RBNGetTab
+11:51:23 RBNTabGetGroupThs
+11:51:23    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+11:51:23    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+11:51:23 RBNAddElement
+11:51:23 RBNGetTab
+11:51:23 RBNTabGetGroupThs
+11:51:23    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+11:51:23    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+11:51:23 RBNAddElement
+11:51:23    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+11:51:23    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+11:51:23    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+11:51:23    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+11:51:23 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+11:51:23 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+11:51:23 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+11:51:23 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+11:51:23 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+11:51:23 NumWindows: 0
+11:51:23 NumTables: 0
+11:52:27 MENUTableOpenedHandler
+11:53:01 WinFocusChangedHandler
+11:53:03 MENUWinCreatedHandler
+11:53:59 MENUWinCreatedHandler
+13:01:24 MENUTableOpenedHandler
+13:01:24 MENUWinCreatedHandler
+13:01:24 WinFocusChangedHandler
+13:10:13 MENUTableOpenedHandler
+13:10:14 MENUTableOpenedHandler
+13:10:45 WinClosedHandler
+13:10:45 NumWindows: 2
+13:10:45 NumTables: 4
+13:10:45 MENUTableClosedHandler
+13:10:45 MENUTableClosedHandler
+13:14:53 WinFocusChangedHandler
+13:22:35 MENUTableOpenedHandler
+13:22:52 WinFocusChangedHandler
+13:22:53 MENUWinCreatedHandler
+14:21:17 MENUTableOpenedHandler
+14:21:17 MENUWinCreatedHandler
+14:21:18 WinFocusChangedHandler
+14:24:52 exportTableToExcel
+14:24:53 RBNGetTab
+14:24:53 RBNTabGetGroupThs
+14:24:53    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+14:24:53    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+14:24:53 RBNAddElement
+14:24:53 nCtrlIdx = 1
+14:24:53 RBNControlSetToolTipIdx
+14:24:53 RBNControlSetIconsIdx
+14:24:53 RBNControlSetCustomMBXHandlerIdx
+14:24:53 exportMapToExcel
+14:24:53 RBNGetTab
+14:24:53 RBNTabGetGroupThs
+14:24:53    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+14:24:53    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+14:24:53 RBNAddElement
+14:24:53 RBNGetTab
+14:24:53 RBNTabGetGroupThs
+14:24:53    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+14:24:53    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+14:24:53 RBNAddElement
+14:24:53 RBNGetTab
+14:24:53 RBNTabGetGroupThs
+14:24:53    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+14:24:53    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+14:24:53 RBNAddElement
+14:24:53    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+14:24:53    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+14:24:53    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+14:24:53    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+14:24:53 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+14:24:53 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+14:24:53 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+14:24:53 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+14:24:53 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+14:24:53 NumWindows: 0
+14:24:53 NumTables: 0
+14:25:59 MENUTableOpenedHandler
+14:26:32 WinFocusChangedHandler
+14:26:34 MENUWinCreatedHandler
+14:27:13 MENUWinCreatedHandler
+16:15:20 exportTableToExcel
+16:15:20 RBNGetTab
+16:15:20 RBNTabGetGroupThs
+16:15:20    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+16:15:20    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+16:15:20 RBNAddElement
+16:15:20 nCtrlIdx = 1
+16:15:20 RBNControlSetToolTipIdx
+16:15:20 RBNControlSetIconsIdx
+16:15:20 RBNControlSetCustomMBXHandlerIdx
+16:15:20 exportMapToExcel
+16:15:20 RBNGetTab
+16:15:21 RBNTabGetGroupThs
+16:15:21    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+16:15:21    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+16:15:21 RBNAddElement
+16:15:21 RBNGetTab
+16:15:21 RBNTabGetGroupThs
+16:15:21    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+16:15:21    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+16:15:21 RBNAddElement
+16:15:21 RBNGetTab
+16:15:21 RBNTabGetGroupThs
+16:15:21    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+16:15:21    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+16:15:21 RBNAddElement
+16:15:21    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+16:15:21    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+16:15:21    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+16:15:21    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+16:15:21 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+16:15:21 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+16:15:21 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+16:15:21 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+16:15:21 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+16:15:21 NumWindows: 0
+16:15:21 NumTables: 0
+16:17:11 MENUTableOpenedHandler
+16:17:43 WinFocusChangedHandler
+16:17:45 MENUWinCreatedHandler
+16:18:00 MENUWinCreatedHandler
+16:50:45 exportTableToExcel
+16:50:46 RBNGetTab
+16:50:46 RBNTabGetGroupThs
+16:50:46    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+16:50:46    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+16:50:46 RBNAddElement
+16:50:46 nCtrlIdx = 1
+16:50:46 RBNControlSetToolTipIdx
+16:50:46 RBNControlSetIconsIdx
+16:50:46 RBNControlSetCustomMBXHandlerIdx
+16:50:46 exportMapToExcel
+16:50:46 RBNGetTab
+16:50:46 RBNTabGetGroupThs
+16:50:46    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+16:50:46    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+16:50:46 RBNAddElement
+16:50:46 RBNGetTab
+16:50:46 RBNTabGetGroupThs
+16:50:46    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+16:50:46    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+16:50:46 RBNAddElement
+16:50:46 RBNGetTab
+16:50:46 RBNTabGetGroupThs
+16:50:46    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+16:50:46    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+16:50:46 RBNAddElement
+16:50:46    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+16:50:46    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+16:50:46    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+16:50:46    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+16:50:46 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+16:50:46 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+16:50:47 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+16:50:47 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+16:50:47 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+16:50:47 NumWindows: 0
+16:50:47 NumTables: 0
+16:52:15 MENUTableOpenedHandler
+16:52:34 WinFocusChangedHandler
+16:52:35 MENUWinCreatedHandler
+16:52:47 MENUWinCreatedHandler
+17:00:34 MENUTableOpenedHandler
+17:00:34 MENUWinCreatedHandler
+17:00:35 WinFocusChangedHandler
+17:13:45    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 113
+17:13:45    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:13:45    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 127
+17:13:45    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:13:45    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 145
+17:13:46    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:13:46    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 162
+17:13:46    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:13:46    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 177
+17:13:46    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:57:27 MENUTableOpenedHandler
+17:57:27 MENUWinCreatedHandler
+17:57:27 WinFocusChangedHandler
+17:57:38    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 113
+17:57:38    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:57:38    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 127
+17:57:38    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:57:38    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 145
+17:57:38    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:57:38    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 162
+17:57:38    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:57:38    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 177
+17:57:38    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:58:02 exportTableToExcel
+17:58:02 RBNGetTab
+17:58:02 RBNTabGetGroupThs
+17:58:02    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+17:58:02    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:58:02 RBNAddElement
+17:58:02 nCtrlIdx = 1
+17:58:02 RBNControlSetToolTipIdx
+17:58:02 RBNControlSetIconsIdx
+17:58:03 RBNControlSetCustomMBXHandlerIdx
+17:58:03 exportMapToExcel
+17:58:03 RBNGetTab
+17:58:03 RBNTabGetGroupThs
+17:58:03    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+17:58:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:58:03 RBNAddElement
+17:58:03 RBNGetTab
+17:58:03 RBNTabGetGroupThs
+17:58:03    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+17:58:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:58:03 RBNAddElement
+17:58:03 RBNGetTab
+17:58:03 RBNTabGetGroupThs
+17:58:03    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+17:58:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:58:03 RBNAddElement
+17:58:03    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+17:58:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:58:03    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+17:58:03    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+17:58:03 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+17:58:03 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+17:58:03 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+17:58:03 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+17:58:03 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+17:58:03 NumWindows: 0
+17:58:03 NumTables: 0
+17:58:42 MENUTableOpenedHandler
+17:58:42 MENUWinCreatedHandler
+17:58:42 WinFocusChangedHandler
+17:58:43 MENUTableOpenedHandler
+17:58:43 MENUTableOpenedHandler
+17:58:44 MENUTableOpenedHandler
+17:58:44 MENUTableOpenedHandler
+17:58:44 MENUTableOpenedHandler
+17:59:05 MENUWinCreatedHandler
+21:20:32 MENUTableOpenedHandler
+21:20:32 MENUWinCreatedHandler
+21:20:32 WinFocusChangedHandler
+22:06:02 WinClosedHandler
+22:06:02 NumWindows: 2
+22:06:02 NumTables: 7
+22:06:02 WinClosedHandler
+22:06:02 MENUAllClosedHandler
+22:06:10    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 119
+22:06:10    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:06:10    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 133
+22:06:10    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:06:10    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 151
+22:06:10    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:06:10    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 168
+22:06:10    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:06:10    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 183
+22:06:10    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:28:57 exportTableToExcel
+22:28:58 RBNGetTab
+22:28:58 RBNTabGetGroupThs
+22:28:58    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+22:28:58    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:28:58 RBNAddElement
+22:28:58 nCtrlIdx = 1
+22:28:58 RBNControlSetToolTipIdx
+22:28:58 RBNControlSetIconsIdx
+22:28:58 RBNControlSetCustomMBXHandlerIdx
+22:28:58 exportMapToExcel
+22:28:58 RBNGetTab
+22:28:58 RBNTabGetGroupThs
+22:28:58    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+22:28:58    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:28:58 RBNAddElement
+22:28:58 RBNGetTab
+22:28:58 RBNTabGetGroupThs
+22:28:58    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+22:28:58    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:28:58 RBNAddElement
+22:28:58 RBNGetTab
+22:28:58 RBNTabGetGroupThs
+22:28:58    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+22:28:58    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:28:58 RBNAddElement
+22:28:58    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+22:28:58    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:28:58    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+22:28:58    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:28:58 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+22:28:59 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+22:28:59 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+22:28:59 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+22:28:59 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+22:28:59 NumWindows: 0
+22:28:59 NumTables: 0
+22:29:04    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 108
+22:29:04    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:29:04    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 122
+22:29:04    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:29:04    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 140
+22:29:04    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:29:04    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 157
+22:29:04    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:29:04    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 172
+22:29:04    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:45:52 exportTableToExcel
+22:45:53 RBNGetTab
+22:45:53 RBNTabGetGroupThs
+22:45:53    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+22:45:53    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:45:53 RBNAddElement
+22:45:53 nCtrlIdx = 1
+22:45:53 RBNControlSetToolTipIdx
+22:45:53 RBNControlSetIconsIdx
+22:45:53 RBNControlSetCustomMBXHandlerIdx
+22:45:53 exportMapToExcel
+22:45:53 RBNGetTab
+22:45:53 RBNTabGetGroupThs
+22:45:53    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+22:45:53    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:45:53 RBNAddElement
+22:45:53 RBNGetTab
+22:45:53 RBNTabGetGroupThs
+22:45:53    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+22:45:53    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:45:53 RBNAddElement
+22:45:53 RBNGetTab
+22:45:53 RBNTabGetGroupThs
+22:45:53    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+22:45:53    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:45:53 RBNAddElement
+22:45:53    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+22:45:53    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:45:53    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+22:45:53    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:45:53 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+22:45:54 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+22:45:54 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+22:45:54 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+22:45:54 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+22:45:54 NumWindows: 0
+22:45:54 NumTables: 0
+22:46:06 MENUAllClosedHandler
+22:46:06 WinFocusChangedHandler
+22:46:06 MENUWinCreatedHandler
+22:46:06 MENUWinCreatedHandler
+22:46:07 WinFocusChangedHandler
+22:46:07 WinFocusChangedHandler
+22:46:07 WinFocusChangedHandler
+22:46:07 WinFocusChangedHandler
+22:46:08 WinFocusChangedHandler
+22:46:08 MENUWorkspaceOpenedHandler
+22:46:14 WinFocusChangedHandler
+22:47:12 WinFocusChangedHandler
+22:47:12 WinClosedHandler
+22:47:12 NumWindows: 2
+22:47:12 NumTables: 1
+22:47:12 WinFocusChangedHandler
+22:47:12 WinClosedHandler
+22:47:12 MENUAllClosedHandler
+22:47:17 MENUAllClosedHandler
+22:47:17 MENUWinCreatedHandler
+22:47:17 WinFocusChangedHandler
+22:47:17 MENUWinCreatedHandler
+22:47:17 WinFocusChangedHandler
+22:47:17 WinFocusChangedHandler
+22:47:18 WinFocusChangedHandler
+22:47:18 MENUWorkspaceOpenedHandler
+22:47:39 WinClosedHandler
+22:47:39 NumWindows: 2
+22:47:39 NumTables: 1
+22:47:39 WinFocusChangedHandler
+22:47:39 MENUTableClosedHandler
+22:47:53 WinClosedHandler
+22:47:53 MENUAllClosedHandler
+22:47:56 MENUAllClosedHandler
+22:47:56 MENUWinCreatedHandler
+22:47:56 WinFocusChangedHandler
+22:47:57 MENUWorkspaceOpenedHandler
+22:48:21 WinClosedHandler
+22:48:21 MENUAllClosedHandler
+22:48:25 MENUAllClosedHandler
+22:48:25 MENUWinCreatedHandler
+22:48:25 WinFocusChangedHandler
+22:48:25 MENUWorkspaceOpenedHandler
+22:49:20 MENUTableClosedHandler
+22:49:31 MENUWinCreatedHandler
+22:49:54 MENUTableOpenedHandler
+22:49:54 MENUWinCreatedHandler
+22:49:54 WinFocusChangedHandler
+22:50:18 MENUWinCreatedHandler
+22:50:22 WinClosedHandler
+22:50:22 NumWindows: 2
+22:50:22 NumTables: 2
+22:50:22 WinFocusChangedHandler
+22:50:22 MENUTableClosedHandler
+22:50:22 MENUTableClosedHandler
+22:51:01 MENUWinCreatedHandler
+22:51:16 MENUWinCreatedHandler
+22:51:21 MENUWinCreatedHandler
+22:51:30 MENUWinCreatedHandler
+22:51:54 MENUWinCreatedHandler
+22:52:06 MENUWinCreatedHandler
+22:52:42 MENUWinCreatedHandler
+22:53:42    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 140
+22:53:42    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:53:42    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 154
+22:53:42    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:53:42    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 172
+22:53:42    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:53:42    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 189
+22:53:42    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+22:53:42    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 204
+22:53:42    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+23:22:01 exportTableToExcel
+23:22:01 RBNGetTab
+23:22:01 RBNTabGetGroupThs
+23:22:01    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 15
+23:22:01    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+23:22:01 RBNAddElement
+23:22:02 nCtrlIdx = 1
+23:22:02 RBNControlSetToolTipIdx
+23:22:02 RBNControlSetIconsIdx
+23:22:02 RBNControlSetCustomMBXHandlerIdx
+23:22:02 exportMapToExcel
+23:22:02 RBNGetTab
+23:22:02 RBNTabGetGroupThs
+23:22:02    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 28
+23:22:02    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+23:22:02 RBNAddElement
+23:22:02 RBNGetTab
+23:22:02 RBNTabGetGroupThs
+23:22:02    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 43
+23:22:02    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+23:22:02 RBNAddElement
+23:22:02 RBNGetTab
+23:22:02 RBNTabGetGroupThs
+23:22:02    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 58
+23:22:02    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+23:22:02 RBNAddElement
+23:22:02    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 72
+23:22:02    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+23:22:02    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 86
+23:22:02    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+23:22:02 MIEventsSubscribe(theMapInfoEvents, 10, MENUTableOpenedHandler)
+23:22:02 MIEventsSubscribe(theMapInfoEvents, 11, MENUTableClosedHandler)
+23:22:02 MIEventsSubscribe(theMapInfoEvents, 20, MENUWorkspaceOpenedHandler)
+23:22:02 MIEventsSubscribe(theMapInfoEvents, 19, MENUAllClosedHandler)
+23:22:02 MIEventsSubscribe(theMapInfoEvents, 4, MENUWinCreatedHandler)
+23:22:02 NumWindows: 0
+23:22:02 NumTables: 0
+23:22:13    RBNTabGetGroupIndexThs: Looking for TableData rbnTab = 108
+23:22:13    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+23:22:13    RBNTabGetGroupIndexThs: Looking for BrowserTools rbnTab = 122
+23:22:13    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+23:22:13    RBNTabGetGroupIndexThs: Looking for MapAnalyze rbnTab = 140
+23:22:13    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+23:22:13    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 157
+23:22:13    RBNTabGetGroupIndexThs: Number of Tab Groups 6
+23:22:13    RBNTabGetGroupIndexThs: Looking for HomeOutput rbnTab = 172
+23:22:13    RBNTabGetGroupIndexThs: Number of Tab Groups 6
