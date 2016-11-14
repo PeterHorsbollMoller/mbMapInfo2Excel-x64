@@ -1,5 +1,5 @@
 [LINK]
-Application=..\MapInfo2Excel.mbp
+Application=..\MapInfo2Excel x64\MapInfo2Excel.mbp
 Module=Library\ProgramInfo.mbo
 Module=Library\ARRAYLib.mbo
 Module=Library\CONFIGFILELib.mbo

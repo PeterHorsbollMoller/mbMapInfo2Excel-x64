@@ -15,8 +15,8 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"2.02.0 x64"
-Define xYear			"2015"
+Define xVersion 		"2.1.0 x86/x64"
+Define xYear			"2016"
 Define xAddToMenuBar	FALSE
 
 Define FILE_INI			xProgram & ".ini"
@@ -195,7 +195,9 @@ Sub Endhandler
 OnError GoTo ErrorOccured
 
 	Call MENUWriteConfigFile
-	Call RBNClearCustomRibbonElements
+	If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
+		Call RBNEndHandler
+	End If
 	Exit Sub
 '-------------------------
 ErrorOccured:
@@ -429,8 +431,8 @@ Sub EnableDisableGUI
 
 OnError GoTo ErrorOccured
 
-	Call DEBUGPrint("NumWindows: " & NumWindows())
-	Call DEBUGPrint("NumTables: " & NumTables())
+'	Call DEBUGPrint("NumWindows: " & NumWindows())
+'	Call DEBUGPrint("NumTables: " & NumTables())
 
 	If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
 		If NumWindows() = 0 Then
@@ -478,21 +480,13 @@ Dim	nCtrlIdx As Integer
 
 OnError GoTo ErrorOccured
 
-	Call DEBUGPrint("exportTableToExcel")
 	nCtrlIdx = RBNGroupAddButton("exportTableToExcel", RESSTRNGGetString(STR_BTN_EXPORT_TABLE), "CT", "TabHome", "HomeOutput")
-	Call DEBUGPrint("nCtrlIdx = " & nCtrlIdx)
 	If nCtrlIdx > 0 Then
-		'Create & Set the button tooltip
-		Call DEBUGPrint("RBNControlSetToolTipIdx")
 		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
-		'Set the button icon
-		Call DEBUGPrint("RBNControlSetIconsIdx")
 		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "BrowserWindowExcel_32.png", "")
-		'Set Custom MapBasic Handle to the button
-		Call DEBUGPrint("RBNControlSetCustomMBXHandlerIdx")
 		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
 	End If
-	Call DEBUGPrint("exportMapToExcel")
+
 	nCtrlIdx = RBNGroupAddButton("exportMapToExcel", RESSTRNGGetString(STR_BTN_EXPORT_MAP), "CM", "TabHome", "HomeOutput")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
@@ -698,8 +692,11 @@ OnError GoTo ErrorOccured
 
 	Redim marrTables(0)
 	If TABGetListOfNames(TAB_USE_ALL_BUT_IMAGES, marrTables) = 0 Then
-		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE), Notify_Error, 10000)
-		'Note RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE)		'"Please open one or more native tables!"
+		If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
+			Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE), Notify_Error, 10000)
+		Else
+			Note RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE)		'"Please open one or more native tables!"
+		End If
 		Exit Sub
 	End If
 
@@ -790,13 +787,19 @@ OnError GoTo ErrorOccured
 
 	nBID = FrontWindow()
 	If nBID = 0 Then
-		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_OPEN_BROWSER), Notify_Error, 10000)
-'		Note RESSTRNGGetString(STR_ERR_PLEASE_OPEN_BROWSER)
+		If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
+			Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_OPEN_BROWSER), Notify_Error, 10000)
+		Else
+			Note RESSTRNGGetString(STR_ERR_PLEASE_OPEN_BROWSER)
+		End If
 		Exit Sub
 	End If
 	If WindowInfo(nBID, WIN_INFO_TYPE) <> WIN_BROWSER Then
-		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE), Notify_Error, 10000)
-'		Note RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE)
+		If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
+			Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE), Notify_Error, 10000)
+		Else
+			Note RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE)
+		End If
 		Exit Sub
 	End If
 
@@ -924,9 +927,12 @@ OnError GoTo ErrorOccured
 
 	Call DEBUGPrint("Validating that the template file exists")
 	If NOT FileExists(MENUGetExcelTemplateFile()) Then
-		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND) & lf & MENUGetExcelTemplateFile(), Notify_Error, 10000)
-'		Note RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND)
-'			& lf & MENUGetExcelTemplateFile()
+		If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
+			Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND) & lf & MENUGetExcelTemplateFile(), Notify_Error, 10000)
+		Else
+			Note RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND)
+						& lf & MENUGetExcelTemplateFile()
+		End If
 		Exit Sub
 	End If
 
@@ -940,12 +946,14 @@ OnError GoTo ErrorOccured
 		End If
 	Loop
 
-	Call DEBUGPrint("Saving " & MENUGetExcelTemplateFile())
-	Call DEBUGPrint("   as " & sOutputFile)
+	Call DEBUGPrint("Saving " & MENUGetExcelTemplateFile() & " as " & sOutputFile)
 	Save File MENUGetExcelTemplateFile() As sOutputFile
 	If NOT EXCELOpenFile(sOutputFile) Then
-		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile, Notify_Error, 10000)
-'		Note RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile
+		If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
+			Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile, Notify_Error, 10000)
+		Else
+			Note RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile
+		End If
 		Exit Function
 	End If
 
@@ -955,10 +963,13 @@ OnError GoTo ErrorOccured
 
 	nChannel = EXCELDDEOpenChannel(sSheet)
 	If nChannel = 0 Then
-		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS) & lf & lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA, Notify_Error, 10000)
-'		Note RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS)
-'			& lf
-'			& lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA
+		If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
+			Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS) & lf & lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA, Notify_Error, 10000)
+		Else
+			Note RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS)
+				& lf
+				& lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA
+		End If
 		Exit Sub
 	End If
 
@@ -1045,9 +1056,12 @@ OnError GoTo ErrorOccured
 
 	Call DEBUGPrint("Validating that the template file exists")
 	If NOT FileExists(MENUGetExcelTemplateFile()) Then
-		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND) & lf & MENUGetExcelTemplateFile(), Notify_Error, 10000)
-'		Note RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND)
-'			& lf & MENUGetExcelTemplateFile()
+		If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
+			Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND) & lf & MENUGetExcelTemplateFile(), Notify_Error, 10000)
+		Else
+			Note RESSTRNGGetString(STR_ERR_XLS_TEMPL_FILE_NOT_FOUND)
+				& lf & MENUGetExcelTemplateFile()
+		End If
 		Exit Sub
 	End If
 
@@ -1061,30 +1075,40 @@ OnError GoTo ErrorOccured
 		End If
 	Loop
 
-	Call DEBUGPrint("Saving " & MENUGetExcelTemplateFile())
-	Call DEBUGPrint("   as " & sOutputFile)
+	Call DEBUGPrint("Saving " & MENUGetExcelTemplateFile() & " as " & sOutputFile)
 	Save File MENUGetExcelTemplateFile() As sOutputFile
 	If NOT EXCELOpenFile(sOutputFile) Then
-		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile, Notify_Error, 10000)
-'		Note RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile
+		If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
+			Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile, Notify_Error, 10000)
+		Else
+			Note RESSTRNGGetString(STR_ERR_OPENING_FILE) & sOutputFile
+		End If
 		Exit Function
 	End If
 
-	sTempFile	= PathToDirectory$(TempFileName$("")) & "MapInfo2Excel_Dump.csv"
+	If SystemInfo(SYS_INFO_MIVERSION) >= 1520 Then
+		sTempFile	= PathToDirectory$(sOutputFile) & "MapInfo2Excel_Dump.csv"
+	Else
+		sTempFile	= PathToDirectory$(TempFileName$("")) & "MapInfo2Excel_Dump.csv"
+	End If
+
 	Call MENUExportTableCSV(sTab, mbExportTitles, sTempFile)
 
 	sSheet		= WORKSHEET_INPUT_DATA
 
 	nChannel = EXCELDDEOpenChannel(sSheet)
 	If nChannel = 0 Then
-		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS) & lf & lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA, Notify_Error, 10000)
-'		Note RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS)
-'			& lf
-'			& lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA
+		If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
+			Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS) & lf & lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA, Notify_Error, 10000)
+		Else
+			Note RESSTRNGGetString(STR_ERR_OPENING_DDE_CHANNEL_TO_XLS)
+				& lf
+				& lf & RESSTRNGGetString(STR_CHECK_EXISTENSE_OF_SHEET) & WORKSHEET_INPUT_DATA
+		End If
 		Exit Sub
 	End If
 
-	Call DEBUGPrint("Sending file name to Excel")
+	Call DEBUGPrint("Sending file name to Excel: " & sTempFile)
 	Call EXCELDDEInsertValue(nChannel, Str$(1), Str$(1), sTempFile)
 	Call EXCELDDECloseChannel(nChannel)
 
@@ -1121,8 +1145,7 @@ Dim	sCmd, sExpr, sCol As String,
 
 OnError GoTo ErrorOccured
 
-	Call DEBUGPrint("Saving table " & sTab)
-	Call DEBUGPrint("   into " & sOutputFile)
+	Call DEBUGPrint("Saving table " & sTab & " into " & sOutputFile)
 
 	Fetch First From sTab
 	For nCol = 1 To TableInfo(sTab, TAB_INFO_NCOLS)
@@ -1205,23 +1228,32 @@ OnError GoTo ErrorOccured
 
 	Call DEBUGPrint("Validating latest file")
 	If msLatestExcelFile = "" Then
-		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP), Notify_Error, 10000)
-'		Note RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP)
+		If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
+			Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP), Notify_Error, 10000)
+		Else
+			Note RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP)
+		End If
 		Exit Sub
 	End If
 
 	Call DEBUGPrint("Validating frontmost map window")
 	nMID = MAPFrontMostWindow()
 	If nMID = 0 Then
-		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_OPEN_A_MAP), Notify_Error, 10000)
-'		Note RESSTRNGGetString(STR_ERR_PLEASE_OPEN_A_MAP)
+		If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
+			Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_PLEASE_OPEN_A_MAP), Notify_Error, 10000)
+		Else
+			Note RESSTRNGGetString(STR_ERR_PLEASE_OPEN_A_MAP)
+		End If
 		Exit Sub
 	End If
 
 	Call DEBUGPrint("Validating Excel file is open")
 	If NOT EXCELIsFileOpen(msLatestExcelFile) Then
-		Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_LATEST_XLS_FILE_NOT_OPEN), Notify_Error, 10000)
-'		Note RESSTRNGGetString(STR_ERR_LATEST_XLS_FILE_NOT_OPEN)
+		If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
+			Call RBNNotificationShow(xProgram, RESSTRNGGetString(STR_ERR_LATEST_XLS_FILE_NOT_OPEN), Notify_Error, 10000)
+		Else
+			Note RESSTRNGGetString(STR_ERR_LATEST_XLS_FILE_NOT_OPEN)
+		End If
 		msLatestExcelFile	= ""
 		mnNumMapExported	= 0
 		Exit Sub
