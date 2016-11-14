@@ -72,7 +72,7 @@ Type FILETIME
         dwHighDateTime As Integer
 End Type
 
-Type WIN32_FIND_DATA
+Type WIN32_FIND_DATA Align4	'Used on 64 bit systems, Align[n] is a new keyword with MapBasic 15.2.2
 	dwFileAttributes	As Integer
 	ftCreationTime		As FILETIME
 	ftLastAccessTime	As FILETIME

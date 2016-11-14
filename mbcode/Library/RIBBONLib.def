@@ -195,6 +195,98 @@
 '							- RBNGroupSetToolTipThs(...)
 '						- Removed:
 '							- RBNGetTableEventArgsTableAlias
+'	08-02-2015 16:11:22		- Added:
+'							- RBNControlSetCmdIDThs(...)	'For setting the ID of the control, used by CommandInfo
+'							- RBNControlSetCmdIDIdx(...)	'For setting the ID of the control, used by CommandInfo
+'							- RBNControlGetControlIDThs(...) 'Will return the ID of the control used CommandInfo(CMD_INFO_MENUITEM) and CommandInfo(CMD_INFO_TOOLBTN)
+'							- RBNControlGetControlIDIdx(...) 'Will return the ID of the control used CommandInfo(CMD_INFO_MENUITEM) and CommandInfo(CMD_INFO_TOOLBTN)
+'	30-03-2015 21:07:19		- Added:
+'							- RBNDropDButtonNumGroups(...) As Integer
+'							- RBNDropDButtonAddGroup(...) As Integer
+'							- RBNDropDButtonGroupRemove(...) As Integer
+'							- RBNDropDButtonGetGroupThs(...) As Logical
+'							- RBNDropDButtonGetGroupIndexThs(...) As Integer
+'							- RBNDropDButtonGroupExistsThs(...) As Logical
+'							- RBNDropDButtonGroupAddControl(...) As Integer
+'							- RBNDropDButtonGroupRemoveControl(...) As Integer
+'	28-04-2015 15:49:48		- Added:
+'							- RBNControlToggleThs(...)
+'							- RBNControlToggleIdx(...)
+'	29-04-2015 10:11:46		- Added:
+'							- RBNControlSelectedThs(...)
+'							- RBNControlSelectedIdx(...)
+'						- Added:
+'							- RBNMapMTBNumStackPanels() As Integer
+'							- RBNMapMTBAddStackPanel(...) As Integer
+'							- RBNMapMTBStackPanelRemove(...) As Integer
+'							- RBNMapMTBGetStackPanel(...) As Logical
+'							- RBNMapMTBGetStackPanelIndex(...) As Integer
+'							- RBNMapMTBStackPanelExists(...) As Logical
+'							- RBNMapMTBInsertStackPanelAfter(...) As Logical
+'							- RBNMapMTBInsertStackPanelBefore(...) As Logical
+'						- Added:
+'							- RBNMapMTBStackPanelAddControl(...) As Integer
+'							- RBNMapMTBStackPanelRemoveControl(...) As Integer
+'	19-08-2015 14:00:00		- Changed RBNLoop to write to a specific file instead of via DEBUGPrint()
+'	20-08-2015 09:55:15		- Added:
+'							- RBNLoopCreateRibbonStatements for creating MapBasic statements to create the full Ribbon
+'								This will create the statements for recreating most of the ribbon using the RibbonLib
+'								However some control types aren't yet supported and therefor ignore, such as the Gallery
+'								Also it's not possible to extract all informations from the Ribbon, certain information
+'								will set to a generic value, such as the ToolTips, the Menu Command ID and the Image
+'								Some of the controls have been assigned the matching image, but not all
+'							- RBNControlGetSizeThs(...) As Integer
+'							- RBNSelectTab(...)
+'	21-08-2015 14:48:08		- Added ParentControlType to the Elements arrays - to be able to remove controls from SplitButton and DropDButtons
+'						- Fixed RBNClearCustomRibbonElements to better support SplitButton and DropDButton Controls
+'	27-08-2015 13:05:04		- Added:
+'							- RBNTabSetVisibility(...)
+'							- RBNTabSetVisibilityThs(...)
+'							- RBNTabSetVisibilityIdx(...)
+'							- RBNGroupSetVisibilityThs(...)
+'							- RBNGroupSetVisibilityIdx(...)
+'							- RBNGroupSetVisibility(...)
+'	08-09-2015 14:28:50		- Added:
+'							- RBNCntxtMenuAddControl(...) As Integer
+'							- RBNCntxtMenuInsertControl(...) As Integer
+'							- RBNCntxtMenuInsertControlAfter(...) As Integer
+'							- RBNCntxtMenuInsertControlBefore(...) As Integer
+'							- RBNCntxtMenuAddMenuItem(...) As Integer
+'							- RBNCntxtMenuInsertMenuItem(...) As Integer
+'							- RBNCntxtMenuInsertMenuItemAfter(...) As Integer
+'							- RBNCntxtMenuInsertMenuItemBefore(...) As Integer
+'							- RBNCntxtMenuRemoveControl(...) As Integer
+'							- RBNCntxtMenuGetControlIndex(...) As Integer
+'	30-09-2015 08:15:24		- Added:
+'							- RBNControlSetCaptionThs(...)
+'							- RBNControlSetCaption(...)
+'	08-12-2015 15:23:12		- Added:
+'							- RBNGroupCheckControls(...)
+'							- RBNGroupCheckControl(...)
+'	10-12-2015 15:06:51		- Added:
+'							- RBNGroupShowControls(...)
+'							- RBNGroupShowControl(...)
+'	14-12-2015 08:49:58		- Added:
+'							- RBNGroupSelectControl(...)
+'							- RBNGroupRunMenuCommandControl(...)
+'							- RBNGroupGetFirstControlIdx(...) As Integer
+'							- RBNGroupGetNextControlIdx(...) As Integer
+'	17-08-2016 11:12:40		- Added:
+'							- RBNToolTipSetShowHelpText(...)
+'							- Changed RBNControlSetToolTipThs to no longer use the text as disabledtext
+'	03-11-2016 14:24:56		- Added:
+'							- RBNGroupSetCaptionThs(...)
+'							- RBNGroupSetCaptionIdx(...)
+'							- RBNGroupSetCaption(...)
+'							- RBNTabSetCaptionThs(...)
+'							- RBNTabSetCaptionIdx(...)
+'							- RBNTabSetCaption(...)
+'						- Renamed
+'							- RBNControlSetCaption to RBNControlSetCaptionIdx (Be aware: this might be a breaking change
+'	04-11-2016 12:15:54		- Added:
+'							- RBNGroupSetCollapsedIconThs(...)
+'							- RBNGroupSetCollapsedIconIdx(...)
+'							- RBNGroupSetCollapsedIcon(...)
 '*****************************************************************************************************************************
 
 
@@ -215,21 +307,21 @@
 '	nCtrlIdx = RBNGroupAddButton("exportMapToExcel", "MS Excel", "TabMap", "MapClipboard")
 '	If nCtrlIdx > 0 Then
 '		'Create & Set the button tooltip
-'		Call RBNSetControlToolTipIdx(nCtrlIdx, RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "", "")
+'		Call RBNControlSetToolTipIdx(nCtrlIdx, RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "", "")
 '		'Set the button icon
-'		Call RBNSetControlIconsIdx(nCtrlIdx, TRUE, PATH_IMAGES & "MapWindowExcel_16.bmp", PATH_IMAGES & "MapWindowExcel_24.bmp")
+'		Call RBNControlSetIconsIdx(nCtrlIdx, TRUE, PATH_IMAGES & "MapWindowExcel_16.bmp", PATH_IMAGES & "MapWindowExcel_24.bmp")
 '		'Set Custom MapBasic Handle to the button
-'		Call RBNSetControlCustomMBXHandlerIdx(nCtrlIdx, "MENUExportMapWindowToExcel")
+'		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportMapWindowToExcel")
 '	End If
 '
 '	nCtrlIdx = RBNGroupInsertButtonBefore("exportBrowserToExcel", "MS Excel", "TabTable", "TableData", "ExportButton")
 '	If nCtrlIdx > 0 Then
 '		'Create & Set the button tooltip
-'		Call RBNSetControlToolTipIdx(nCtrlIdx, RESSTRNGGetString(STR_MNU_EXPORT_BROWSER_TO_XLS), "", "")
+'		Call RBNControlSetToolTipIdx(nCtrlIdx, RESSTRNGGetString(STR_MNU_EXPORT_BROWSER_TO_XLS), "", "")
 '		'Set the button icon
-'		Call RBNSetControlIconsIdx(nCtrlIdx, FALSE, PATH_IMAGES & "BrowserWindowExcel_16.bmp", PATH_IMAGES & "BrowserWindowExcel_24.bmp")
+'		Call RBNControlSetIconsIdx(nCtrlIdx, FALSE, PATH_IMAGES & "BrowserWindowExcel_16.bmp", PATH_IMAGES & "BrowserWindowExcel_24.bmp")
 '		'Set Custom MapBasic Handle to the button
-'		Call RBNSetControlCustomMBXHandlerIdx(nCtrlIdx, "MENUExportBrowserDataToExcel")
+'		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportBrowserDataToExcel")
 '	End If
 '
 '	If RBNAddTab("TabTools", "TOOLS", "TO") > 0 Then
@@ -237,11 +329,11 @@
 '			nCtrlIdx = RBNGroupAddButton("exportTableToExcel", "Table", "TabTools", xProgramMenu)
 '			If nCtrlIdx > 0 Then
 '				'Create & Set the button tooltip
-'				Call RBNSetControlToolTipIdx(nCtrlIdx, RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "", "")
+'				Call RBNControlSetToolTipIdx(nCtrlIdx, RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "", "")
 '				'Set the button icon
-'				Call RBNSetControlIconsIdx(nCtrlIdx, TRUE, PATH_IMAGES & "BrowserWindowExcel_16.bmp", PATH_IMAGES & "BrowserWindowExcel_24.bmp")
+'				Call RBNControlSetIconsIdx(nCtrlIdx, TRUE, PATH_IMAGES & "BrowserWindowExcel_16.bmp", PATH_IMAGES & "BrowserWindowExcel_24.bmp")
 '				'Set Custom MapBasic Handle to the button
-'				Call RBNSetControlCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
+'				Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
 '			End If
 '		End if
 '	End if
@@ -251,18 +343,21 @@
 
 
 Define		RBN_ELEMENT_NOT_FOUND		-1
+Define		RBN_ELEMENT_INSERT_AS_LAST	-9999
 
 Define		CONTROL_SIZE_EXTRASMALL	1
 Define		CONTROL_SIZE_SMALL		2
 Define		CONTROL_SIZE_LARGE		3
 
-Define		CONTROL_TYPE_RLIB_TAB	100
-Define		CONTROL_TYPE_RLIB_GROUP	101
+Define		CONTROL_TYPE_RLIB_TAB		100
+Define		CONTROL_TYPE_RLIB_GROUP		101
+Define		CONTROL_TYPE_RLIB_CNTXT_MNU	200
 
 Declare Method ObjectToString Class "System.Object" Lib "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" alias ToString (ByVal objectInstace As This) As String
 
 '**For testing and for getting the names of the controls and elements
 Declare Sub RBNLoop
+Declare Sub RBNLoopCreateRibbonStatements
 Declare Sub RBNLoopContext
 
 Declare Function RBNControlGetTypeName(ByVal nCtrlType As Integer) As String
@@ -281,6 +376,8 @@ Declare Function RBNGetTabIndex(	ByVal sTabName As String
 							) As Integer
 Declare Function RBNTabExists(	  ByVal sTabName As String
 							) As Logical
+Declare Sub RBNSelectTab(	  ByVal sTabName As String)
+
 Declare Function RBNTabExistsCaption(	  ByVal sTabCaption As String
 								) As Logical
 Declare Function RBNTabGetNameFromCaption(	  ByVal sTabCaption As String
@@ -297,15 +394,27 @@ Declare Sub RBNTabSetToolTip(	  ByVal sTabName As String
 						, ByVal sText As String
 						, ByVal sDescription As String
 						, ByVal sDisabledText As String)
-Declare Sub RBNTabSetToolTipIdx(	  ByVal nTabIdx As Integer		'The tabIdx returned by RBNAddTab
+Declare Sub RBNTabSetToolTipIdx(	  ByVal nElementIdx As Integer		'The tabIdx returned by RBNAddTab
 							, ByVal sText As String
 							, ByVal sDescription As String
 							, ByVal sDisabledText As String
 							)
 Declare Sub RBNTabEnableThs(	  ByVal rbnTab As This
 						, ByVal bEnabled As Logical)
-Declare Sub RBNTabEnableIdx(	  ByVal nTabIdx As Integer
+Declare Sub RBNTabEnableIdx(	  ByVal nElementIdx As Integer
 						, ByVal bEnabled As Logical)
+Declare Sub RBNTabSetCaptionThs(	  ByVal rbnTab As This
+							, ByVal sCaption As String)
+Declare Sub RBNTabSetCaptionIdx(	  ByVal nElementIdx As Integer
+							, ByVal sCaption As String)
+Declare Sub RBNTabSetCaption(	  ByVal sTabName As String
+						, ByVal sCaption As String)
+Declare Sub RBNTabSetVisibilityThs(  ByVal rbnTab As This
+							, ByVal bVisible As Logical)
+Declare Sub RBNTabSetVisibilityIdx(  ByVal nElementIdx As Integer
+							, ByVal bVisible As Logical)
+Declare Sub RBNTabSetVisibility(	  ByVal sTabName As String
+							, ByVal bVisible As Logical)
 
 Declare Function RBNTabAddGroup(	  ByVal sGroupName As String
 							, ByVal sCaption As String
@@ -348,7 +457,7 @@ Declare Sub RBNGroupSetToolTip(	  ByVal sTabName As String
 							, ByVal sText As String
 							, ByVal sDescription As String
 							, ByVal sDisabledText As String)
-Declare Sub RBNGroupSetToolTipIdx(	  ByVal nGroupIdx As Integer		'The groupIdx returned by RBNTabAddGroup
+Declare Sub RBNGroupSetToolTipIdx(	  ByVal nElementIdx As Integer		'The groupIdx returned by RBNTabAddGroup
 							, ByVal sText As String
 							, ByVal sDescription As String
 							, ByVal sDisabledText As String
@@ -357,6 +466,27 @@ Declare Sub RBNGroupEnableThs(	  ByVal rbnGroup As This
 							, ByVal bEnabled As Logical)
 Declare Sub RBNGroupEnableIdx(	  ByVal nElementIdx As Integer
 							, ByVal bEnabled As Logical)
+Declare Sub RBNGroupSetCaptionThs(	  ByVal rbnGroup As This
+							, ByVal sCaption As String)
+Declare Sub RBNGroupSetCaptionIdx(	  ByVal nElementIdx As Integer
+							, ByVal sCaption As String)
+Declare Sub RBNGroupSetCaption(	  ByVal sTabName As String
+							, ByVal sGroupName As String
+							, ByVal sCaption As String)
+Declare Sub RBNGroupSetVisibilityThs(	  ByVal rbnGroup As This
+								, ByVal bVisible As Logical)
+Declare Sub RBNGroupSetVisibilityIdx(	  ByVal nElementIdx As Integer
+								, ByVal bVisible As Logical)
+Declare Sub RBNGroupSetVisibility(	  ByVal sTabName As String
+							, ByVal sGroupName As String
+							, ByVal bVisible As Logical)
+Declare Sub RBNGroupSetCollapsedIconThs(  rbnGroup As This
+								, ByVal sIcon As String)
+Declare Sub RBNGroupSetCollapsedIconIdx(  ByVal nElementIdx As Integer
+								, ByVal sIcon As String)
+Declare Sub RBNGroupSetCollapsedIcon(	  ByVal sTabName As String
+								, ByVal sGroupName As String
+								, ByVal sIcon As String)
 
 Declare Function RBNGroupAddControl(	  ByVal sControlName As String
 								, ByVal sCaption As String
@@ -429,6 +559,41 @@ Declare Sub RBNGroupEnableControl(	  ByVal sTabName As String		'If "", the TAB i
 							, ByVal sGroupName As String		'If "", the GROUP is ignored in the search and the first match is used
 							, ByVal sControlName As String
 							, ByVal bEnabled As Logical)
+Declare Sub RBNGroupCheckControls(	  ByVal sTabName As String
+							, ByVal sGroupName As String
+							, ByVal sControlName As String
+							, ByVal bChecked As Logical)
+Declare Sub RBNGroupCheckControl(	  ByVal sTabName As String
+							, ByVal sGroupName As String
+							, ByVal sControlName As String
+							, ByVal bChecked As Logical)
+Declare Sub RBNGroupShowControls(  ByVal sTabName As String		'If "", the TAB is ignored in the search
+							, ByVal sGroupName As String		'If "", the GROUP is ignored in the search
+							, ByVal sControlName As String
+							, ByVal bVisible As Logical)
+Declare Sub RBNGroupShowControl(	  ByVal sTabName As String		'If "", the TAB is ignored in the search and the first match is used
+							, ByVal sGroupName As String		'If "", the GROUP is ignored in the search and the first match is used
+							, ByVal sControlName As String
+							, ByVal bVisible As Logical)
+Declare Sub RBNGroupSelectControl(	  ByVal sTabName As String
+							, ByVal sGroupName As String
+							, ByVal sControlName As String)
+Declare Sub RBNGroupRunMenuCommandControl(	  ByVal sTabName As String
+									, ByVal sGroupName As String
+									, ByVal sControlName As String)
+
+Declare Function RBNGroupGetFirstControlIdx(	  ByVal sTabName As String
+									, ByVal sGroupName As String
+									, ByVal sControlName As String) As Integer
+Declare Function RBNGroupGetNextControlIdx(	  ByVal sTabName As String
+									, ByVal sGroupName As String
+									, ByVal sControlName As String) As Integer
+
+Declare Function RBNGroupGetControl(	  ByVal sTabName As String
+								, ByVal sGroupName As String
+								, ByVal sControlName As String
+								, rbnControlFound As RefPtr
+								) As Logical
 Declare Function RBNGroupGetControlThs(  rbnGroup As This
 								, ByVal sControlName As String
 								, rbnControlFound As RefPtr
@@ -482,6 +647,51 @@ Declare Function RBNSplitButtonGroupRemoveControl(  ByVal sControlName As String
 										, ByVal sSplitButtonGroupName As string
 										) As Integer
 
+'** WORKING WITH DROPDOWNBUTTONS ***************************************************************************
+Declare Function RBNDropDButtonNumGroups( ByVal sTabName As String
+								, ByVal sGroupName As String
+								, ByVal sDropDButtonName As String
+								) As Integer
+
+Declare Function RBNDropDButtonAddGroup(  ByVal sDropDButtonGroupName As String
+								, ByVal sCaption As String
+								, ByVal sTabName As String
+								, ByVal sGroupName As String
+								, ByVal sDropDButtonName As String
+								) As Integer					'Returns the modular Idx of the group or 0, if it wasn't created
+Declare Function RBNDropDButtonGroupRemove(	  ByVal sDropDButtonGroupName As String
+									, ByVal sTabName As String
+									, ByVal sGroupName As String
+									, ByVal sDropDButtonName As String
+									) As Integer
+Declare Function RBNDropDButtonGetGroupThs(	  rbnDropDButton As This
+									, ByVal sGroupName As String
+									, rbnGroupFound As RefPtr
+									) As Logical
+Declare Function RBNDropDButtonGetGroupIndexThs(  rbnDropDButton As This
+									, ByVal sGroupName As String
+									) As Integer
+Declare Function RBNDropDButtonGroupExistsThs(	  rbnDropDButton As This
+									, ByVal sGroupName As String
+									) As Logical
+
+'** WORKING WITH CONTROLS ON DROPDOWNBUTTON GROUPS **********************************************************
+Declare Function RBNDropDButtonGroupAddControl(	  ByVal sControlName As String
+										, ByVal sCaption As String
+										, ByVal sKeytip As String
+										, ByVal nControlType As Integer
+										, ByVal sTabName As String
+										, ByVal sGroupName As String
+										, ByVal sDropDButtonName As string
+										, ByVal sDropDButtonGroupName As string
+										) As Integer					'Returns the modular Idx of the control or 0, if it wasn't created
+Declare Function RBNDropDButtonGroupRemoveControl(  ByVal sControlName As String
+										, ByVal sTabName As String
+										, ByVal sGroupName As String
+										, ByVal sDropDButtonName As string
+										, ByVal sDropDButtonGroupName As string
+										) As Integer
+
 '** WORKING WITH CONTEXTGROUPS *************************************************************************
 Declare Function RBNGetContextGroup( rbnTab As This
 							, ByVal sGroupName As String
@@ -503,6 +713,91 @@ Declare Function RBNToolContextMenuAddMenuItem(	  ByVal sControlName As String
 										) As Integer					'Returns the modular Idx of the control or 0, if it wasn't created
 Declare Function RBNToolContextMenuRemoveMenuItem(  ByVal sControlName As String
 										) As Integer
+
+'** WORKING WITH MENUITEMS ON CONTEXTMENUS *************************************************************
+Declare Function RBNCntxtMenuAddControl(	  ByVal nContextMenuID As Integer
+									, ByVal sControlName As String
+									, ByVal sCaption As String
+									, ByVal sKeytip As String
+									, ByVal nControlType As Integer
+									) As Integer				'Returns the modular Idx of the control or 0, if it wasn't created
+Declare Function RBNCntxtMenuInsertControl(	  ByVal nContextMenuID As Integer
+									, ByVal sControlName As String
+									, ByVal sCaption As String
+									, ByVal sKeytip As String
+									, ByVal nControlType As Integer
+									, ByVal nPosition As Integer
+									) As Integer				'Returns the modular Idx of the control or 0, if it wasn't created
+Declare Function RBNCntxtMenuInsertControlAfter(	  ByVal nContextMenuID As Integer
+										, ByVal sControlName As String
+										, ByVal sCaption As String
+										, ByVal sKeytip As String
+										, ByVal nControlType As Integer
+										, ByVal sNameAfter As String
+										) As Integer				'Returns the modular Idx of the control or 0, if it wasn't created
+Declare Function RBNCntxtMenuInsertControlBefore(	  ByVal nContextMenuID As Integer
+										, ByVal sControlName As String
+										, ByVal sCaption As String
+										, ByVal sKeytip As String
+										, ByVal nControlType As Integer
+										, ByVal sNameBefore As String
+										) As Integer				'Returns the modular Idx of the control or 0, if it wasn't created
+Declare Function RBNCntxtMenuAddMenuItem(	  ByVal nContextMenuID As Integer
+									, ByVal sControlName As String
+									, ByVal sCaption As String		'If "(-" then a separator is added
+									, ByVal sKeytip As String
+									, ByVal nControlType As Integer
+									) As Integer					'Returns the modular Idx of the control or 0, if it wasn't created
+Declare Function RBNCntxtMenuInsertMenuItem(	  ByVal nContextMenuID As Integer
+									, ByVal sControlName As String
+									, ByVal sCaption As String		'If "(-" then a separator is added
+									, ByVal sKeytip As String
+									, ByVal nPosition As Integer
+									) As Integer				'Returns the modular Idx of the control or 0, if it wasn't created
+Declare Function RBNCntxtMenuInsertMenuItemAfter(	  ByVal nContextMenuID As Integer
+										, ByVal sControlName As String
+										, ByVal sCaption As String		'If "(-" then a separator is added
+										, ByVal sKeytip As String
+										, ByVal sNameAfter As String
+										) As Integer				'Returns the modular Idx of the control or 0, if it wasn't created
+Declare Function RBNCntxtMenuInsertMenuItemBefore(  ByVal nContextMenuID As Integer
+										, ByVal sControlName As String
+										, ByVal sCaption As String		'If "(-" then a separator is added
+										, ByVal sKeytip As String
+										, ByVal sNameBefore As String
+										) As Integer				'Returns the modular Idx of the control or 0, if it wasn't created
+
+Declare Function RBNCntxtMenuRemoveControl(	  ByVal nContextMenuID As Integer
+									, ByVal sControlName As String
+									) As Integer					'Returns the modular Idx of the control or 0, if it wasn't created
+Declare Function RBNCntxtMenuGetControlIndex(  ByVal nContextMenuID As Integer
+									, ByVal sControlName As String
+									) As Integer
+
+
+'** WORKING WITH STACKPANELS ON MINI MAP TOOLBAR **********************************************
+Declare Function RBNMapMTBNumStackPanels() As Integer
+
+Declare Function RBNMapMTBAddStackPanel(	  ByVal sStackPanelName As String
+									, ByVal sCaption As String
+									) As Integer					'Returns the modular Idx of the StackPanel or 0, if it wasn't created
+Declare Function RBNMapMTBInsertStackPanelAfter(	  ByVal sStackPanelName As String
+										, ByVal sCaption As String
+										, ByVal sNameAfter As String
+										) As Logical
+Declare Function RBNMapMTBInsertStackPanelBefore( ByVal sStackPanelName As String
+										, ByVal sCaption As String
+										, ByVal sNameBefore As String
+										) As Logical
+Declare Function RBNMapMTBStackPanelRemove(	  ByVal sStackPanelName As String
+									) As Integer
+Declare Function RBNMapMTBGetStackPanel(	 ByVal sStackPanelName As String
+									, rbnsStackPanelFound As RefPtr
+									) As Logical
+Declare Function RBNMapMTBGetStackPanelIndex(  ByVal sStackPanelName As String
+									) As Integer
+Declare Function RBNMapMTBStackPanelExists(	  ByVal sStackPanelName As String
+									) As Logical
 
 '** WORKING WITH CONTROLS AND BUTTONS ON MINI MAP TOOLBAR **********************************************
 Declare Function RBNMapMTBAddControl(	  ByVal sControlName As String
@@ -537,6 +832,17 @@ Declare Function RBNMapMTBAddButton( ByVal sControlName As String
 Declare Function RBNMapMTBGetControlIndex(	  ByVal sControlName As String
 									) As Integer
 
+'** WORKING WITH CONTROLS ON STACKPANEL ON MINI MAP TOOLBAR **********************************************
+Declare Function RBNMapMTBStackPanelAddControl(	  ByVal sControlName As String
+										, ByVal sCaption As String
+										, ByVal sKeytip As String
+										, ByVal nControlType As Integer
+										, ByVal sStackPanelName As string
+										) As Integer					'Returns the modular Idx of the control or 0, if it wasn't created
+Declare Function RBNMapMTBStackPanelRemoveControl(  ByVal sControlName As String
+										, ByVal sStackPanelName As string
+										) As Integer
+
 '** WORKING WITH GALLERY *******************************************************************************
 Declare Function RBNGalleryGetGroupThs(	  rbnGallery As This
 								, ByVal sGroupName As String
@@ -555,6 +861,8 @@ Declare Function RBNCollectionGetControlIndexThs(	  rbnControlsColl As this
 										) As Integer
 
 '** WORKING WITH CONTROLS ******************************************************************************
+Declare Sub RBNToolTipSetShowHelpText(ByVal bValue As Logical)		'Defines if a tooltip should show "Press F1 for more help", off by default
+
 Declare Sub RBNControlSetToolTipThs( rbnControl As This
 							, ByVal sDescription As String
 							, ByVal sText As String
@@ -569,7 +877,15 @@ Declare Sub RBNControlSetKeyGestureThs(	  rbnControl As This
 Declare Sub RBNControlSetKeyGestureIdx(	  ByVal nElementIdx As Integer
 								, ByVal sGesture As String		'For example "Ctrl+Y", "Alt+Ctrl+Y"
 								)
+Declare Sub RBNControlSetCaptionThs( rbnControl As This
+							, ByVal sCaption As String		'The Caption to to be seen in the Ribbon
+							)
+Declare Sub RBNControlSetCaptionIdx( ByVal nElementIdx As Integer
+							, ByVal sCaption As String		'The Caption to to be seen in the Ribbon
+							)
 
+Declare Function RBNControlGetSizeThs(	  rbnControl As This
+								) As Integer
 Declare Sub RBNControlSetIconsThs(	  rbnControl As This
 							, ByVal nSize As Integer
 							, ByVal sSmallIcon As String		'If you omit this, the LargeIcon will be used as the SmallIcon as well
@@ -590,14 +906,23 @@ Declare Sub RBNControlSetLeftMarginIdx(	  ByVal nElementIdx As Integer
 								)
 
 Declare Sub RBNControlSetCustomMBXHandlerThs(  ByVal rbnControl As This
-									, ByVal sMBXHandler As String)
+									, ByVal sMBXHandler As String
+									)
 Declare Sub RBNControlSetCustomMBXHandlerIdx(  ByVal nElementIdx As Integer
-									, ByVal sMBXHandler As String)
+									, ByVal sMBXHandler As String
+									)
+Declare Sub RBNControlSetCmdIDThs(	  ByVal rbnControl As This
+							, ByVal nCmdID As Integer
+							)
+Declare Sub RBNControlSetCmdIDIdx(	  ByVal nElementIdx As Integer
+							, ByVal nCmdID As Integer
+							)
 Declare Sub RBNControlSetDrawModeThs(	  ByVal rbnControl As This
-								, ByVal nDrawMode As Integer)
+								, ByVal nDrawMode As Integer
+								)
 Declare Sub RBNControlSetDrawModeIdx(	  ByVal nElementIdx As Integer
-								, ByVal nDrawMode As Integer)
-'
+								, ByVal nDrawMode As Integer
+								)
 Declare Sub RBNControlSetMICursorThs(	  ByVal rbnControl As This
 								, ByVal nCursor As Integer
 								, ByVal sFile As String
@@ -607,13 +932,47 @@ Declare Sub RBNControlSetMICursorIdx(	  ByVal nElementIdx As Integer
 								, ByVal sFile As String
 								)
 Declare Sub RBNControlEnableThs(	  ByVal rbnControl As This
-							, ByVal bEnabled As Logical)
+							, ByVal bEnabled As Logical
+							)
 Declare Sub RBNControlEnableIdx(	  ByVal nElementIdx As Integer
-							, ByVal bEnabled As Logical)
+							, ByVal bEnabled As Logical
+							)
+Declare Sub RBNControlSetVisibilityThs(	  ByVal rbnControl As This
+								, ByVal bVisible As Logical
+								)
+Declare Sub RBNControlSetVisibilityIdx(	  ByVal nElementIdx As Integer
+								, ByVal bVisible As Logical
+								)
+Declare Sub RBNControlSetVisibility(	  ByVal sTabName As String
+								, ByVal sGroupName As String
+								, ByVal sControlName As String
+								, ByVal bVisible As Logical
+								)
+
 Declare Sub RBNControlCheckThs(	  ByVal rbnControl As This
-							, ByVal bChecked As Logical)
+							, ByVal bChecked As Logical
+							)
 Declare Sub RBNControlCheckIdx(	  ByVal nElementIdx As Integer
-							, ByVal bChecked As Logical)
+							, ByVal bChecked As Logical
+							)
+Declare Sub RBNControlSelectedThs(	  ByVal rbnControl As This
+							, ByVal bSelected As Logical
+							)
+Declare Sub RBNControlSelectedIdx(	  ByVal nElementIdx As Integer
+							, ByVal bSelected As Logical
+							)
+Declare Sub RBNControlToggleThs(	  ByVal rbnControl As This
+							, ByVal bIsToggle As Logical
+							)
+Declare Sub RBNControlToggleIdx(	  ByVal nElementIdx As Integer
+							, ByVal bIsToggle As Logical
+							)
+
+Declare Function RBNControlGetControlIDThs(	  ByVal rbnControl As This
+									) As Integer	 'Will return the ID of the control used CommandInfo(CMD_INFO_MENUITEM) and CommandInfo(CMD_INFO_TOOLBTN)
+Declare Function RBNControlGetControlIDIdx(	  nElementIdx As Integer
+									) As Integer	'Will return the ID of the control used CommandInfo(CMD_INFO_MENUITEM) and CommandInfo(CMD_INFO_TOOLBTN)
+
 Declare Function RBNControlGetIndex(	  ByVal sTabName As String
 								, ByVal sGroupName As String
 								, ByVal sControlName As String
