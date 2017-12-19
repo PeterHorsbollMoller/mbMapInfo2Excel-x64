@@ -36,8 +36,13 @@ LANGUAGE=Italian
 26="Esporta la tavola in MS Excel prima di esportare la finestra Mappa!"
 27="Apri una finestra Mappa prima di esportarla in MS Excel"
 28="L'ultimo file MS Excel utilizzato non è più aperto."
-29="Questa applicazione consente di trasferire facilmente i dati da una tavola o da una finestra dati in Microsoft Excel. È inoltre possibile trasferire una finestra mappa."
 
-30="Excel"
-31="Excel"
-32="Excel"
+28="Aspettare, sec"
+30="Output file not valid. Please ensure file has extension "
+31="Output folder does not exist. Please check."
+
+32="Questa applicazione consente di trasferire facilmente i dati da una tavola o da una finestra dati in Microsoft Excel. È inoltre possibile trasferire una finestra mappa."
+
+33="Excel"
+34="Excel"
+35="Excel"

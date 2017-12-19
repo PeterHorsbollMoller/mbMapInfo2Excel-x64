@@ -20,7 +20,7 @@ Include "FILELib.def"
 Include "ProgramInfo.def"
 Include "RESSTRNGLib.def"
 
-Define	URL_PBBI_WEBSITE			"www.mapinfo.com"
+Define	URL_DEFAULT_WEBSITE			"http://communitydownloads.pbinsight.com/"
 Define	CTRL_BTN_OPEN_HELP_FILE		100
 Define	CTRL_TXT_LANGUAGES			200
 Define	CTRL_LST_LANGUAGES			210
@@ -309,7 +309,7 @@ Function PRGIGetWebPageName() As String
 OnError GoTo ErrorOccured
 
 	If msWebPageName = "" Then
-		msWebPageName = "mapinfo.com"
+		msWebPageName = "Community Download"
 	End If
 	PRGIGetWebPageName = msWebPageName
 	Exit Function
@@ -345,7 +345,7 @@ Function PRGIGetWebPageURL() As String
 OnError GoTo ErrorOccured
 
 	If msWebPageURL = "" Then
-		msWebPageURL = URL_PBBI_WEBSITE
+		msWebPageURL = URL_DEFAULT_WEBSITE
 	End If
 	PRGIGetWebPageURL = msWebPageURL
 	Exit Function
@@ -544,9 +544,9 @@ OnError GoTo ErrorOccured
 	sTitle	= Space$(nNumSpace) + sTitle
 
 	If PRGIGetApplicationHelpFile() = "" Then
-		nBtnWidth = 55
+		nBtnWidth = 40
 	Else
-		nBtnWidth = 45
+		nBtnWidth = 30
 	End If
 
 	Dialog	Width 205
@@ -554,37 +554,35 @@ OnError GoTo ErrorOccured
 		Calling PRGIAbout_OnLoad
 
 		Control GroupBox	Position 10,10	Width 185	Height 30
-		Control StaticText	Position 12,22
+		Control StaticText	Position 12,22	Width 165
 			Title sTitle
 
-		Control StaticText	Position 20,45
+		Control StaticText	Position 20,45	Width 165
 			Title "Copyright" & " " & Chr$(169) & " " & PRGIGetApplicationCopyrightYear()
 
-		Control StaticText	Position 20,60
+		Control StaticText	Position 20,60	Width 165
 			Title PRGIGetCopyrightCompany()	'"Pitney Bowes Software"
-		Control StaticText	Position 20,70
+		Control StaticText	Position 20,70	Width 165
 			Title "All rights reserved"
 
-		Control StaticText	Position 20,85
+		Control StaticText	Position 20,85	Width 165
 			Title "Made by " & PRGIGetApplicationDevelopedBy()
-		Control StaticText	Position 30,95
+		Control StaticText	Position 30,95	Width 165
 			Title PRGIGetApplicationDevelopedFor()
 
 		Control GroupBox	Position 10,105	Width 185	Height 30			ID CTRL_TXT_LANGUAGES
 			Title "Application language:"
 		Control PopUpMenu Position 20,117 		Width 160					ID CTRL_LST_LANGUAGES
-			Title From Variable marrLanguages()
-			Value PRGIGetApplicationLanguage()
 			Into mnLanguage
 
-		Control Button		Position 10,150	Width 70
+		Control Button		Position 10,150	Width 100
 			Title PRGIGetWebPageName()	'"pbinsight.com"
 			Calling PRGIGoToPBBIWebpage
 
-		Control OKButton		Position 85,150				Width nBtnWidth
-		Control CancelButton	Position (85 + nBtnWidth),150		Width nBtnWidth
+		Control OKButton		Position 120,150				Width nBtnWidth
+		Control CancelButton	Position (120 + nBtnWidth),150	Width nBtnWidth
 
-		Control Button		Position 180,150				Width 15		ID CTRL_BTN_OPEN_HELP_FILE
+		Control Button		Position 180,150					Width 15		ID CTRL_BTN_OPEN_HELP_FILE
 			Title "?"
 			Calling PRGILaunchHelpFile
 
@@ -628,6 +626,9 @@ OnError GoTo ErrorOccured
 		If RESSTRNGGetLanguages(marrLanguages()) = 0 Then
 			Alter Control CTRL_TXT_LANGUAGES Hide
 			Alter Control CTRL_LST_LANGUAGES Hide
+		Else
+			Alter Control CTRL_LST_LANGUAGES Title From Variable marrLanguages
+			Alter Control CTRL_LST_LANGUAGES Value Maximum(1, PRGIGetApplicationLanguage())
 		End If
 	End If
 
@@ -666,12 +667,16 @@ Sub PRGILaunchHelpFile
 
 OnError GoTo ErrorOccured
 
-	If NOT FileExists(PRGIGetApplicationHelpFile()) Then
-		Note "Help file does not exist: " & PRGIGetApplicationHelpFile()
-		Exit Sub
+	If PRGIGetApplicationHelpFile() = "" Then
+		Call PRGIAboutbox
+	Else
+		If NOT FileExists(PRGIGetApplicationHelpFile()) Then
+			Note "Help file does not exist: " & PRGIGetApplicationHelpFile()
+			Exit Sub
+		End If
+		Call FILELaunch(PRGIGetApplicationHelpFile())
 	End If
 
-	Call FILELaunch(PRGIGetApplicationHelpFile())
 	Exit Sub
 '-------------------------
 ErrorOccured:

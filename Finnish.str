@@ -36,8 +36,13 @@ LANGUAGE=Finnish
 26="Vie ensin taulukko ennen kuin viet kartan!"
 27="Avaa karttaikkuna ennen kuin yrit‰t vied‰ sit‰ MS Exceliin"
 28="Viimeksi k‰ytetty MS Excel-tiedosto ei ole en‰‰ auki."
-29="T‰ll‰ toiminnolla voit helposti siirt‰‰ tietokannan tai taulukon tiedot Microsoft Exceliin. Myˆs karttaikkunan voi siirt‰‰."
 
-30="Excel"
-31="Excel"
-32="Excel"
+29="Odotusaika, sec"
+30="Output file not valid. Please ensure file has extension "
+31="Output folder does not exist. Please check."
+
+32="T‰ll‰ toiminnolla voit helposti siirt‰‰ tietokannan tai taulukon tiedot Microsoft Exceliin. Myˆs karttaikkunan voi siirt‰‰."
+
+33="Excel"
+34="Excel"
+35="Excel"

@@ -36,8 +36,13 @@ LANGUAGE=Nederlands
 26="Gelieve een tabel naar MS Excel te exportere voordat u een kaartvenster exporteert!"
 27="Gelieve een kaartvenster te openen voordat u het naar MS Excel exporteert"
 28="Het laatstgebruikte MS Excel bestand is niet meer geopend."
-29="This application lets you easily transfer data from a table or browser window into Microsoft Excel. You can also transfer a map window."
 
-30="Excel"
-31="Excel"
-32="Excel"
+29="Wacht tijd, sec"
+30="Output file not valid. Please ensure file has extension "
+31="Output folder does not exist. Please check."
+
+32="This application lets you easily transfer data from a table or browser window into Microsoft Excel. You can also transfer a map window."
+
+33="Excel"
+34="Excel"
+35="Excel"

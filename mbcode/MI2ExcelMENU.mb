@@ -15,8 +15,8 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"2.1.0 x86/x64"
-Define xYear			"2016"
+Define xVersion 		"2.2.0 x86/x64"
+Define xYear			"2017"
 Define xAddToMenuBar	FALSE
 
 Define FILE_INI			xProgram & ".ini"
@@ -32,6 +32,7 @@ Define					WORKSHEET_INPUT_MAPS	"Maps"
 Define CTRL_LST_TABLES		100
 Define CTRL_CHK_EXPORT_TITLES	200
 Define CTRL_TXT_OUTPUT_FILE	300
+Define CTRL_TXT_WAIT_TIME	400
 
 '-------------------------------------
 Include "Library\ProgramInfo.def"
@@ -482,7 +483,7 @@ OnError GoTo ErrorOccured
 
 	nCtrlIdx = RBNGroupAddButton("exportTableToExcel", RESSTRNGGetString(STR_BTN_EXPORT_TABLE), "CT", "TabHome", "HomeOutput")
 	If nCtrlIdx > 0 Then
-		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
+		Call RBNControlSetToolTipIdx(nCtrlIdx, PRGIGetApplicationName(), STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
 		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "BrowserWindowExcel_32.png", "")
 		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
 	End If
@@ -490,7 +491,7 @@ OnError GoTo ErrorOccured
 	nCtrlIdx = RBNGroupAddButton("exportMapToExcel", RESSTRNGGetString(STR_BTN_EXPORT_MAP), "CM", "TabHome", "HomeOutput")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
-		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP))
+		Call RBNControlSetToolTipIdx(nCtrlIdx, PRGIGetApplicationName(), STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "&", ""), "...", ""), RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP))
 		'Set the button icon
 		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "MapWindowExcel_32.png", "")
 		'Set Custom MapBasic Handle to the button
@@ -500,7 +501,7 @@ OnError GoTo ErrorOccured
 	nCtrlIdx = RBNGroupAddButton("exportMapToExcel", RESSTRNGGetString(STR_BTN_EXPORT_MAP), "CM", "TabMap", "MapAnalyze")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
-		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP))
+		Call RBNControlSetToolTipIdx(nCtrlIdx, PRGIGetApplicationName(), STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "&", ""), "...", ""), RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP))
 		'Set the button icon
 		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_LARGE, PATH_IMAGES & "MapWindowExcel_32.png", "")
 		'Set Custom MapBasic Handle to the button
@@ -510,7 +511,7 @@ OnError GoTo ErrorOccured
 	nCtrlIdx = RBNGroupAddButton("exportBrowserToExcel", RESSTRNGGetString(STR_BTN_EXPORT_BROWSER), "CB", "TabTable", "BrowserTools")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
-		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_BROWSER_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE))
+		Call RBNControlSetToolTipIdx(nCtrlIdx, PRGIGetApplicationName(), STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_BROWSER_TO_XLS), "&", ""), "...", ""), RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE))
 		'Set the button icon
 		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "BrowserWindowExcel_32.png", "")
 		'Set Custom MapBasic Handle to the button
@@ -520,7 +521,7 @@ OnError GoTo ErrorOccured
 	nCtrlIdx = RBNGroupInsertButtonBefore("exportTableToExcel", RESSTRNGGetString(STR_BTN_EXPORT_TABLE), "CT", "TabTable", "TableData", "ExportButton")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
-		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
+		Call RBNControlSetToolTipIdx(nCtrlIdx, PRGIGetApplicationName(), STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
 		'Set the button icon
 		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "BrowserWindowExcel_32.png", "")
 		'Set Custom MapBasic Handle to the button
@@ -530,7 +531,7 @@ OnError GoTo ErrorOccured
 	nCtrlIdx	= RBNToolContextMenuAddMenuItem("exportTableToExcel", STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
-		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), "", RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
+		Call RBNControlSetToolTipIdx(nCtrlIdx, PRGIGetApplicationName(), STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
 		'Set the button icon
 		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "BrowserWindowExcel_16.png", "")
 		Call RBNControlSetLeftMarginIdx(nCtrlIdx, 0)
@@ -540,7 +541,7 @@ OnError GoTo ErrorOccured
 	nCtrlIdx	= RBNToolContextMenuAddMenuItem("rateApplication", STRINGReplace(RESSTRNGGetString(STR_MNU_RATE_APPLICATION), "&", ""), "")
 	If nCtrlIdx > 0 Then
 		'Create & Set the button tooltip
-		Call RBNControlSetToolTipIdx(nCtrlIdx, STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_RATE_APPLICATION), "&", ""), "...", ""), "", "")
+		Call RBNControlSetToolTipIdx(nCtrlIdx, PRGIGetApplicationName(), STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_RATE_APPLICATION), "&", ""), "...", ""), "")
 		'Set the button icon
 		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "CommunityDownloads_16.png", "")
 		Call RBNControlSetLeftMarginIdx(nCtrlIdx, 0)
@@ -585,6 +586,7 @@ OnError GoTo ErrorOccured
 
 	sFile = GetFolderPath$(FOLDER_MI_PREFERENCE) & FILE_INI
 	Call CONFIGWriteKey(sFile, "SETTINGS", "LANGUAGE", PRGIGetApplicationLanguageName())
+	Call CONFIGWriteKey(sFile, "SETTINGS", "EXCELSTARTWAITTIME", Str$(EXCELGetOpenExcelWaitTime()))
 
 	Exit Sub
 '-------------------------
@@ -601,7 +603,7 @@ End Sub
 '**********************************************************************************************''
 Sub MENUReadConfigFile
 
-Dim	sFile As String
+Dim	sFile, sValue As String
 
 OnError GoTo ErrorOccured
 
@@ -609,10 +611,19 @@ OnError GoTo ErrorOccured
 
 	If FileExists(sFile) Then
 		msLanguage	= CONFIGReadKey(sFile, "SETTINGS", "LANGUAGE")
+		sValue		= CONFIGReadKey(sFile, "SETTINGS", "EXCELSTARTWAITTIME")
 	Else
 		sFile 		= ApplicationDirectory$() & FILE_INI
 		msLanguage	= CONFIGReadKey(sFile, "SETTINGS", "LANGUAGE")
+		sValue		= CONFIGReadKey(sFile, "SETTINGS", "EXCELSTARTWAITTIME")
 	End If
+
+	If sValue = "" Then
+		Call EXCELSetOpenExcelWaitTime(500)
+	Else
+		Call EXCELSetOpenExcelWaitTime(Val(sValue))
+	End If
+
 
 	Exit Sub
 '-------------------------
@@ -710,30 +721,36 @@ OnError GoTo ErrorOccured
 	Dialog
 		Title  RESSTRNGGetString(STR_EXPORT_TABLE_TO_XLS)
 
-		Control StaticText		Position 5,5	Width 200
+		Control StaticText		Position 5,5	Width 300
 			Title  RESSTRNGGetString(STR_SELECT_TABLE_TO_EXPORT)
-		Control Listbox		Position 5,15	Width 200		Height 100	ID CTRL_LST_TABLES
+		Control Listbox		Position 5,15	Width 300		Height 100	ID CTRL_LST_TABLES
 			Title From Variable marrTables
 			Value 1
 
-		Control StaticText		Position 5,120	Width 200
+		Control StaticText		Position 5,120	Width 300
 			Title  RESSTRNGGetString(STR_XLS_OUTPUT_FILE)
-		Control EditText		Position 5,130	Width 190					ID CTRL_TXT_OUTPUT_FILE
+		Control EditText		Position 5,130	Width 290					ID CTRL_TXT_OUTPUT_FILE
 			Value sXLSFile
 
-		Control Button			Position 195,130		Height 12	Width 10
+		Control Button			Position 295,130		Height 12	Width 10
 			Title ".."
 			Calling MENUExport_SaveFileAs
 
-		Control Checkbox		Position 5,145	Width 80					ID CTRL_CHK_EXPORT_TITLES
+		Control Checkbox		Position 5,147	Width 110					ID CTRL_CHK_EXPORT_TITLES
 			Title  RESSTRNGGetString(STR_EXPORT_COULMN_TITLES)
+			Value mbExportTitles
 
-		Control OKButton		Position 120,145	Width 40
+		Control StaticText		Position 120,147	Width 70
+			Title  RESSTRNGGetString(STR_WAIT_TIME_SECS)
+		Control EditText		Position 190,145	Width 20				ID CTRL_TXT_WAIT_TIME
+			Value FormatNumber$(EXCELGetOpenExcelWaitTime()/1000)
+
+
+		Control OKButton		Position 220,145	Width 40
 			Title  RESSTRNGGetString(STR_EXPORT)
 			Calling MENUExportTableXLS_OKButton
-		Control CancelButton	Position 165,145	Width 40
+		Control CancelButton	Position 265,145	Width 40
 			Title  RESSTRNGGetString(STR_CLOSE)
-
 
 	Call EnableDisableGUI
 	Exit Sub
@@ -760,6 +777,20 @@ OnError GoTo ErrorOccured
 	sNewFile		= ReadControlValue(CTRL_TXT_OUTPUT_FILE)
 	sTab			= marrTables(ReadControlValue(CTRL_LST_TABLES))
 	mbExportTitles	= ReadControlValue(CTRL_CHK_EXPORT_TITLES)
+
+	' check selected output files is valid
+	If not Right$(sNewFile,5)= Right$(MENUGetExcelTemplateFile(),5) then
+		Note RESSTRNGGetString(STR_ERR_WRONG_FILE_EXTENSION) & "'" & Right$(MENUGetExcelTemplateFile(),5) & "'"
+		Exit Sub
+	End If
+
+	' check selected output folder exists
+	If not FileExists(PathToDirectory$(sNewFile)) then
+		Note RESSTRNGGetString(STR_ERR_OUTPUT_FOLDER_NOT_FOUND)
+		Exit Sub
+	End If
+
+	Call EXCELSetOpenExcelWaitTime(Val(DeformatNumber$(ReadControlValue(CTRL_TXT_WAIT_TIME)))*1000)
 
 	Call MENUExportTableViaCSV(sTab, mbExportTitles, sNewFile)
 '	Call MENUExportTableCSV(sTab, mbExportTitles, Left$(sNewFile, Len(sNewFile) - Len(FILEGetExtension(sNewFile))) & "csv")
@@ -815,23 +846,29 @@ OnError GoTo ErrorOccured
 	Dialog
 		Title RESSTRNGGetString(STR_EXPORT_BROWSER_DATA_TO_XLS)
 
-		Control StaticText		Position 5,5	Width 200
+		Control StaticText		Position 5,5	Width 300
 			Title RESSTRNGGetString(STR_XLS_OUTPUT_FILE)
-		Control EditText		Position 5,15	Width 190					ID CTRL_TXT_OUTPUT_FILE
+		Control EditText		Position 5,15	Width 290					ID CTRL_TXT_OUTPUT_FILE
 			Value sXLSFile
 
-		Control Button			Position 195,15		Height 12	Width 10
+		Control Button			Position 295,15		Height 12	Width 10
 			Title ".."
 			Calling MENUExport_SaveFileAs
 
-		Control Checkbox		Position 5,30	Width 80					ID CTRL_CHK_EXPORT_TITLES
+		Control Checkbox		Position 5,32	Width 110					ID CTRL_CHK_EXPORT_TITLES
 			Title RESSTRNGGetString(STR_EXPORT_COULMN_TITLES)
 			Value mbExportTitles
 
-		Control OKButton		Position 120,30	Width 40
+		Control StaticText		Position 120,32	Width 70
+			Title  RESSTRNGGetString(STR_WAIT_TIME_SECS)
+		Control EditText		Position 190,30	Width 20				ID CTRL_TXT_WAIT_TIME
+			Value FormatNumber$(EXCELGetOpenExcelWaitTime()/1000)
+
+
+		Control OKButton		Position 220,30	Width 40
 			Title RESSTRNGGetString(STR_EXPORT)
 			Calling MENUExportBrowserData_OKButton
-		Control CancelButton	Position 165,30	Width 40
+		Control CancelButton	Position 265,30	Width 40
 			Title RESSTRNGGetString(STR_CLOSE)
 
 	Call EnableDisableGUI
@@ -856,6 +893,20 @@ OnError GoTo ErrorOccured
 
 	sNewFile		= ReadControlValue(CTRL_TXT_OUTPUT_FILE)
 	mbExportTitles	= ReadControlValue(CTRL_CHK_EXPORT_TITLES)
+
+	' check selected output files is valid
+	If not Right$(sNewFile,5)= Right$(MENUGetExcelTemplateFile(),5) then
+		Note RESSTRNGGetString(STR_ERR_WRONG_FILE_EXTENSION) & "'" & Right$(MENUGetExcelTemplateFile(),5) & "'"
+		Exit Sub
+	End If
+
+	' check selected output folder exists
+	If not FileExists(PathToDirectory$(sNewFile)) then
+		Note RESSTRNGGetString(STR_ERR_OUTPUT_FOLDER_NOT_FOUND)
+		Exit Sub
+	End If
+
+	Call EXCELSetOpenExcelWaitTime(Val(DeformatNumber$(ReadControlValue(CTRL_TXT_WAIT_TIME)))*1000)
 
 	Create Query
 		From Window FrontWindow()
