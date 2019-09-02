@@ -1,30 +1,3 @@
-09:05:05 MENUWinCreatedHandler
-09:05:05 Validating that the file isn't already open
-09:05:05 EXCELDDEOpenChannelNoWait to :System
-09:05:06 Validating that the template file exists
-09:05:06 Validating that the template file isn't open
-09:05:06 EXCELDDEOpenChannelNoWait to :System
-09:05:06 Saving D:\Dropbox (Horsboll-Moller)\3. MB_Kode\mbMapInfo2Excel-x64\Template.xlsm as D:\1. Support\20170518 - 09.04.31.xlsm
-09:05:06 Trying to open file: D:\1. Support\20170518 - 09.04.31.xlsm
-09:05:06 WinFocusChangedHandler
-09:05:08 Testing access to file in Excel
-09:05:08 EXCELDDEOpenChannelNoWait to :System
-09:05:08    EXCELDDECloseChannel: 167773568
-09:05:08 EXCELDDEOpenChannelNoWait to :D:\1. Support\20170518 - 09.04.31.xlsm
-09:05:08    EXCELDDECloseChannel: 184550784
-09:05:08 Saving table Carshops into C:\Users\PE009MO\AppData\Local\Temp\1\MIPRO\MapInfo.Application.x64_1032\MapInfo2Excel_Dump.csv
-09:05:08 sCmd: Select Str$(ID) "ID", Name "Name", Strasse "Strasse", PLZ "PLZ", Stadt "Stadt", FormatNumber$(XCoord) "XCoord", FormatNumber$(YCoord) "YCoord", Ergebniscode "Ergebniscode" From Carshops Into __TO__EXPORT__CSV NoSelect
-09:05:08 MENUTableOpenedHandler
-09:05:08 Exporting to CSV file: 563 rows
-09:05:08 MENUTableClosedHandler
-09:05:08 Export done
-09:05:08 EXCELDDEOpenChannel to :InputData
-09:05:08 Sending file name to Excel: C__Users_PE009MO_AppData_Local_Temp_1_MIPRO_MapInfo.Application.x64_1032_MapInfo2Excel_Dump.csv
-09:05:08 Sending to Excel on Channel 201328000 Row: 1 Column: 2 Trying to write: Peter
-09:05:08 Sending to Excel on Channel 201328000 Row: 1 Column: 1 Trying to write: C__Users_PE009MO_AppData_Local_Temp_1_MIPRO_MapInfo.Application.x64_1032_MapInfo2Excel_Dump.csv
-09:05:08    EXCELDDECloseChannel: 201328000
-09:05:08 Running import macro in Excel
-09:05:08 EXCELDDEOpenChannel to :D:\1. Support\20170518 - 09.04.31.xlsm
-09:05:19    EXCELDDECloseChannel: 218105216
-09:05:19 Deleting CSV file
-09:07:40 WinFocusChangedHandler
+13:11:32 MENUTableClosedHandler
+13:11:33 MENUTableClosedHandler
+13:30:24 WinFocusChangedHandler
