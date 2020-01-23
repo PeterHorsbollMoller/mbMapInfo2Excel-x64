@@ -15,16 +15,17 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"2.2.0 x86/x64"
-Define xYear			"2017"
+Define xVersion 		"2.3.0 x64"
+Define xYear			"2020"
 Define xAddToMenuBar	FALSE
 
 Define FILE_INI			xProgram & ".ini"
 Define FILE_DBG			ApplicationDirectory$() & xProgram & ".dbg"
 'Define FILE_DLL			ApplicationDirectory$() & xProgram & ".dll"
-Define FILE_HLP			ApplicationDirectory$() & "Documentation\" & xProgram & ".pdf"
+Define FILE_HLP			ApplicationDirectory$() & "Documentation\" & xProgram 	'& ".pdf", will be added depending on the language used
 Define FILE_PAD			GetFolderPath$(FOLDER_MI_PREFERENCE) & xProgram & ".btp"
 Define PATH_IMAGES			ApplicationDirectory$() & "Images\"
+Define PATH_STRINGS			ApplicationDirectory$() & "Strings\"
 
 Define					WORKSHEET_INPUT_DATA	"InputData"
 Define					WORKSHEET_INPUT_MAPS	"Maps"
@@ -108,15 +109,24 @@ OnError GoTo ErrorOccured
 	Call PRGISetApplicationVersion(xVersion)
 	Call PRGISetApplicationCopyrightYear(xYear)
 	Call PRGISetApplicationDevelopedBy("Peter Horsbøll Møller")
-	Call PRGISetApplicationImageUri(PATH_IMAGES & "MapWindowExcel_32.png")
-	Call PRGISetApplicationHelpFile(FILE_HLP)
+	Call PRGISetApplicationImageUri(PATH_IMAGES & "MapWindowExcel_16.png")
 
 	'***Enabling Debug if file exists
 	Call DEBUGEnableByFile(FILE_DBG)
 
 	Call MENUReadConfigFile
 
+	Call RESSTRNGSetCharSet("UTF-8")
+	Call RESSTRNGSetStringFilesFolder(PATH_STRINGS)
+	Call PRGISetApplicationUseLanguageCode(TRUE)
 	Call PRGILoadLanguageStrings(msLanguage)
+
+	If FileExists(FILE_HLP & " " & PRGIGetApplicationLanguageName() & ".PDF") Then
+		Call PRGISetApplicationHelpFile(FILE_HLP & " " & PRGIGetApplicationLanguageName() & ".PDF")
+	Else
+		Call PRGISetApplicationHelpFile(FILE_HLP & ".PDF")
+	End If
+
 
 	If SystemInfo(SYS_INFO_MAPINFO_INTERFACE) = MIINTERFACE_RIBBON Then
 		Call MENUBuildRibbonInterface
@@ -132,8 +142,8 @@ OnError GoTo ErrorOccured
 			RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS)		'"Export map window to MS Excel"
 				Calling MENUExportMapWindowToExcel,
 			"(-",
-			RESSTRNGGetString(STR_MNU_RATE_APPLICATION) 		'"Rate the application at Community Downloads"
-				Calling MENUGoToCommunityDownloads,
+'			RESSTRNGGetString(STR_MNU_RATE_APPLICATION) 		'"Rate the application at Community Downloads"
+'				Calling MENUGoToCommunityDownloads,
 			RESSTRNGGetString(STR_MNU_END_APPLICATION)		'"End program"
 				Calling EndProgram,
 			RESSTRNGGetString(STR_MNU_ABOUT_APPLICATION)		'"About..."
@@ -484,7 +494,7 @@ OnError GoTo ErrorOccured
 	nCtrlIdx = RBNGroupAddButton("exportTableToExcel", RESSTRNGGetString(STR_BTN_EXPORT_TABLE), "CT", "TabHome", "HomeOutput")
 	If nCtrlIdx > 0 Then
 		Call RBNControlSetToolTipIdx(nCtrlIdx, PRGIGetApplicationName(), STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
-		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "BrowserWindowExcel_32.png", "")
+		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "BrowserWindowExcel_16.png", "")
 		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
 	End If
 
@@ -493,7 +503,7 @@ OnError GoTo ErrorOccured
 		'Create & Set the button tooltip
 		Call RBNControlSetToolTipIdx(nCtrlIdx, PRGIGetApplicationName(), STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_MAP_TO_XLS), "&", ""), "...", ""), RESSTRNGGetString(STR_ERR_PLEASE_EXPORT_DATA_BEFORE_MAP))
 		'Set the button icon
-		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "MapWindowExcel_32.png", "")
+		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "MapWindowExcel_16.png", "")
 		'Set Custom MapBasic Handle to the button
 		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportMapWindowToExcel")
 	End If
@@ -513,7 +523,7 @@ OnError GoTo ErrorOccured
 		'Create & Set the button tooltip
 		Call RBNControlSetToolTipIdx(nCtrlIdx, PRGIGetApplicationName(), STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_BROWSER_TO_XLS), "&", ""), "...", ""), RESSTRNGGetString(STR_ERR_PLEASE_MAKE_BROWSER_ACTIVE))
 		'Set the button icon
-		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "BrowserWindowExcel_32.png", "")
+		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "BrowserWindowExcel_16.png", "")
 		'Set Custom MapBasic Handle to the button
 		Call RBNControlSetLeftMarginIdx(nCtrlIdx, 0.0)
 		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportBrowserDataToExcel")
@@ -523,7 +533,7 @@ OnError GoTo ErrorOccured
 		'Create & Set the button tooltip
 		Call RBNControlSetToolTipIdx(nCtrlIdx, PRGIGetApplicationName(), STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_EXPORT_TAB_TO_XLS), "&", ""), "...", ""), RESSTRNGGetString(STR_ERR_PLEASE_OPEN_TABLE))
 		'Set the button icon
-		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "BrowserWindowExcel_32.png", "")
+		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "BrowserWindowExcel_16.png", "")
 		'Set Custom MapBasic Handle to the button
 		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
 	End If
@@ -538,16 +548,16 @@ OnError GoTo ErrorOccured
 		'Set Custom MapBasic Handle to the button
 		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUExportTableToExcel")
 	End If
-	nCtrlIdx	= RBNToolContextMenuAddMenuItem("rateApplication", STRINGReplace(RESSTRNGGetString(STR_MNU_RATE_APPLICATION), "&", ""), "")
-	If nCtrlIdx > 0 Then
-		'Create & Set the button tooltip
-		Call RBNControlSetToolTipIdx(nCtrlIdx, PRGIGetApplicationName(), STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_RATE_APPLICATION), "&", ""), "...", ""), "")
-		'Set the button icon
-		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "CommunityDownloads_16.png", "")
-		Call RBNControlSetLeftMarginIdx(nCtrlIdx, 0)
-		'Set Custom MapBasic Handle to the button
-		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUGoToCommunityDownloads")
-	End If
+'	nCtrlIdx	= RBNToolContextMenuAddMenuItem("rateApplication", STRINGReplace(RESSTRNGGetString(STR_MNU_RATE_APPLICATION), "&", ""), "")
+'	If nCtrlIdx > 0 Then
+'		'Create & Set the button tooltip
+'		Call RBNControlSetToolTipIdx(nCtrlIdx, PRGIGetApplicationName(), STRINGReplace(STRINGReplace(RESSTRNGGetString(STR_MNU_RATE_APPLICATION), "&", ""), "...", ""), "")
+'		'Set the button icon
+'		Call RBNControlSetIconsIdx(nCtrlIdx, CONTROL_SIZE_SMALL, PATH_IMAGES & "CommunityDownloads_16.png", "")
+'		Call RBNControlSetLeftMarginIdx(nCtrlIdx, 0)
+'		'Set Custom MapBasic Handle to the button
+'		Call RBNControlSetCustomMBXHandlerIdx(nCtrlIdx, "MENUGoToCommunityDownloads")
+'	End If
 
 	If NOT RBNEventSubscribe(AddInEvents_TableOpened, "MENUTableOpenedHandler") Then
 		Call DEBUGPrint("MENUTableOpenedHandler was not subscribed!")
@@ -585,7 +595,7 @@ Dim	sFile As String
 OnError GoTo ErrorOccured
 
 	sFile = GetFolderPath$(FOLDER_MI_PREFERENCE) & FILE_INI
-	Call CONFIGWriteKey(sFile, "SETTINGS", "LANGUAGE", PRGIGetApplicationLanguageName())
+	Call CONFIGWriteKey(sFile, "SETTINGS", "LANGUAGE_CODE", PRGIGetApplicationLanguageCode())
 	Call CONFIGWriteKey(sFile, "SETTINGS", "EXCELSTARTWAITTIME", Str$(EXCELGetOpenExcelWaitTime()))
 
 	Exit Sub
@@ -610,13 +620,14 @@ OnError GoTo ErrorOccured
 	sFile = GetFolderPath$(FOLDER_MI_PREFERENCE) & FILE_INI
 
 	If FileExists(sFile) Then
-		msLanguage	= CONFIGReadKey(sFile, "SETTINGS", "LANGUAGE")
+		msLanguage	= CONFIGReadKey(sFile, "SETTINGS", "LANGUAGE_CODE")
 		sValue		= CONFIGReadKey(sFile, "SETTINGS", "EXCELSTARTWAITTIME")
 	Else
 		sFile 		= ApplicationDirectory$() & FILE_INI
-		msLanguage	= CONFIGReadKey(sFile, "SETTINGS", "LANGUAGE")
+		msLanguage	= CONFIGReadKey(sFile, "SETTINGS", "LANGUAGE_CODE")
 		sValue		= CONFIGReadKey(sFile, "SETTINGS", "EXCELSTARTWAITTIME")
 	End If
+	msLanguage	= RTrim$(LTrim$(msLanguage))
 
 	If sValue = "" Then
 		Call EXCELSetOpenExcelWaitTime(500)

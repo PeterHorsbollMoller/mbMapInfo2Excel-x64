@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MarketplaceProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<ProductType>
+		<Type>Addin</Type>
+	</ProductType>
+	<ProductId>2c253a9f-588c-4819-b376-34c8aa257290</ProductId>
+	<Version>2.2.0.0</Version>
+	<Name>MapInfo2Excel</Name>
+	<Author>Peter Horsbøll Møller</Author>
+	<Description>MapInfo2Excel is an easy to use tool that helps you to export data from a MapInfo table into an Excel file.</Description>
+	<IconUri>Images\MapWindowExcel_32.png</IconUri>
+	<InstallationFolder>MapInfo2Excel\</InstallationFolder>
+	<MbxName>MapInfo2Excel.MBX</MbxName>
+</MarketplaceProduct>
