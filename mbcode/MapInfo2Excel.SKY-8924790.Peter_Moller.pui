@@ -1,12 +1,12 @@
 [Open Files]
 Active File Display Mode=1
 Active File Index=0
-Open File Line0=0
+Open File Line0=2730
 Open File Line1=0
-Open File Pos0=568
-Open File Pos1=58
-Open File Window Pos0=0,1,-1,-1,-1,-1,3,31,2371,967
-Open File Window Pos1=0,1,-1,-1,-1,-1,3,31,2371,967
+Open File Pos0=4184
+Open File Pos1=335
+Open File Window Pos0=0,1,-1,-1,-1,-1,3,26,1913,1290
+Open File Window Pos1=0,1,-1,-1,-1,-1,3,26,1913,1290
 Open File0=D:\Dropbox (Horsboll-Moller)\3. MB_Kode\mbMapInfo2Excel-x64\mbcode\MI2ExcelMENU.mb
 Open File1=D:\Dropbox (Horsboll-Moller)\3. MB_Kode\mbMapInfo2Excel-x64\mbcode\MapInfo2Excel.mbp
 Open File2=
@@ -14,4 +14,4 @@ Remember Files=1
 
 [Project Information]
 	Project Start=E107040001000A000A0021002D0000004F
-	Working Time=308352
+	Working Time=63420

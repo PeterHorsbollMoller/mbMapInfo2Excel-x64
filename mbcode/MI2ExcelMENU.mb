@@ -1,5 +1,5 @@
 '*******************************************************************************
-'**   Created by Peter Horsbøll Møller, Pitney Bowes Software
+'**   Created by Peter Horsbøll Møller, Precisely
 '** 	Program:
 '** 	Modul:
 '**
@@ -15,8 +15,8 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"2.3.0 x64"
-Define xYear			"2020"
+Define xVersion 		"2.4.1 x64"
+Define xYear			"2021"
 Define xAddToMenuBar	FALSE
 
 Define FILE_INI			xProgram & ".ini"
@@ -97,7 +97,7 @@ Dim	marrTables() As String,
 	mbExportTitles As Logical,
 	msLanguage As String
 '**********************************************************************************************''
-'**   Created by Peter Horsbøll Møller, Pitney Bowes Software
+'**   Created by Peter Horsbøll Møller, Precisely
 '
 '**********************************************************************************************''
 Sub Main
@@ -180,7 +180,7 @@ ErrorOccured:
 End Sub
 
 '****************************************
-'**   Created by Peter Horsbøll Møller, Pitney Bowes Software
+'**   Created by Peter Horsbøll Møller, Precisely
 '**   Ending MapBasic application
 '****************************************
 Sub EndProgram
@@ -197,7 +197,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -218,7 +218,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -256,7 +256,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -282,7 +282,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -332,7 +332,7 @@ End Sub
 
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -359,7 +359,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -384,7 +384,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -411,7 +411,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -434,7 +434,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -450,19 +450,24 @@ OnError GoTo ErrorOccured
 			Call RBNGroupEnableControls("", "", "exportMapToExcel", FALSE)
 			Call RBNGroupEnableControls("", "", "exportBrowserToExcel", FALSE)
 		Else
-			Do Case WindowInfo(FrontWindow(), WIN_INFO_TYPE)
-				Case WIN_MAPPER
-					If msLatestExcelFile <> "" Then
-						Call RBNGroupEnableControls("", "", "exportMapToExcel", TRUE)
-					End If
-					Call RBNGroupEnableControls("", "", "exportBrowserToExcel", FALSE)
-				Case WIN_BROWSER
-					Call RBNGroupEnableControls("", "", "exportMapToExcel", FALSE)
-					Call RBNGroupEnableControls("", "", "exportBrowserToExcel", TRUE)
-				Case Else
-					Call RBNGroupEnableControls("", "", "exportMapToExcel", FALSE)
-					Call RBNGroupEnableControls("", "", "exportBrowserToExcel", FALSE)
-			End Case
+			If FrontWindow() > 0 Then
+				Do Case WindowInfo(FrontWindow(), WIN_INFO_TYPE)
+					Case WIN_MAPPER
+						If msLatestExcelFile <> "" Then
+							Call RBNGroupEnableControls("", "", "exportMapToExcel", TRUE)
+						End If
+						Call RBNGroupEnableControls("", "", "exportBrowserToExcel", FALSE)
+					Case WIN_BROWSER
+						Call RBNGroupEnableControls("", "", "exportMapToExcel", FALSE)
+						Call RBNGroupEnableControls("", "", "exportBrowserToExcel", TRUE)
+					Case Else
+						Call RBNGroupEnableControls("", "", "exportMapToExcel", FALSE)
+						Call RBNGroupEnableControls("", "", "exportBrowserToExcel", FALSE)
+				End Case
+			Else
+				Call RBNGroupEnableControls("", "", "exportMapToExcel", FALSE)
+				Call RBNGroupEnableControls("", "", "exportBrowserToExcel", FALSE)
+			End If
 		End If
 
 		If NumTables() = 0 Then
@@ -481,7 +486,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -584,7 +589,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -607,7 +612,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -645,7 +650,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -664,7 +669,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -682,7 +687,7 @@ ErrorOccured:
 End Function
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -702,7 +707,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -773,7 +778,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -816,7 +821,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -892,7 +897,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -938,7 +943,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -965,7 +970,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -1095,7 +1100,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -1196,7 +1201,7 @@ End Sub
 
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -1276,7 +1281,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '
 '**********************************************************************************************''
@@ -1365,7 +1370,7 @@ ErrorOccured:
 End Sub
 
 '**********************************************************************************************''
-'Created by Peter Horsbøll Møller, Pitney Bowes Software
+'Created by Peter Horsbøll Møller, Precisely
 'Parameters:
 '	:
 'Return value:
