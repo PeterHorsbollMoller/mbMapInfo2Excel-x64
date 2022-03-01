@@ -15,8 +15,8 @@ Include "Library\Defaults.def"
 
 Define xProgram 		"MapInfo2Excel"
 Define xProgramMenu		"MapInfo2Excel"
-Define xVersion 		"2.4.2"
-Define xYear			"2021"
+Define xVersion 		"2.4.3"
+Define xYear			"2022"
 Define xAddToMenuBar	FALSE
 
 Define FILE_INI			xProgram & ".ini"
